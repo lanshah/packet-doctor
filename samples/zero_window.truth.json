@@ -1,0 +1,39 @@
+{
+  "events": {
+    "window_full": [
+      10,
+      24
+    ],
+    "zero_window": [
+      11,
+      13,
+      15,
+      17
+    ],
+    "zero_window_probe": [
+      12,
+      14,
+      16
+    ],
+    "zero_window_probe_ack": [
+      13,
+      15,
+      17
+    ],
+    "window_update": [
+      18
+    ]
+  },
+  "expect_findings": [
+    "tcp_zero_window"
+  ],
+  "forbid_findings": [
+    "tcp_loss",
+    "tcp_connect_fail"
+  ],
+  "expect_cause": "not reading",
+  "notes": [],
+  "scenario": "zero_window",
+  "description": "Download where the client application stops reading: shrinking window, zero window for ~1.6 s with probes, then a window update. Expected: critical zero-window finding blaming the client host, not the network.",
+  "frames": 28
+}

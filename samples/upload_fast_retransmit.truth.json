@@ -1,0 +1,30 @@
+{
+  "events": {
+    "duplicate_ack": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "retransmission": [
+      20
+    ],
+    "fast_retransmission": [
+      20
+    ]
+  },
+  "expect_findings": [
+    "tcp_loss_minor"
+  ],
+  "forbid_findings": [
+    "tcp_connect_fail",
+    "capture_drops"
+  ],
+  "expect_cause": null,
+  "notes": [
+    "Only 1 retransmission: below the 3-retransmission noise floor, so the finding is expected to be the informational 'tcp_loss_minor', not 'tcp_loss'."
+  ],
+  "scenario": "upload_fast_retransmit",
+  "description": "Upload captured on the sending client: one segment is lost after the capture point, the server sends three duplicate ACKs and the client fast-retransmits within 1 ms. Expected: fast retransmission flagged, loss located beyond the capture point.",
+  "frames": 75
+}

@@ -1,0 +1,2 @@
+id,severity,confidence,capture_artefact,category,key,title,summary,evidence_frames,wireshark_filter
+F1,warning,medium,no,tcp,tcp_slow_response,Slow server responses (application delay),"2 request(s) waited at least 500 ms for the first response byte even though the network round trip was short (worst ≈1780 ms of server time). The time is being spent inside the server or application, not on the network. Gaps longer than 10s are ignored as long-polling or idle connections.",6 28,frame.number in {6 28}

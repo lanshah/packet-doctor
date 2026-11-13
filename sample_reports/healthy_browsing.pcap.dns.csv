@@ -1,0 +1,4 @@
+time_s,query_frame,response_frame,client,server,name,type,status,rcode,latency_ms,retries
+0.0,1,2,192.168.1.50,192.168.1.1,www.example.com,A,ok,NOERROR,12.0,0
+0.289099,47,48,192.168.1.50,192.168.1.1,news.example.org,A,ok,NOERROR,12.0,0
+0.614197,93,94,192.168.1.50,192.168.1.1,cdn.example.net,A,ok,NOERROR,12.0,0

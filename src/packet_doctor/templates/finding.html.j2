@@ -1,0 +1,19 @@
+<article class="card" id="{{ f.id }}">
+  <div class="finding-head">
+    <h3>{{ f.id }} · {{ f.title }}</h3>
+    <span class="badge {{ f.severity }}{{ ' artefact' if f.artefact }}">{% if f.severity == 'critical' %}✖{% elif f.severity == 'warning' %}▲{% else %}ℹ{% endif %} {{ 'capture artefact' if f.artefact else f.severity }}</span>
+    <span class="badge">confidence: {{ f.confidence }}</span>
+  </div>
+  <p>{{ f.summary |md }}</p>
+  {% if f.evidence %}
+  <details{% if not f.artefact and f.severity != 'info' %} open{% endif %}><summary>Evidence ({{ f.evidence|length }})</summary>
+  <div class="scroll"><table>
+    <thead><tr><th class="n">Frame</th><th class="n">Time</th><th>What was seen</th></tr></thead>
+    <tbody>{% for e in f.evidence %}<tr><td class="n">{{ e.frame or '–' }}</td><td class="n">{% if e.time is not none %}{{ "%.3f"|format(e.time) }}s{% else %}–{% endif %}</td><td>{{ e.text |md }}</td></tr>{% endfor %}</tbody>
+  </table></div></details>
+  {% endif %}
+  {% if f.check_next %}<p><strong>Check next:</strong></p><ul class="tight">{% for c in f.check_next %}<li>{{ c |md }}</li>{% endfor %}</ul>{% endif %}
+  {% if f.wireshark_filter %}
+  <div class="filter"><span class="muted">Wireshark filter:</span><code>{{ f.wireshark_filter }}</code><button type="button" data-copy="{{ f.wireshark_filter }}">Copy</button></div>
+  {% endif %}
+</article>

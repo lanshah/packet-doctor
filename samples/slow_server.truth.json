@@ -1,0 +1,21 @@
+{
+  "events": {
+    "slow_response": [
+      6,
+      28
+    ]
+  },
+  "expect_findings": [
+    "tcp_slow_response"
+  ],
+  "forbid_findings": [
+    "tcp_loss",
+    "tcp_zero_window",
+    "tcp_high_rtt"
+  ],
+  "expect_cause": "processing",
+  "notes": [],
+  "scenario": "slow_server",
+  "description": "Fast network (20 ms RTT) but the server takes 1.8 s to answer an HTTP request, while a second server answers in 40 ms. Expected: slow-response finding pointing at the server, not the network.",
+  "frames": 32
+}

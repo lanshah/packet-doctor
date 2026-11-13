@@ -1,0 +1,16 @@
+{
+  "events": {},
+  "expect_findings": [
+    "tcp_high_rtt"
+  ],
+  "forbid_findings": [
+    "tcp_loss",
+    "tcp_slow_response",
+    "tls_slow"
+  ],
+  "expect_cause": null,
+  "notes": [],
+  "scenario": "high_latency",
+  "description": "Two servers: one 350 ms away (intercontinental), one 15 ms away; no loss. Expected: informational high-latency finding only.",
+  "frames": 28
+}

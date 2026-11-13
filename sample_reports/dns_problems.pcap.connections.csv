@@ -1,0 +1,1 @@
+id,client,client_port,server,server_port,service,sni,outcome,start_s,duration_s,frames,bytes_client_to_server,bytes_server_to_client,handshake_rtt_ms,server_side_rtt_ms,client_side_rtt_ms,retrans_c2s,retrans_pct_c2s,retrans_s2c,retrans_pct_s2c,dup_acks,zero_windows,out_of_order,median_response_ms,slow_responses,tls_setup_ms,throughput_mbps,wireshark_filter

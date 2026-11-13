@@ -1,0 +1,45 @@
+{
+  "events": {
+    "tso_oversize": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "lost_segment": [
+      39,
+      54
+    ],
+    "ack_lost_segment": [
+      40,
+      56
+    ],
+    "capture_duplicate": [
+      75,
+      77
+    ],
+    "retransmission": [
+      75,
+      77
+    ]
+  },
+  "expect_findings": [
+    "capture_offload",
+    "capture_drops",
+    "capture_duplicates"
+  ],
+  "forbid_findings": [
+    "tcp_loss"
+  ],
+  "expect_cause": null,
+  "notes": [
+    "Wireshark will flag the duplicate frames as retransmissions; Packet Doctor should recognise them as the same frame (same IP ID) and exclude them."
+  ],
+  "scenario": "capture_artefacts",
+  "description": "Upload captured on the sending host with TSO (segments of 14,600 bytes and IPv4 length 0), a download with packets missing from the capture but ACKed by the receiver, and duplicated frames from a mirror port. Expected: three capture-artefact findings and NO packet-loss finding.",
+  "frames": 82
+}

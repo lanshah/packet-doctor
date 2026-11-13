@@ -1,0 +1,27 @@
+{
+  "events": {
+    "refused": [
+      8
+    ],
+    "syn_unanswered": [
+      9,
+      10,
+      11
+    ],
+    "retransmission": [
+      10,
+      11
+    ]
+  },
+  "expect_findings": [
+    "tcp_connect_fail"
+  ],
+  "forbid_findings": [
+    "tcp_loss"
+  ],
+  "expect_cause": "not running/listening",
+  "notes": [],
+  "scenario": "connection_failures",
+  "description": "One port refuses (RST), one is silently dropped (SYN retried at 1 s and 3 s, never answered), one connection works. Expected: connect-failure finding.",
+  "frames": 13
+}

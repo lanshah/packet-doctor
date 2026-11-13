@@ -1,0 +1,19 @@
+{
+  "events": {
+    "tls_alert": [
+      6
+    ]
+  },
+  "expect_findings": [
+    "tls_alerts",
+    "tls_old_version"
+  ],
+  "forbid_findings": [
+    "tcp_loss"
+  ],
+  "expect_cause": null,
+  "notes": [],
+  "scenario": "tls_failure",
+  "description": "Client rejects the server certificate (TLS alert unknown_ca) and a second server negotiates TLS 1.0. Expected: TLS failure and old-version findings.",
+  "frames": 24
+}

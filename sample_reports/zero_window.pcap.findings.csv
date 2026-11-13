@@ -1,0 +1,2 @@
+id,severity,confidence,capture_artefact,category,key,title,summary,evidence_frames,wireshark_filter
+F1,critical,high,no,tcp,tcp_zero_window,Receiver stalls: TCP zero window,"192.168.1.50 told its peer to stop sending 4 times (window = 0), stalling transfers for up to 1.600s. A zero window means the receiving application is not reading data as fast as it arrives. It is an end-host problem, not a network fault.",11,tcp.analysis.zero_window || tcp.analysis.zero_window_probe

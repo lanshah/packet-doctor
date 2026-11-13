@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packet Doctor report: {{ r.capture.file }}</title>
+<style>
+:root{
+  --bg:#f9f9f7;--surface:#fcfcfb;--surface-2:#f0efec;--border:#e2e1dc;
+  --text:#0b0b0b;--text-2:#52514e;--muted:#77766f;
+  --series:#2a78d6;--series-fill:rgba(42,120,214,.14);
+  --good:#0ca30c;--warning:#fab219;--serious:#ec835a;--critical:#d03b3b;
+  --good-ink:#006300;--warning-ink:#8a5a00;--critical-ink:#a32020;
+  --code:#f0efec;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d0d0d;--surface:#1a1a19;--surface-2:#252523;--border:#383835;
+  --text:#f0efec;--text-2:#c3c2b7;--muted:#97968d;
+  --series:#3987e5;--series-fill:rgba(57,135,229,.20);
+  --good-ink:#5fd35f;--warning-ink:#fab219;--critical-ink:#f08080;--code:#252523;}}
+:root[data-theme="dark"]{
+  --bg:#0d0d0d;--surface:#1a1a19;--surface-2:#252523;--border:#383835;
+  --text:#f0efec;--text-2:#c3c2b7;--muted:#97968d;
+  --series:#3987e5;--series-fill:rgba(57,135,229,.20);
+  --good-ink:#5fd35f;--warning-ink:#fab219;--critical-ink:#f08080;--code:#252523;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:19px;margin:36px 0 12px;padding-top:8px;border-top:1px solid var(--border)}
+h3{font-size:16px;margin:0 0 8px}
+p{margin:6px 0}
+a{color:var(--series)}
+.muted{color:var(--muted)}
+.sub{color:var(--text-2);margin:0}
+code,.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:13px}
+code{background:var(--code);padding:1px 5px;border-radius:4px;word-break:break-word}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:12px 0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+.tile .v{font-size:22px;font-weight:650;font-variant-numeric:tabular-nums}
+.tile .k{color:var(--text-2);font-size:13px}
+.verdict{display:flex;gap:14px;align-items:flex-start;border-left:6px solid var(--good)}
+.verdict.problems{border-left-color:var(--critical)}.verdict.attention{border-left-color:var(--warning)}
+.verdict .icon{font-size:26px;line-height:1}
+.verdict .label{font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
+.verdict.healthy .label{color:var(--good-ink)}.verdict.attention .label{color:var(--warning-ink)}.verdict.problems .label{color:var(--critical-ink)}
+.headline{font-size:17px;font-weight:600;margin:2px 0 0}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:650;border-radius:999px;padding:1px 9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);white-space:nowrap}
+.badge.critical{color:var(--critical-ink);border-color:var(--critical)}
+.badge.warning{color:var(--warning-ink);border-color:var(--warning)}
+.badge.info{color:var(--text-2)}
+.badge.artefact{border-style:dashed}
+.finding-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.finding-head h3{margin:0;flex:1 1 300px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--text-2);font-weight:600;font-size:12.5px;background:var(--surface-2)}
+td.n,th.n{text-align:right}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.kt th{width:110px}
+.kt td.is{width:45%}
+.cause-most td:first-child{font-weight:650}
+.cause-eliminated{color:var(--muted)}
+.cause-eliminated td:first-child{text-decoration:line-through}
+.filter{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.filter code{flex:1 1 300px}
+button{font:inherit;font-size:13px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:6px;padding:4px 10px;cursor:pointer}
+button:hover{border-color:var(--series)}
+ul.tight{margin:6px 0;padding-left:20px}
+ul.tight li{margin:3px 0}
+details{margin:8px 0}
+summary{cursor:pointer;color:var(--text-2);font-weight:600}
+svg.chart{width:100%;height:auto;display:block}
+svg .grid{stroke:var(--border);stroke-width:1}
+svg .axis,svg .label,svg .value{fill:var(--text-2);font-size:12px;font-family:system-ui,sans-serif}
+svg .value{fill:var(--text)}
+svg .line{fill:none;stroke:var(--series);stroke-width:2;stroke-linejoin:round}
+svg .area{fill:var(--series-fill)}
+svg .bar{fill:var(--series)}
+svg .bar:hover{opacity:.8}
+svg .hit{fill:transparent}
+svg .hit:hover{fill:var(--series-fill)}
+svg .threshold{stroke:var(--critical);stroke-width:1.5;stroke-dasharray:4 3}
+svg .ev-critical{fill:var(--critical)}svg .ev-warning{fill:var(--warning)}svg .ev-info{fill:var(--muted)}
+#tip{position:fixed;pointer-events:none;background:var(--text);color:var(--bg);font-size:12.5px;padding:5px 9px;border-radius:6px;max-width:360px;display:none;z-index:9}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--text-2);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;margin:10px 0}
+.exports{display:flex;gap:8px;flex-wrap:wrap}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+@media (max-width:640px){.kt th{width:auto}.tile .v{font-size:19px}h1{font-size:22px}}
+@media print{button,.exports,nav.toc{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <p class="sub">Packet Doctor {{ r.tool.version }} · capture diagnosis</p>
+  <h1>{{ r.capture.file }}</h1>
+  <p class="sub">{{ r.capture.start_utc }} → {{ r.capture.end_utc }} · {{ r.capture.format }} · analysed {{ r.capture.packets|num }} frames in {{ r.capture.analysis_seconds }} s</p>
+</header>
+
+{% set d = r.diagnosis %}
+<section class="card verdict {{ d.health }}" aria-label="Verdict">
+  <div class="icon" aria-hidden="true">{% if d.health == 'healthy' %}✔{% elif d.health == 'attention' %}▲{% else %}✖{% endif %}</div>
+  <div>
+    <div class="label">{% if d.health == 'healthy' %}Healthy{% elif d.health == 'attention' %}Needs attention{% else %}Problems found{% endif %}</div>
+    <p class="headline">{{ d.headline |md }}</p>
+    <p class="muted">{{ d.capture_point |md }}</p>
+  </div>
+</section>
+
+<div class="tiles">
+  <div class="tile"><div class="v">{{ "%.1f"|format(r.capture.duration_s) }} s</div><div class="k">capture length</div></div>
+  <div class="tile"><div class="v">{{ r.capture.packets|num }}</div><div class="k">frames</div></div>
+  <div class="tile"><div class="v">{{ r.capture.bytes|bytes }}</div><div class="k">data on the wire</div></div>
+  <div class="tile"><div class="v">{% if r.capture.avg_mbps is not none %}{{ "%.2f"|format(r.capture.avg_mbps) }}{% else %}–{% endif %}</div><div class="k">average Mbit/s</div></div>
+  <div class="tile"><div class="v">{{ n_conns|num }}</div><div class="k">TCP connections</div></div>
+  <div class="tile"><div class="v">{{ r.dns.transactions|length|num }}</div><div class="k">DNS lookups</div></div>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#diagnosis">Diagnosis</a><a href="#findings">Findings</a><a href="#charts">Charts</a>
+  <a href="#tcp">TCP</a><a href="#dns">DNS</a><a href="#tls">TLS</a><a href="#traffic">Top talkers</a>
+  <a href="#limits">Limits</a><a href="#export">Export</a>
+</nav>
+
+<h2 id="diagnosis">Diagnosis</h2>
+{% if d.problems %}
+  {% for p in d.problems %}
+  <article class="card">
+    <div class="finding-head">
+      <h3>Problem {{ loop.index }}: {{ p.problem }}</h3>
+      <span class="badge {{ p.severity }}">{{ '✖' if p.severity == 'critical' else '▲' }} {{ p.severity }}</span>
+      <span class="badge">confidence: {{ p.confidence }}</span>
+    </div>
+    <p><strong>Most probable cause:</strong> {{ p.most_probable |md }}</p>
+    <div class="scroll"><table class="kt">
+      <thead><tr><th></th><th>IS (what we see)</th><th>IS NOT (nearest thing that could be affected but isn't)</th></tr></thead>
+      <tbody>
+      {% for dim in ['what','where','when','extent'] %}
+        <tr><th>{{ dim|upper }}</th><td class="is">{{ p.spec[dim][0] }}</td><td>{{ p.spec[dim][1] or '–' }}</td></tr>
+      {% endfor %}
+      </tbody></table></div>
+    {% if p.distinctions %}<p><strong>What sets the affected side apart:</strong></p>
+    <ul class="tight">{% for x in p.distinctions %}<li>{{ x |md }}</li>{% endfor %}</ul>{% endif %}
+    <p><strong>Candidate causes, tested against the specification:</strong></p>
+    <div class="scroll"><table>
+      <thead><tr><th>Cause</th><th>Explains IS?</th><th>Contradicted by</th><th class="n">Assumptions</th><th>Verdict</th></tr></thead>
+      <tbody>{% for c in p.causes %}
+      <tr class="{{ 'cause-most' if c.verdict == 'most probable' else ('cause-eliminated' if c.verdict == 'eliminated' else '') }}">
+        <td>{{ c.cause |md }}</td><td>{{ 'yes' if c.explains_is else 'no' }}</td><td>{{ (c.contradicts or '–')|md }}</td>
+        <td class="n">{{ c.assumptions }}</td><td>{{ c.verdict }}</td></tr>
+      {% endfor %}</tbody></table></div>
+    <p><strong>Verify before changing anything:</strong></p>
+    <ul class="tight">{% for v in p.verify %}<li>{{ v |md }}</li>{% endfor %}</ul>
+    <p><strong>Fast, reversible fix:</strong> {{ p.incident_fix |md }} <span class="muted">(needs the owner's approval)</span><br>
+       <strong>Permanent fix:</strong> {{ p.permanent_fix |md }}</p>
+    <p class="muted">Evidence: finding {{ p.finding }} below.</p>
+  </article>
+  {% endfor %}
+{% else %}
+  <div class="card"><p>No problem needed a full Kepner-Tregoe analysis.</p></div>
+{% endif %}
+{% if d.checked_clean %}
+<div class="card"><h3>Checked and found clean</h3>
+<ul class="tight">{% for x in d.checked_clean %}<li>✔ {{ x |md }}</li>{% endfor %}</ul></div>
+{% endif %}
+
+<h2 id="findings">Findings and evidence</h2>
+{% set real = r.findings|rejectattr('artefact')|list %}
+{% set arte = r.findings|selectattr('artefact')|list %}
+{% if not real %}<p class="muted">No findings.</p>{% endif %}
+{% for f in real %}{% include "finding.html.j2" %}{% endfor %}
+{% if arte %}
+<h3 style="margin-top:22px">Capture-point artefacts (not network faults)</h3>
+<p class="muted">These come from how or where the capture was taken. They are kept out of the diagnosis above.</p>
+{% for f in arte %}{% include "finding.html.j2" %}{% endfor %}
+{% endif %}
+
+<h2 id="charts">Charts</h2>
+<div class="card"><h3>Throughput over time</h3>
+  <p class="muted">All traffic in the capture, {{ r.traffic.timeline.bucket_s }} s buckets. Ticks underneath mark problem events; hover for details.</p>
+  {{ charts.throughput|safe }}
+  <div class="legend"><span><i style="background:var(--critical)"></i>critical event</span><span><i style="background:var(--warning)"></i>warning event</span></div>
+</div>
+{% if charts.loss %}<div class="card"><h3>Retransmission rate by sender</h3>
+  <p class="muted">Share of each sender's data segments sent again. Dashed line: warning threshold.</p>{{ charts.loss|safe }}</div>{% endif %}
+{% if charts.rtt %}<div class="card"><h3>Handshake round-trip time by server</h3>
+  <p class="muted">SYN → SYN/ACK → ACK, median per server. Dashed line: high-latency threshold.</p>{{ charts.rtt|safe }}</div>{% endif %}
+
+<h2 id="tcp">TCP connections</h2>
+<p class="muted">{{ n_conns|num }} connections{% if n_conns > 100 %}, largest 100 shown (all of them are in the CSV export){% endif %}. Capture point: {{ r.tcp.capture_point.text }}</p>
+{% if conns %}
+<div class="scroll"><table>
+<thead><tr><th class="n">#</th><th>Client → Server</th><th>Service</th><th>Outcome</th><th class="n">Data</th><th class="n">Handshake</th><th class="n">Retrans</th><th class="n">Dup ACK</th><th class="n">Zero win</th><th class="n">Median response</th></tr></thead>
+<tbody>
+{% for c in conns %}
+<tr><td class="n">{{ c.id }}</td>
+<td class="mono">{{ c.client }}:{{ c.client_port }} → {{ c.server }}:{{ c.server_port }}{% if c.tls and c.tls.sni %}<br><span class="muted">{{ c.tls.sni }}</span>{% endif %}</td>
+<td>{{ c.service }}</td><td>{{ c.outcome|replace('_',' ') }}</td>
+<td class="n">{{ (c.dirs.c2s.data_bytes + c.dirs.s2c.data_bytes)|bytes }}</td>
+<td class="n">{{ c.handshake.irtt_ms|ms }}</td>
+<td class="n">{{ c.dirs.c2s.retrans_real + c.dirs.s2c.retrans_real }}</td>
+<td class="n">{{ c.counts.duplicate_ack or 0 }}</td><td class="n">{{ c.counts.zero_window or 0 }}</td>
+<td class="n">{{ c.responses.median_ms|ms }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% else %}<p class="muted">No TCP traffic.</p>{% endif %}
+
+<h2 id="dns">DNS</h2>
+{% if r.dns.servers %}
+<div class="scroll"><table>
+<thead><tr><th>Resolver</th><th class="n">Queries</th><th class="n">Answered</th><th class="n">Errors</th><th class="n">NXDOMAIN</th><th class="n">Timeouts</th><th class="n">Median</th><th class="n">95th pct</th></tr></thead>
+<tbody>{% for s in r.dns.servers %}<tr><td class="mono">{{ s.server }}</td><td class="n">{{ s.queries }}</td><td class="n">{{ s.answered }}</td><td class="n">{{ s.failures }}</td><td class="n">{{ s.nxdomain }}</td><td class="n">{{ s.timeouts }}</td><td class="n">{{ s.median_ms|ms }}</td><td class="n">{{ s.p95_ms|ms }}</td></tr>{% endfor %}</tbody></table></div>
+<details><summary>Lookups ({{ r.dns.transactions|length }}; problems first{% if r.dns.transactions|length > 200 %}, first 200{% endif %})</summary>
+<div class="scroll"><table>
+<thead><tr><th class="n">Frame</th><th class="n">Time</th><th>Name</th><th>Type</th><th>Resolver</th><th>Result</th><th class="n">Latency</th></tr></thead>
+<tbody>{% for t in dns %}<tr><td class="n">{{ t.query_frame }}</td><td class="n">{{ "%.3f"|format(t.time) }}s</td><td class="mono">{{ t.name }}</td><td>{{ t.qtype }}</td><td class="mono">{{ t.server }}</td><td>{{ t.rcode or t.status }}</td><td class="n">{{ t.latency_ms|ms }}</td></tr>{% endfor %}</tbody></table></div>
+</details>
+{% else %}<p class="muted">No DNS over UDP port 53 in this capture{% if r.dns.dot_packets %} (DNS-over-TLS is in use){% endif %}.</p>{% endif %}
+
+<h2 id="tls">TLS handshakes</h2>
+{% if r.tls.sessions %}
+<div class="scroll"><table>
+<thead><tr><th class="n">Frame</th><th>Server name (SNI)</th><th>Server</th><th>Version</th><th class="n">ServerHello after</th><th class="n">Setup time</th><th>Alert</th></tr></thead>
+<tbody>{% for s in r.tls.sessions[:100] %}<tr><td class="n">{{ s.client_hello_frame }}</td><td class="mono">{{ s.sni or '–' }}</td><td class="mono">{{ s.server }}:{{ s.port }}</td><td>{{ s.version or '–' }}</td><td class="n">{{ s.server_hello_ms|ms }}</td><td class="n">{{ s.setup_ms|ms }}</td><td>{{ s.alert or '' }}</td></tr>{% endfor %}</tbody></table></div>
+{% else %}<p class="muted">No TLS handshakes over TCP were captured.</p>{% endif %}
+
+<h2 id="traffic">Top talkers and conversations</h2>
+{% if charts.talkers %}<div class="card"><h3>Top hosts by bytes (sent + received)</h3>{{ charts.talkers|safe }}</div>{% endif %}
+<div class="scroll"><table>
+<thead><tr><th>Conversation</th><th>Service</th><th class="n">Packets</th><th class="n">Bytes</th><th class="n">Duration</th><th class="n">Avg Mbit/s</th></tr></thead>
+<tbody>{% for c in r.traffic.top_conversations %}<tr><td class="mono">{{ c.proto }} {{ c.a }} ↔ {{ c.b }}</td><td>{{ c.service }}</td><td class="n">{{ c.packets|num }}</td><td class="n">{{ c.bytes|bytes }}</td><td class="n">{{ c.duration_s }} s</td><td class="n">{{ c.avg_mbps if c.avg_mbps is not none else '–' }}</td></tr>{% endfor %}</tbody></table></div>
+<p class="muted">Protocols: {% for p in r.traffic.protocols %}{{ p.proto }} {{ p.bytes|bytes }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+
+{% if judge and judge.available %}
+<h2 id="judge">Cross-check against Wireshark</h2>
+<p>Overall agreement with {{ judge.tshark }} on TCP expert flags: <strong>{{ judge.overall_flag_agreement_pct }}%</strong>.</p>
+<div class="scroll"><table><thead><tr><th>Flag</th><th class="n">Packet Doctor</th><th class="n">Wireshark</th><th class="n">Both</th><th class="n">Agreement</th></tr></thead>
+<tbody>{% for k, v in judge.tcp_flags.items() if v.packet_doctor or v.wireshark %}<tr><td>{{ k }}</td><td class="n">{{ v.packet_doctor }}</td><td class="n">{{ v.wireshark }}</td><td class="n">{{ v.both }}</td><td class="n">{{ v.agreement_pct }}%</td></tr>{% endfor %}</tbody></table></div>
+{% endif %}
+
+<h2 id="limits">What this capture cannot tell you</h2>
+<ul class="tight">{% for x in d.limitations %}<li>{{ x |md }}</li>{% endfor %}</ul>
+<details><summary>How Packet Doctor reaches its conclusions</summary>
+<p>TCP flags (retransmission, duplicate ACK, zero window, out-of-order …) follow the same rules as Wireshark's TCP analysis, so frame numbers here match Wireshark's Expert Info. Each problem is written up with the Kepner-Tregoe method: describe what IS and IS NOT affected, list candidate causes, drop any cause that contradicts the IS-NOT side, and prefer the one needing the fewest assumptions. Confidence is lowered when evidence is thin or capture artefacts are present. Thresholds used: retransmissions ≥ {{ r.thresholds.retrans_warn_pct }}% of a sender's segments (and at least {{ r.thresholds.min_retrans }} in total), handshake RTT ≥ {{ r.thresholds.high_rtt_ms|int }} ms, server time ≥ {{ r.thresholds.slow_response_ms|int }} ms, DNS ≥ {{ r.thresholds.dns_slow_ms|int }} ms, DNS timeout {{ r.thresholds.dns_timeout_s }} s.</p>
+</details>
+
+<h2 id="export">Export</h2>
+<p class="muted">Data from this report, for Excel, Power BI or a ticket.</p>
+{% if exports %}
+<div class="exports">
+  <button data-export="json" data-name="{{ stem }}.report.json" data-type="application/json">Full results (JSON)</button>
+  <button data-export="findings" data-name="{{ stem }}.findings.csv" data-type="text/csv">Findings (CSV)</button>
+  <button data-export="connections" data-name="{{ stem }}.connections.csv" data-type="text/csv">TCP connections (CSV)</button>
+  <button data-export="dns" data-name="{{ stem }}.dns.csv" data-type="text/csv">DNS lookups (CSV)</button>
+</div>
+{% else %}
+<p>The export data is too large to embed in this page. Run <code>packet-doctor analyse {{ r.capture.file }}</code>: it writes the JSON and CSV files next to the report.</p>
+{% endif %}
+
+<footer>Generated {{ r.generated_utc }} by Packet Doctor {{ r.tool.version }}. Times are seconds from the first frame, like Wireshark's “Time since beginning of capture”.</footer>
+</main>
+<div id="tip" role="tooltip"></div>
+<script>
+const EXPORTS = {{ (exports or {})|tojson }};
+document.querySelectorAll('button[data-export]').forEach(b => b.addEventListener('click', () => {
+  const blob = new Blob([EXPORTS[b.dataset.export]], {type: b.dataset.type});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = b.dataset.name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}));
+document.querySelectorAll('button[data-copy]').forEach(b => b.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; }
+  catch (e) { b.textContent = 'Select and copy'; }
+  setTimeout(() => b.textContent = 'Copy', 1500);
+}));
+const tip = document.getElementById('tip');
+document.addEventListener('mousemove', e => {
+  const t = e.target.closest && e.target.closest('[data-tip]');
+  if (!t) { tip.style.display = 'none'; return; }
+  tip.textContent = t.getAttribute('data-tip'); tip.style.display = 'block';
+  const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+});
+</script>
+</body>
+</html>

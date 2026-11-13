@@ -1,0 +1,4 @@
+id,client,client_port,server,server_port,service,sni,outcome,start_s,duration_s,frames,bytes_client_to_server,bytes_server_to_client,handshake_rtt_ms,server_side_rtt_ms,client_side_rtt_ms,retrans_c2s,retrans_pct_c2s,retrans_s2c,retrans_pct_s2c,dup_acks,zero_windows,out_of_order,median_response_ms,slow_responses,tls_setup_ms,throughput_mbps,wireshark_filter
+0,192.168.1.50,58000,203.0.113.70,443,HTTPS,,closed,0.0,0.1405,22,116800,0,20.3,20.0,0.3,0,0.0,0,0.0,0,0,0,,0,,6.651,ip.addr==192.168.1.50 && tcp.port==58000 && ip.addr==203.0.113.70 && tcp.port==443
+1,192.168.1.50,58001,198.51.100.71,443,HTTPS,,closed,0.1505,0.1405,46,0,39420,20.3,20.0,0.3,0,0.0,0,0.0,0,0,0,,0,,2.245,ip.addr==192.168.1.50 && tcp.port==58001 && ip.addr==198.51.100.71 && tcp.port==443
+2,192.168.1.50,58002,192.0.2.72,80,HTTP,,closed,0.301,0.140499,14,18,5840,20.3,20.0,0.3,0,0.0,0,0.0,0,0,0,19.0,0,,0.334,ip.addr==192.168.1.50 && tcp.port==58002 && ip.addr==192.0.2.72 && tcp.port==80

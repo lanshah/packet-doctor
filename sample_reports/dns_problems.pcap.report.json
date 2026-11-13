@@ -1,0 +1,1659 @@
+{
+ "tool": {
+  "name": "Packet Doctor",
+  "version": "1.0.0"
+ },
+ "generated_utc": "2026-11-13 18:10:34 UTC",
+ "capture": {
+  "file": "dns_problems.pcap",
+  "format": "pcap",
+  "linktype": 1,
+  "file_size": 2148,
+  "packets": 22,
+  "bytes": 1772,
+  "start_utc": "2025-11-14 06:00:00.000 UTC",
+  "end_utc": "2025-11-14 06:00:05.010 UTC",
+  "duration_s": 5.01,
+  "avg_mbps": 0.003,
+  "non_ip_frames": 0,
+  "warnings": [],
+  "time_went_backwards": 0,
+  "truncated_frames": 0,
+  "ip_fragments": 0,
+  "tso_zero_length": 0,
+  "max_frame": 92,
+  "stopped_early": false,
+  "reported_drops": 0,
+  "extra_linktypes": [],
+  "analysis_seconds": 0.0,
+  "packets_per_second": 15556
+ },
+ "thresholds": {
+  "retrans_warn_pct": 1.0,
+  "retrans_crit_pct": 5.0,
+  "min_retrans": 3,
+  "comparable_segments": 20,
+  "high_rtt_ms": 300.0,
+  "slow_response_ms": 500.0,
+  "long_poll_s": 10.0,
+  "dns_slow_ms": 200.0,
+  "dns_resolver_median_ms": 100.0,
+  "dns_timeout_s": 2.0,
+  "tls_slow_ms": 1000.0,
+  "zero_window_crit_s": 1.0
+ },
+ "traffic": {
+  "timeline": {
+   "bucket_s": 0.02,
+   "points": [
+    [
+     0.0,
+     66400.0
+    ],
+    [
+     0.02,
+     0.0
+    ],
+    [
+     0.04,
+     0.0
+    ],
+    [
+     0.06,
+     0.0
+    ],
+    [
+     0.08,
+     30400.0
+    ],
+    [
+     0.1,
+     36800.0
+    ],
+    [
+     0.12,
+     0.0
+    ],
+    [
+     0.14,
+     0.0
+    ],
+    [
+     0.16,
+     0.0
+    ],
+    [
+     0.18,
+     0.0
+    ],
+    [
+     0.2,
+     66400.0
+    ],
+    [
+     0.22,
+     0.0
+    ],
+    [
+     0.24,
+     0.0
+    ],
+    [
+     0.26,
+     0.0
+    ],
+    [
+     0.28,
+     30000.0
+    ],
+    [
+     0.3,
+     36400.0
+    ],
+    [
+     0.32,
+     0.0
+    ],
+    [
+     0.34,
+     0.0
+    ],
+    [
+     0.36,
+     0.0
+    ],
+    [
+     0.38,
+     0.0
+    ],
+    [
+     0.4,
+     31200.0
+    ],
+    [
+     0.42,
+     0.0
+    ],
+    [
+     0.44,
+     31200.0
+    ],
+    [
+     0.46,
+     0.0
+    ],
+    [
+     0.48,
+     0.0
+    ],
+    [
+     0.5,
+     0.0
+    ],
+    [
+     0.52,
+     0.0
+    ],
+    [
+     0.54,
+     0.0
+    ],
+    [
+     0.56,
+     0.0
+    ],
+    [
+     0.58,
+     31200.0
+    ],
+    [
+     0.6,
+     0.0
+    ],
+    [
+     0.62,
+     0.0
+    ],
+    [
+     0.64,
+     31200.0
+    ],
+    [
+     0.66,
+     0.0
+    ],
+    [
+     0.68,
+     0.0
+    ],
+    [
+     0.7,
+     0.0
+    ],
+    [
+     0.72,
+     0.0
+    ],
+    [
+     0.74,
+     0.0
+    ],
+    [
+     0.76,
+     0.0
+    ],
+    [
+     0.78,
+     30400.0
+    ],
+    [
+     0.8,
+     0.0
+    ],
+    [
+     0.82,
+     0.0
+    ],
+    [
+     0.84,
+     0.0
+    ],
+    [
+     0.86,
+     0.0
+    ],
+    [
+     0.88,
+     0.0
+    ],
+    [
+     0.9,
+     0.0
+    ],
+    [
+     0.92,
+     0.0
+    ],
+    [
+     0.94,
+     0.0
+    ],
+    [
+     0.96,
+     0.0
+    ],
+    [
+     0.98,
+     0.0
+    ],
+    [
+     1.0,
+     0.0
+    ],
+    [
+     1.02,
+     0.0
+    ],
+    [
+     1.04,
+     0.0
+    ],
+    [
+     1.06,
+     0.0
+    ],
+    [
+     1.08,
+     30000.0
+    ],
+    [
+     1.1,
+     0.0
+    ],
+    [
+     1.12,
+     0.0
+    ],
+    [
+     1.14,
+     0.0
+    ],
+    [
+     1.16,
+     0.0
+    ],
+    [
+     1.18,
+     0.0
+    ],
+    [
+     1.2,
+     0.0
+    ],
+    [
+     1.22,
+     0.0
+    ],
+    [
+     1.24,
+     0.0
+    ],
+    [
+     1.26,
+     0.0
+    ],
+    [
+     1.28,
+     0.0
+    ],
+    [
+     1.3,
+     0.0
+    ],
+    [
+     1.32,
+     0.0
+    ],
+    [
+     1.34,
+     0.0
+    ],
+    [
+     1.36,
+     0.0
+    ],
+    [
+     1.38,
+     0.0
+    ],
+    [
+     1.4,
+     0.0
+    ],
+    [
+     1.42,
+     0.0
+    ],
+    [
+     1.44,
+     0.0
+    ],
+    [
+     1.46,
+     0.0
+    ],
+    [
+     1.48,
+     0.0
+    ],
+    [
+     1.5,
+     0.0
+    ],
+    [
+     1.52,
+     0.0
+    ],
+    [
+     1.54,
+     0.0
+    ],
+    [
+     1.56,
+     0.0
+    ],
+    [
+     1.58,
+     0.0
+    ],
+    [
+     1.6,
+     0.0
+    ],
+    [
+     1.62,
+     0.0
+    ],
+    [
+     1.64,
+     0.0
+    ],
+    [
+     1.66,
+     0.0
+    ],
+    [
+     1.68,
+     0.0
+    ],
+    [
+     1.7,
+     0.0
+    ],
+    [
+     1.72,
+     0.0
+    ],
+    [
+     1.74,
+     36400.0
+    ],
+    [
+     1.76,
+     0.0
+    ],
+    [
+     1.78,
+     30400.0
+    ],
+    [
+     1.8,
+     0.0
+    ],
+    [
+     1.82,
+     0.0
+    ],
+    [
+     1.84,
+     0.0
+    ],
+    [
+     1.86,
+     0.0
+    ],
+    [
+     1.88,
+     0.0
+    ],
+    [
+     1.9,
+     34000.0
+    ],
+    [
+     1.92,
+     34000.0
+    ],
+    [
+     1.94,
+     0.0
+    ],
+    [
+     1.96,
+     0.0
+    ],
+    [
+     1.98,
+     0.0
+    ],
+    [
+     2.0,
+     56000.0
+    ],
+    [
+     2.02,
+     0.0
+    ],
+    [
+     2.04,
+     0.0
+    ],
+    [
+     2.06,
+     0.0
+    ],
+    [
+     2.08,
+     0.0
+    ],
+    [
+     2.1,
+     0.0
+    ],
+    [
+     2.12,
+     0.0
+    ],
+    [
+     2.14,
+     0.0
+    ],
+    [
+     2.16,
+     0.0
+    ],
+    [
+     2.18,
+     0.0
+    ],
+    [
+     2.2,
+     0.0
+    ],
+    [
+     2.22,
+     0.0
+    ],
+    [
+     2.24,
+     0.0
+    ],
+    [
+     2.26,
+     0.0
+    ],
+    [
+     2.28,
+     0.0
+    ],
+    [
+     2.3,
+     0.0
+    ],
+    [
+     2.32,
+     0.0
+    ],
+    [
+     2.34,
+     0.0
+    ],
+    [
+     2.36,
+     0.0
+    ],
+    [
+     2.38,
+     0.0
+    ],
+    [
+     2.4,
+     0.0
+    ],
+    [
+     2.42,
+     0.0
+    ],
+    [
+     2.44,
+     0.0
+    ],
+    [
+     2.46,
+     0.0
+    ],
+    [
+     2.48,
+     0.0
+    ],
+    [
+     2.5,
+     0.0
+    ],
+    [
+     2.52,
+     0.0
+    ],
+    [
+     2.54,
+     0.0
+    ],
+    [
+     2.56,
+     0.0
+    ],
+    [
+     2.58,
+     0.0
+    ],
+    [
+     2.6,
+     0.0
+    ],
+    [
+     2.62,
+     0.0
+    ],
+    [
+     2.64,
+     0.0
+    ],
+    [
+     2.66,
+     0.0
+    ],
+    [
+     2.68,
+     0.0
+    ],
+    [
+     2.7,
+     0.0
+    ],
+    [
+     2.72,
+     0.0
+    ],
+    [
+     2.74,
+     0.0
+    ],
+    [
+     2.76,
+     0.0
+    ],
+    [
+     2.78,
+     0.0
+    ],
+    [
+     2.8,
+     0.0
+    ],
+    [
+     2.82,
+     0.0
+    ],
+    [
+     2.84,
+     0.0
+    ],
+    [
+     2.86,
+     0.0
+    ],
+    [
+     2.88,
+     0.0
+    ],
+    [
+     2.9,
+     0.0
+    ],
+    [
+     2.92,
+     0.0
+    ],
+    [
+     2.94,
+     0.0
+    ],
+    [
+     2.96,
+     0.0
+    ],
+    [
+     2.98,
+     0.0
+    ],
+    [
+     3.0,
+     0.0
+    ],
+    [
+     3.02,
+     0.0
+    ],
+    [
+     3.04,
+     0.0
+    ],
+    [
+     3.06,
+     0.0
+    ],
+    [
+     3.08,
+     0.0
+    ],
+    [
+     3.1,
+     0.0
+    ],
+    [
+     3.12,
+     0.0
+    ],
+    [
+     3.14,
+     0.0
+    ],
+    [
+     3.16,
+     0.0
+    ],
+    [
+     3.18,
+     0.0
+    ],
+    [
+     3.2,
+     0.0
+    ],
+    [
+     3.22,
+     0.0
+    ],
+    [
+     3.24,
+     0.0
+    ],
+    [
+     3.26,
+     0.0
+    ],
+    [
+     3.28,
+     0.0
+    ],
+    [
+     3.3,
+     0.0
+    ],
+    [
+     3.32,
+     0.0
+    ],
+    [
+     3.34,
+     0.0
+    ],
+    [
+     3.36,
+     0.0
+    ],
+    [
+     3.38,
+     0.0
+    ],
+    [
+     3.4,
+     0.0
+    ],
+    [
+     3.42,
+     0.0
+    ],
+    [
+     3.44,
+     0.0
+    ],
+    [
+     3.46,
+     0.0
+    ],
+    [
+     3.48,
+     0.0
+    ],
+    [
+     3.5,
+     0.0
+    ],
+    [
+     3.52,
+     0.0
+    ],
+    [
+     3.54,
+     0.0
+    ],
+    [
+     3.56,
+     0.0
+    ],
+    [
+     3.58,
+     0.0
+    ],
+    [
+     3.6,
+     0.0
+    ],
+    [
+     3.62,
+     0.0
+    ],
+    [
+     3.64,
+     0.0
+    ],
+    [
+     3.66,
+     0.0
+    ],
+    [
+     3.68,
+     0.0
+    ],
+    [
+     3.7,
+     0.0
+    ],
+    [
+     3.72,
+     0.0
+    ],
+    [
+     3.74,
+     0.0
+    ],
+    [
+     3.76,
+     0.0
+    ],
+    [
+     3.78,
+     0.0
+    ],
+    [
+     3.8,
+     0.0
+    ],
+    [
+     3.82,
+     0.0
+    ],
+    [
+     3.84,
+     0.0
+    ],
+    [
+     3.86,
+     0.0
+    ],
+    [
+     3.88,
+     0.0
+    ],
+    [
+     3.9,
+     0.0
+    ],
+    [
+     3.92,
+     0.0
+    ],
+    [
+     3.94,
+     0.0
+    ],
+    [
+     3.96,
+     0.0
+    ],
+    [
+     3.98,
+     0.0
+    ],
+    [
+     4.0,
+     0.0
+    ],
+    [
+     4.02,
+     0.0
+    ],
+    [
+     4.04,
+     0.0
+    ],
+    [
+     4.06,
+     0.0
+    ],
+    [
+     4.08,
+     0.0
+    ],
+    [
+     4.1,
+     0.0
+    ],
+    [
+     4.12,
+     0.0
+    ],
+    [
+     4.14,
+     0.0
+    ],
+    [
+     4.16,
+     0.0
+    ],
+    [
+     4.18,
+     0.0
+    ],
+    [
+     4.2,
+     0.0
+    ],
+    [
+     4.22,
+     0.0
+    ],
+    [
+     4.24,
+     0.0
+    ],
+    [
+     4.26,
+     0.0
+    ],
+    [
+     4.28,
+     0.0
+    ],
+    [
+     4.3,
+     0.0
+    ],
+    [
+     4.32,
+     0.0
+    ],
+    [
+     4.34,
+     0.0
+    ],
+    [
+     4.36,
+     0.0
+    ],
+    [
+     4.38,
+     0.0
+    ],
+    [
+     4.4,
+     0.0
+    ],
+    [
+     4.42,
+     0.0
+    ],
+    [
+     4.44,
+     0.0
+    ],
+    [
+     4.46,
+     0.0
+    ],
+    [
+     4.48,
+     0.0
+    ],
+    [
+     4.5,
+     0.0
+    ],
+    [
+     4.52,
+     0.0
+    ],
+    [
+     4.54,
+     0.0
+    ],
+    [
+     4.56,
+     0.0
+    ],
+    [
+     4.58,
+     0.0
+    ],
+    [
+     4.6,
+     0.0
+    ],
+    [
+     4.62,
+     0.0
+    ],
+    [
+     4.64,
+     0.0
+    ],
+    [
+     4.66,
+     0.0
+    ],
+    [
+     4.68,
+     0.0
+    ],
+    [
+     4.7,
+     0.0
+    ],
+    [
+     4.72,
+     0.0
+    ],
+    [
+     4.74,
+     0.0
+    ],
+    [
+     4.76,
+     0.0
+    ],
+    [
+     4.78,
+     0.0
+    ],
+    [
+     4.8,
+     0.0
+    ],
+    [
+     4.82,
+     0.0
+    ],
+    [
+     4.84,
+     0.0
+    ],
+    [
+     4.86,
+     0.0
+    ],
+    [
+     4.88,
+     0.0
+    ],
+    [
+     4.9,
+     0.0
+    ],
+    [
+     4.92,
+     0.0
+    ],
+    [
+     4.94,
+     0.0
+    ],
+    [
+     4.96,
+     0.0
+    ],
+    [
+     4.98,
+     0.0
+    ],
+    [
+     5.0,
+     66400.0
+    ]
+   ]
+  },
+  "protocols": [
+   {
+    "proto": "UDP",
+    "packets": 22,
+    "bytes": 1772
+   }
+  ],
+  "services": [
+   {
+    "service": "DNS",
+    "bytes": 1772
+   }
+  ],
+  "top_talkers": [
+   {
+    "host": "192.168.1.1",
+    "tx_bytes": 858,
+    "rx_bytes": 914,
+    "total_bytes": 1772,
+    "share": 0.5
+   },
+   {
+    "host": "192.168.1.50",
+    "tx_bytes": 914,
+    "rx_bytes": 858,
+    "total_bytes": 1772,
+    "share": 0.5
+   }
+  ],
+  "top_conversations": [
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56104",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 170,
+    "first_ts": 1763100001.9,
+    "last_ts": 1763100001.93,
+    "duration_s": 0.03,
+    "avg_mbps": 0.045
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56001",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 168,
+    "first_ts": 1763100000.1,
+    "last_ts": 1763100000.115,
+    "duration_s": 0.015,
+    "avg_mbps": 0.09
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56000",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 166,
+    "first_ts": 1763100000.0,
+    "last_ts": 1763100000.015,
+    "duration_s": 0.015,
+    "avg_mbps": 0.089
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56002",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 166,
+    "first_ts": 1763100000.2,
+    "last_ts": 1763100000.215,
+    "duration_s": 0.015,
+    "avg_mbps": 0.089
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56003",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 166,
+    "first_ts": 1763100000.3,
+    "last_ts": 1763100000.315,
+    "duration_s": 0.015,
+    "avg_mbps": 0.089
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56103",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 166,
+    "first_ts": 1763100001.1,
+    "last_ts": 1763100001.75,
+    "duration_s": 0.65,
+    "avg_mbps": 0.002
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56106",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 166,
+    "first_ts": 1763100005.0,
+    "last_ts": 1763100005.01,
+    "duration_s": 0.01,
+    "avg_mbps": 0.133
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56100",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 156,
+    "first_ts": 1763100000.4,
+    "last_ts": 1763100000.44,
+    "duration_s": 0.04,
+    "avg_mbps": 0.031
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56101",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 156,
+    "first_ts": 1763100000.6,
+    "last_ts": 1763100000.645,
+    "duration_s": 0.045,
+    "avg_mbps": 0.028
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:56102",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 152,
+    "first_ts": 1763100000.8,
+    "last_ts": 1763100001.8,
+    "duration_s": 1.0,
+    "avg_mbps": 0.001
+   }
+  ],
+  "icmp": []
+ },
+ "tcp": {
+  "connections": [],
+  "segments": 0,
+  "flag_totals": {
+   "retransmission": 0,
+   "fast_retransmission": 0,
+   "spurious_retransmission": 0,
+   "out_of_order": 0,
+   "lost_segment": 0,
+   "ack_lost_segment": 0,
+   "duplicate_ack": 0,
+   "zero_window": 0,
+   "zero_window_probe": 0,
+   "zero_window_probe_ack": 0,
+   "window_full": 0,
+   "window_update": 0,
+   "keep_alive": 0,
+   "keep_alive_ack": 0
+  },
+  "flag_frames": {
+   "retransmission": [],
+   "fast_retransmission": [],
+   "spurious_retransmission": [],
+   "out_of_order": [],
+   "lost_segment": [],
+   "ack_lost_segment": [],
+   "duplicate_ack": [],
+   "zero_window": [],
+   "zero_window_probe": [],
+   "zero_window_probe_ack": [],
+   "window_full": [],
+   "window_update": [],
+   "keep_alive": [],
+   "keep_alive_ack": []
+  },
+  "rst_frames": [],
+  "capture_point": {
+   "position": "unknown",
+   "samples": 0,
+   "text": "No complete TCP handshakes were captured, so the capture point cannot be inferred."
+  }
+ },
+ "dns": {
+  "transactions": [
+   {
+    "name": "www.example.com",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 8192,
+    "query_frame": 1,
+    "time": 0.0,
+    "response_frame": 2,
+    "latency_ms": 15.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   },
+   {
+    "name": "mail.example.com",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 8193,
+    "query_frame": 3,
+    "time": 0.1,
+    "response_frame": 4,
+    "latency_ms": 15.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   },
+   {
+    "name": "api.example.net",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 8194,
+    "query_frame": 5,
+    "time": 0.2,
+    "response_frame": 6,
+    "latency_ms": 15.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   },
+   {
+    "name": "img.example.org",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 8195,
+    "query_frame": 7,
+    "time": 0.3,
+    "response_frame": 8,
+    "latency_ms": 15.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   },
+   {
+    "name": "broken.example.net",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 12289,
+    "query_frame": 9,
+    "time": 0.4,
+    "response_frame": 10,
+    "latency_ms": 40.0,
+    "rcode": "SERVFAIL",
+    "status": "servfail",
+    "answers": 0,
+    "retries": 0
+   },
+   {
+    "name": "broken.example.net",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 12290,
+    "query_frame": 11,
+    "time": 0.6,
+    "response_frame": 12,
+    "latency_ms": 45.0,
+    "rcode": "SERVFAIL",
+    "status": "servfail",
+    "answers": 0,
+    "retries": 0
+   },
+   {
+    "name": "slow.example.org",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 12291,
+    "query_frame": 13,
+    "time": 0.8,
+    "response_frame": null,
+    "latency_ms": null,
+    "rcode": null,
+    "status": "timeout",
+    "answers": 0,
+    "retries": 1
+   },
+   {
+    "name": "far.example.com",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 12292,
+    "query_frame": 14,
+    "time": 1.1,
+    "response_frame": 15,
+    "latency_ms": 650.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   },
+   {
+    "name": "intranet.exampel-typo.com",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 12293,
+    "query_frame": 17,
+    "time": 1.9,
+    "response_frame": 18,
+    "latency_ms": 30.0,
+    "rcode": "NXDOMAIN",
+    "status": "nxdomain",
+    "answers": 0,
+    "retries": 0
+   },
+   {
+    "name": "qwhjzkxlpd",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 12294,
+    "query_frame": 19,
+    "time": 2.0,
+    "response_frame": 20,
+    "latency_ms": 20.0,
+    "rcode": "NXDOMAIN",
+    "status": "nxdomain",
+    "answers": 0,
+    "retries": 0
+   },
+   {
+    "name": "www.example.com",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 12295,
+    "query_frame": 21,
+    "time": 5.0,
+    "response_frame": 22,
+    "latency_ms": 10.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   }
+  ],
+  "servers": [
+   {
+    "server": "192.168.1.1",
+    "queries": 11,
+    "answered": 10,
+    "failures": 2,
+    "nxdomain": 2,
+    "timeouts": 1,
+    "median_ms": 17.5,
+    "p95_ms": 377.8,
+    "max_ms": 650.0
+   }
+  ],
+  "malformed": 0,
+  "unmatched_responses": 0,
+  "tcp_dns_packets": 0,
+  "dot_packets": 0
+ },
+ "tls": {
+  "sessions": []
+ },
+ "findings": [
+  {
+   "key": "dns_failures",
+   "category": "dns",
+   "severity": "critical",
+   "confidence": "high",
+   "artefact": false,
+   "title": "DNS lookups failing",
+   "summary": "2 DNS queries got an error (SERVFAIL/REFUSED) and 1 got no answer within 2s. Applications cannot connect to a name they cannot resolve, so users see 'site can't be reached' even when the network itself works.",
+   "evidence": [
+    {
+     "frame": 9,
+     "time": 0.4,
+     "text": "A broken.example.net via 192.168.1.1: SERVFAIL"
+    },
+    {
+     "frame": 11,
+     "time": 0.6,
+     "text": "A broken.example.net via 192.168.1.1: SERVFAIL"
+    },
+    {
+     "frame": 13,
+     "time": 0.8,
+     "text": "A slow.example.org via 192.168.1.1: no answer (timeout, 1 retries)"
+    }
+   ],
+   "check_next": [
+    "`Resolve-DnsName broken.example.net -Server 192.168.1.1` and again with `-Server 1.1.1.1`. Fails on both = the domain; fails only on yours = the resolver.",
+    "`nslookup -debug <name> <resolver>` to see the full response."
+   ],
+   "metrics": {
+    "errors": 2,
+    "timeouts": 1,
+    "recovered": 0
+   },
+   "wireshark_filter": "dns.flags.rcode != 0 || (dns.flags.response == 0 && !dns.response_in)",
+   "kt": {
+    "problem": "DNS lookups failing",
+    "spec": {
+     "what": [
+      "2 error responses (SERVFAIL/REFUSED), 1 timeouts",
+      "6 lookups succeeded"
+     ],
+     "where": [
+      "resolver(s) 192.168.1.1 (3x); names broken.example.net, slow.example.org",
+      "5 other names resolved through the same resolver"
+     ],
+     "when": [
+      "concentrated between t=0.40s and t=0.80s",
+      "the rest of the capture (0-0.4s and 0.8-5.0s) is clean"
+     ],
+     "extent": [
+      "3 of 11 lookups",
+      "8 fine"
+     ]
+    },
+    "distinctions": [
+     "Failures concentrate on 2 name(s)"
+    ],
+    "causes": [
+     {
+      "cause": "The domain(s) themselves are broken (authoritative servers down, DNSSEC failure)",
+      "explains_is": true,
+      "contradicts": "",
+      "assumptions": 1,
+      "verdict": "most probable"
+     },
+     {
+      "cause": "Resolver 192.168.1.1 is failing or overloaded",
+      "explains_is": true,
+      "contradicts": "the same resolver answered 6 other lookups successfully",
+      "assumptions": 1,
+      "verdict": "eliminated"
+     },
+     {
+      "cause": "Path to the resolver is losing packets (only timeouts)",
+      "explains_is": false,
+      "contradicts": "the resolver answered with explicit errors, so it was reachable",
+      "assumptions": 2,
+      "verdict": "eliminated"
+     }
+    ],
+    "verify": [
+     "`Resolve-DnsName broken.example.net -Server 192.168.1.1` and again with `-Server 1.1.1.1`. Fails on both = the domain; fails only on yours = the resolver.",
+     "`nslookup -debug <name> <resolver>` to see the full response."
+    ],
+    "incident_fix": "Point the client at a working resolver temporarily (e.g. 1.1.1.1) if the resolver is at fault.",
+    "permanent_fix": "Fix or replace the failing resolver, or contact the domain owner."
+   },
+   "id": "F1"
+  },
+  {
+   "key": "dns_nxdomain",
+   "category": "dns",
+   "severity": "info",
+   "confidence": "medium",
+   "artefact": false,
+   "title": "DNS names that do not exist (NXDOMAIN)",
+   "summary": "2 lookups returned NXDOMAIN ('no such name'). 1 look like normal client behaviour (browser probes, search-list or local names). 1 are ordinary names: check for typos, a removed DNS record, or a wrong DNS suffix.",
+   "evidence": [
+    {
+     "frame": 17,
+     "time": 1.9,
+     "text": "A intranet.exampel-typo.com via 192.168.1.1: NXDOMAIN"
+    },
+    {
+     "frame": 19,
+     "time": 2.0,
+     "text": "A qwhjzkxlpd via 192.168.1.1: NXDOMAIN (single random label: browser probe for DNS hijacking, expected to fail)"
+    }
+   ],
+   "check_next": [
+    "Check the names listed against what the user typed or the app is configured with."
+   ],
+   "metrics": {
+    "nxdomain": 2,
+    "benign": 1
+   },
+   "wireshark_filter": "frame.number in {17 19}",
+   "kt": null,
+   "id": "F2"
+  },
+  {
+   "key": "dns_slow",
+   "category": "dns",
+   "severity": "info",
+   "confidence": "low",
+   "artefact": false,
+   "title": "Slow DNS responses",
+   "summary": "1 lookups took 200 ms or longer. Every new hostname costs this delay before the connection even starts. A single slow lookup is often a cache miss (the resolver had to ask the internet); consistently slow lookups point at the resolver or the path to it. For comparison, 192.168.1.1 answered quickly.",
+   "evidence": [
+    {
+     "frame": 14,
+     "time": 1.1,
+     "text": "A far.example.com via 192.168.1.1: 650 ms"
+    }
+   ],
+   "check_next": [
+    "`Measure-Command { Resolve-DnsName example.com -Server <resolver> -DnsOnly }` a few times; compare with 1.1.1.1 or 8.8.8.8.",
+    "Check the resolver's load and its upstream forwarders."
+   ],
+   "metrics": {
+    "slow_lookups": 1,
+    "slow_resolvers": []
+   },
+   "wireshark_filter": "frame.number in {14}",
+   "kt": null,
+   "id": "F3"
+  }
+ ],
+ "diagnosis": {
+  "health": "problems",
+  "headline": "DNS lookups failing. Most probable cause (high confidence): The domain(s) themselves are broken (authoritative servers down, DNSSEC failure).",
+  "problems": [
+   {
+    "problem": "DNS lookups failing",
+    "spec": {
+     "what": [
+      "2 error responses (SERVFAIL/REFUSED), 1 timeouts",
+      "6 lookups succeeded"
+     ],
+     "where": [
+      "resolver(s) 192.168.1.1 (3x); names broken.example.net, slow.example.org",
+      "5 other names resolved through the same resolver"
+     ],
+     "when": [
+      "concentrated between t=0.40s and t=0.80s",
+      "the rest of the capture (0-0.4s and 0.8-5.0s) is clean"
+     ],
+     "extent": [
+      "3 of 11 lookups",
+      "8 fine"
+     ]
+    },
+    "distinctions": [
+     "Failures concentrate on 2 name(s)"
+    ],
+    "causes": [
+     {
+      "cause": "The domain(s) themselves are broken (authoritative servers down, DNSSEC failure)",
+      "explains_is": true,
+      "contradicts": "",
+      "assumptions": 1,
+      "verdict": "most probable"
+     },
+     {
+      "cause": "Resolver 192.168.1.1 is failing or overloaded",
+      "explains_is": true,
+      "contradicts": "the same resolver answered 6 other lookups successfully",
+      "assumptions": 1,
+      "verdict": "eliminated"
+     },
+     {
+      "cause": "Path to the resolver is losing packets (only timeouts)",
+      "explains_is": false,
+      "contradicts": "the resolver answered with explicit errors, so it was reachable",
+      "assumptions": 2,
+      "verdict": "eliminated"
+     }
+    ],
+    "verify": [
+     "`Resolve-DnsName broken.example.net -Server 192.168.1.1` and again with `-Server 1.1.1.1`. Fails on both = the domain; fails only on yours = the resolver.",
+     "`nslookup -debug <name> <resolver>` to see the full response."
+    ],
+    "incident_fix": "Point the client at a working resolver temporarily (e.g. 1.1.1.1) if the resolver is at fault.",
+    "permanent_fix": "Fix or replace the failing resolver, or contact the domain owner.",
+    "finding": "F1",
+    "severity": "critical",
+    "confidence": "high",
+    "most_probable": "The domain(s) themselves are broken (authoritative servers down, DNSSEC failure)"
+   }
+  ],
+  "checked_clean": [],
+  "artefacts": [],
+  "limitations": [
+   "One capture point: problems elsewhere on the path are inferred, not seen directly.",
+   "Short capture (5.0s): intermittent problems may be missed."
+  ],
+  "capture_point": "No complete TCP handshakes were captured, so the capture point cannot be inferred."
+ }
+}

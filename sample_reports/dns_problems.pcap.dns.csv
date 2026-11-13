@@ -1,0 +1,12 @@
+time_s,query_frame,response_frame,client,server,name,type,status,rcode,latency_ms,retries
+0.0,1,2,192.168.1.50,192.168.1.1,www.example.com,A,ok,NOERROR,15.0,0
+0.1,3,4,192.168.1.50,192.168.1.1,mail.example.com,A,ok,NOERROR,15.0,0
+0.2,5,6,192.168.1.50,192.168.1.1,api.example.net,A,ok,NOERROR,15.0,0
+0.3,7,8,192.168.1.50,192.168.1.1,img.example.org,A,ok,NOERROR,15.0,0
+0.4,9,10,192.168.1.50,192.168.1.1,broken.example.net,A,servfail,SERVFAIL,40.0,0
+0.6,11,12,192.168.1.50,192.168.1.1,broken.example.net,A,servfail,SERVFAIL,45.0,0
+0.8,13,,192.168.1.50,192.168.1.1,slow.example.org,A,timeout,,,1
+1.1,14,15,192.168.1.50,192.168.1.1,far.example.com,A,ok,NOERROR,650.0,0
+1.9,17,18,192.168.1.50,192.168.1.1,intranet.exampel-typo.com,A,nxdomain,NXDOMAIN,30.0,0
+2.0,19,20,192.168.1.50,192.168.1.1,qwhjzkxlpd,A,nxdomain,NXDOMAIN,20.0,0
+5.0,21,22,192.168.1.50,192.168.1.1,www.example.com,A,ok,NOERROR,10.0,0

@@ -1,0 +1,2 @@
+time_s,query_frame,response_frame,client,server,name,type,status,rcode,latency_ms,retries
+4.4405,12,13,192.168.1.50,192.168.1.1,www.example.com,A,ok,NOERROR,10.0,0

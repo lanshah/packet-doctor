@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packet Doctor</title>
+<style>
+:root{--bg:#f9f9f7;--surface:#fcfcfb;--border:#e2e1dc;--text:#0b0b0b;--text-2:#52514e;--accent:#2a78d6;--critical:#d03b3b;--drop:#eaf2fc}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0d0d0d;--surface:#1a1a19;--border:#383835;--text:#f0efec;--text-2:#c3c2b7;--accent:#3987e5;--critical:#f08080;--drop:#16253a}}
+:root[data-theme="dark"]{--bg:#0d0d0d;--surface:#1a1a19;--border:#383835;--text:#f0efec;--text-2:#c3c2b7;--accent:#3987e5;--critical:#f08080;--drop:#16253a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:48px 16px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--text-2);margin:0 0 28px}
+form{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px}
+.drop{display:block;border:2px dashed var(--border);border-radius:10px;padding:34px 16px;text-align:center;cursor:pointer;color:var(--text-2)}
+.drop.over,.drop:hover{border-color:var(--accent);background:var(--drop)}
+.drop strong{color:var(--text);display:block;font-size:17px;margin-bottom:4px}
+input[type=file]{position:absolute;opacity:0;width:1px;height:1px}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
+button{font:inherit;font-weight:600;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 20px;cursor:pointer}
+button:disabled{opacity:.6;cursor:progress}
+.error{border:1px solid var(--critical);color:var(--critical);border-radius:8px;padding:10px 14px;margin-bottom:16px}
+ul{color:var(--text-2);padding-left:20px}
+.small{font-size:14px;color:var(--text-2)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Packet Doctor</h1>
+  <p class="sub">Drop in a Wireshark capture and get a plain-English diagnosis with the evidence behind it.</p>
+  {% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="/analyse" enctype="multipart/form-data" id="f">
+    <label class="drop" id="drop" for="capture">
+      <strong id="fname">Choose a .pcap or .pcapng file</strong>
+      or drag it here (up to {{ max_mb }} MB)
+    </label>
+    <input type="file" id="capture" name="capture" accept=".pcap,.pcapng,.cap" required>
+    <input type="hidden" name="token" value="{{ token }}">
+    <div class="row">
+      <label class="small"><input type="checkbox" name="judge" value="1" {{ '' if tshark else 'disabled' }}>
+        Also cross-check with Wireshark{% if not tshark %} (tshark not found){% endif %}</label>
+      <button type="submit" id="go">Diagnose</button>
+    </div>
+  </form>
+  <ul class="small">
+    <li>Everything runs on this computer. The file is deleted as soon as the report is made.</li>
+    <li>Captures can contain private data. Only analyse captures you are allowed to look at.</li>
+    <li>Big captures: use <code>packet-doctor analyse file.pcapng</code> on the command line.</li>
+  </ul>
+</main>
+<script>
+const input = document.getElementById('capture'), drop = document.getElementById('drop'),
+      fname = document.getElementById('fname'), form = document.getElementById('f'), go = document.getElementById('go');
+input.addEventListener('change', () => { if (input.files[0]) fname.textContent = input.files[0].name; });
+['dragenter','dragover'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add('over'); }));
+['dragleave','drop'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', ev => { if (ev.dataTransfer.files.length) { input.files = ev.dataTransfer.files; fname.textContent = input.files[0].name; } });
+form.addEventListener('submit', () => { go.disabled = true; go.textContent = 'Analysing…'; });
+</script>
+</body>
+</html>

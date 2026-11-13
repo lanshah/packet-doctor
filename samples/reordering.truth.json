@@ -1,0 +1,23 @@
+{
+  "events": {
+    "lost_segment": [
+      14,
+      30,
+      48
+    ],
+    "out_of_order": [
+      15,
+      32,
+      50
+    ]
+  },
+  "expect_findings": [],
+  "forbid_findings": [
+    "tcp_loss"
+  ],
+  "expect_cause": null,
+  "notes": [],
+  "scenario": "reordering",
+  "description": "Download where pairs of segments arrive swapped within 0.5 ms (path reordering, no loss). Expected: out-of-order flags but no loss finding.",
+  "frames": 67
+}

@@ -1,0 +1,49 @@
+{
+  "events": {
+    "lost_segment": [
+      23,
+      63,
+      91,
+      117
+    ],
+    "duplicate_ack": [
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      66,
+      94,
+      96,
+      98,
+      120,
+      122,
+      124,
+      126,
+      128,
+      130,
+      132
+    ],
+    "retransmission": [
+      35,
+      36,
+      67,
+      99,
+      133
+    ]
+  },
+  "expect_findings": [
+    "tcp_loss"
+  ],
+  "forbid_findings": [
+    "tcp_zero_window",
+    "tcp_connect_fail",
+    "capture_drops"
+  ],
+  "expect_cause": "path to 203.0.113.10",
+  "notes": [],
+  "scenario": "loss_one_server",
+  "description": "Four bulk downloads; only the one from 203.0.113.10 loses packets (5 of 80 segments). Expected: loss finding, cause = path/server-side for 203.0.113.10, not the local link.",
+  "frames": 518
+}

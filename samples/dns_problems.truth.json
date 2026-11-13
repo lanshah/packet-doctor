@@ -1,0 +1,33 @@
+{
+  "events": {
+    "dns_servfail": [
+      9,
+      11
+    ],
+    "dns_timeout": [
+      13
+    ],
+    "dns_slow": [
+      14
+    ],
+    "dns_nxdomain": [
+      17,
+      19
+    ]
+  },
+  "expect_findings": [
+    "dns_failures",
+    "dns_nxdomain",
+    "dns_slow"
+  ],
+  "forbid_findings": [
+    "tcp_loss"
+  ],
+  "expect_cause": "domain",
+  "notes": [
+    "Both SERVFAILs are for the same name while the resolver answers other names, so the domain (not the resolver) is the most probable cause."
+  ],
+  "scenario": "dns_problems",
+  "description": "Resolver 192.168.1.1: two SERVFAILs for one domain, one timeout, one slow (650 ms) answer, a real NXDOMAIN, a benign browser-probe NXDOMAIN, and normal fast lookups. Expected: DNS failure, NXDOMAIN and slow-DNS findings.",
+  "frames": 22
+}

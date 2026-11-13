@@ -1,0 +1,2 @@
+id,severity,confidence,capture_artefact,category,key,title,summary,evidence_frames,wireshark_filter
+F1,critical,high,no,tcp,tcp_connect_fail,Connections refused or not answered,1 connection attempt(s) were refused with a TCP reset and 1 got no answer at all. A reset means the host is reachable but nothing accepts that port; silence usually means a firewall drops the packets or the host is down.,8 9,tcp.flags.syn==1 && tcp.flags.ack==0 || tcp.flags.reset==1

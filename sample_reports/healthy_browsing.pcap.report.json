@@ -1,0 +1,1228 @@
+{
+ "tool": {
+  "name": "Packet Doctor",
+  "version": "1.0.0"
+ },
+ "generated_utc": "2026-11-13 18:10:35 UTC",
+ "capture": {
+  "file": "healthy_browsing.pcap",
+  "format": "pcap",
+  "linktype": 1,
+  "file_size": 118748,
+  "packets": 152,
+  "bytes": 116292,
+  "start_utc": "2025-11-14 06:00:00.000 UTC",
+  "end_utc": "2025-11-14 06:00:00.980 UTC",
+  "duration_s": 0.98,
+  "avg_mbps": 0.949,
+  "non_ip_frames": 0,
+  "warnings": [],
+  "time_went_backwards": 0,
+  "truncated_frames": 0,
+  "ip_fragments": 0,
+  "tso_zero_length": 0,
+  "max_frame": 1534,
+  "stopped_early": false,
+  "reported_drops": 0,
+  "extra_linktypes": [],
+  "analysis_seconds": 0.01,
+  "packets_per_second": 26344
+ },
+ "thresholds": {
+  "retrans_warn_pct": 1.0,
+  "retrans_crit_pct": 5.0,
+  "min_retrans": 3,
+  "comparable_segments": 20,
+  "high_rtt_ms": 300.0,
+  "slow_response_ms": 500.0,
+  "long_poll_s": 10.0,
+  "dns_slow_ms": 200.0,
+  "dns_resolver_median_ms": 100.0,
+  "dns_timeout_s": 2.0,
+  "tls_slow_ms": 1000.0,
+  "zero_window_crit_s": 1.0
+ },
+ "traffic": {
+  "timeline": {
+   "bucket_s": 0.01,
+   "points": [
+    [
+     0.0,
+     60000.0
+    ],
+    [
+     0.01,
+     125600.0
+    ],
+    [
+     0.02,
+     0.0
+    ],
+    [
+     0.03,
+     248800.0
+    ],
+    [
+     0.04,
+     0.0
+    ],
+    [
+     0.05,
+     794400.0
+    ],
+    [
+     0.06,
+     0.0
+    ],
+    [
+     0.07,
+     10781600.0
+    ],
+    [
+     0.08,
+     4931200.0
+    ],
+    [
+     0.09,
+     2465600.0
+    ],
+    [
+     0.1,
+     9862400.0
+    ],
+    [
+     0.11,
+     0.0
+    ],
+    [
+     0.12,
+     0.0
+    ],
+    [
+     0.13,
+     0.0
+    ],
+    [
+     0.14,
+     0.0
+    ],
+    [
+     0.15,
+     0.0
+    ],
+    [
+     0.16,
+     0.0
+    ],
+    [
+     0.17,
+     43200.0
+    ],
+    [
+     0.18,
+     86400.0
+    ],
+    [
+     0.19,
+     0.0
+    ],
+    [
+     0.2,
+     0.0
+    ],
+    [
+     0.21,
+     0.0
+    ],
+    [
+     0.22,
+     0.0
+    ],
+    [
+     0.23,
+     0.0
+    ],
+    [
+     0.24,
+     0.0
+    ],
+    [
+     0.25,
+     0.0
+    ],
+    [
+     0.26,
+     0.0
+    ],
+    [
+     0.27,
+     0.0
+    ],
+    [
+     0.28,
+     60800.0
+    ],
+    [
+     0.29,
+     0.0
+    ],
+    [
+     0.3,
+     126400.0
+    ],
+    [
+     0.31,
+     0.0
+    ],
+    [
+     0.32,
+     0.0
+    ],
+    [
+     0.33,
+     249600.0
+    ],
+    [
+     0.34,
+     0.0
+    ],
+    [
+     0.35,
+     794400.0
+    ],
+    [
+     0.36,
+     0.0
+    ],
+    [
+     0.37,
+     0.0
+    ],
+    [
+     0.38,
+     15712800.0
+    ],
+    [
+     0.39,
+     0.0
+    ],
+    [
+     0.4,
+     0.0
+    ],
+    [
+     0.41,
+     12328000.0
+    ],
+    [
+     0.42,
+     0.0
+    ],
+    [
+     0.43,
+     0.0
+    ],
+    [
+     0.44,
+     0.0
+    ],
+    [
+     0.45,
+     0.0
+    ],
+    [
+     0.46,
+     0.0
+    ],
+    [
+     0.47,
+     0.0
+    ],
+    [
+     0.48,
+     43200.0
+    ],
+    [
+     0.49,
+     0.0
+    ],
+    [
+     0.5,
+     0.0
+    ],
+    [
+     0.51,
+     86400.0
+    ],
+    [
+     0.52,
+     0.0
+    ],
+    [
+     0.53,
+     0.0
+    ],
+    [
+     0.54,
+     0.0
+    ],
+    [
+     0.55,
+     0.0
+    ],
+    [
+     0.56,
+     0.0
+    ],
+    [
+     0.57,
+     0.0
+    ],
+    [
+     0.58,
+     0.0
+    ],
+    [
+     0.59,
+     0.0
+    ],
+    [
+     0.6,
+     0.0
+    ],
+    [
+     0.61,
+     60000.0
+    ],
+    [
+     0.62,
+     72800.0
+    ],
+    [
+     0.63,
+     52800.0
+    ],
+    [
+     0.64,
+     248800.0
+    ],
+    [
+     0.65,
+     794400.0
+    ],
+    [
+     0.66,
+     0.0
+    ],
+    [
+     0.67,
+     15712800.0
+    ],
+    [
+     0.68,
+     2465600.0
+    ],
+    [
+     0.69,
+     9862400.0
+    ],
+    [
+     0.7,
+     0.0
+    ],
+    [
+     0.71,
+     0.0
+    ],
+    [
+     0.72,
+     0.0
+    ],
+    [
+     0.73,
+     0.0
+    ],
+    [
+     0.74,
+     0.0
+    ],
+    [
+     0.75,
+     43200.0
+    ],
+    [
+     0.76,
+     86400.0
+    ],
+    [
+     0.77,
+     0.0
+    ],
+    [
+     0.78,
+     0.0
+    ],
+    [
+     0.79,
+     0.0
+    ],
+    [
+     0.8,
+     0.0
+    ],
+    [
+     0.81,
+     0.0
+    ],
+    [
+     0.82,
+     0.0
+    ],
+    [
+     0.83,
+     0.0
+    ],
+    [
+     0.84,
+     0.0
+    ],
+    [
+     0.85,
+     0.0
+    ],
+    [
+     0.86,
+     68800.0
+    ],
+    [
+     0.87,
+     0.0
+    ],
+    [
+     0.88,
+     296000.0
+    ],
+    [
+     0.89,
+     842400.0
+    ],
+    [
+     0.9,
+     0.0
+    ],
+    [
+     0.91,
+     3448800.0
+    ],
+    [
+     0.92,
+     0.0
+    ],
+    [
+     0.93,
+     0.0
+    ],
+    [
+     0.94,
+     0.0
+    ],
+    [
+     0.95,
+     0.0
+    ],
+    [
+     0.96,
+     59200.0
+    ],
+    [
+     0.97,
+     59200.0
+    ],
+    [
+     0.98,
+     59200.0
+    ]
+   ]
+  },
+  "protocols": [
+   {
+    "proto": "TCP",
+    "packets": 146,
+    "bytes": 115792
+   },
+   {
+    "proto": "UDP",
+    "packets": 6,
+    "bytes": 500
+   }
+  ],
+  "services": [
+   {
+    "service": "HTTPS",
+    "bytes": 115792
+   },
+   {
+    "service": "DNS",
+    "bytes": 500
+   }
+  ],
+  "top_talkers": [
+   {
+    "host": "192.168.1.50",
+    "tx_bytes": 5597,
+    "rx_bytes": 104653,
+    "total_bytes": 110250,
+    "share": 0.47402228872149416
+   },
+   {
+    "host": "198.51.100.20",
+    "tx_bytes": 34793,
+    "rx_bytes": 1791,
+    "total_bytes": 36584,
+    "share": 0.15729370893956593
+   },
+   {
+    "host": "93.184.216.34",
+    "tx_bytes": 34793,
+    "rx_bytes": 1790,
+    "total_bytes": 36583,
+    "share": 0.15728940941767275
+   },
+   {
+    "host": "203.0.113.80",
+    "tx_bytes": 34793,
+    "rx_bytes": 1790,
+    "total_bytes": 36583,
+    "share": 0.15728940941767275
+   },
+   {
+    "host": "2001:db8:2::10",
+    "tx_bytes": 4633,
+    "rx_bytes": 1409,
+    "total_bytes": 6042,
+    "share": 0.02597771127850583
+   },
+   {
+    "host": "2001:db8:1::50",
+    "tx_bytes": 1409,
+    "rx_bytes": 4633,
+    "total_bytes": 6042,
+    "share": 0.02597771127850583
+   },
+   {
+    "host": "192.168.1.1",
+    "tx_bytes": 274,
+    "rx_bytes": 226,
+    "total_bytes": 500,
+    "share": 0.00214976094658274
+   }
+  ],
+  "top_conversations": [
+   {
+    "proto": "TCP",
+    "a": "192.168.1.50:52001",
+    "b": "198.51.100.20:443",
+    "service": "HTTPS",
+    "packets": 44,
+    "bytes": 36584,
+    "first_ts": 1763100000.309098,
+    "last_ts": 1763100000.514197,
+    "duration_s": 0.205,
+    "avg_mbps": 1.427
+   },
+   {
+    "proto": "TCP",
+    "a": "192.168.1.50:52000",
+    "b": "93.184.216.34:443",
+    "service": "HTTPS",
+    "packets": 44,
+    "bytes": 36583,
+    "first_ts": 1763100000.02,
+    "last_ts": 1763100000.189099,
+    "duration_s": 0.169,
+    "avg_mbps": 1.731
+   },
+   {
+    "proto": "TCP",
+    "a": "192.168.1.50:52002",
+    "b": "203.0.113.80:443",
+    "service": "HTTPS",
+    "packets": 44,
+    "bytes": 36583,
+    "first_ts": 1763100000.634197,
+    "last_ts": 1763100000.767297,
+    "duration_s": 0.133,
+    "avg_mbps": 2.199
+   },
+   {
+    "proto": "TCP",
+    "a": "2001:db8:1::50:52100",
+    "b": "2001:db8:2::10:443",
+    "service": "HTTPS",
+    "packets": 14,
+    "bytes": 6042,
+    "first_ts": 1763100000.867297,
+    "last_ts": 1763100000.980197,
+    "duration_s": 0.113,
+    "avg_mbps": 0.428
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:51001",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 168,
+    "first_ts": 1763100000.289099,
+    "last_ts": 1763100000.301099,
+    "duration_s": 0.012,
+    "avg_mbps": 0.112
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:51000",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 166,
+    "first_ts": 1763100000.0,
+    "last_ts": 1763100000.012,
+    "duration_s": 0.012,
+    "avg_mbps": 0.111
+   },
+   {
+    "proto": "UDP",
+    "a": "192.168.1.1:53",
+    "b": "192.168.1.50:51002",
+    "service": "DNS",
+    "packets": 2,
+    "bytes": 166,
+    "first_ts": 1763100000.614197,
+    "last_ts": 1763100000.626197,
+    "duration_s": 0.012,
+    "avg_mbps": 0.111
+   }
+  ],
+  "icmp": []
+ },
+ "tcp": {
+  "connections": [
+   {
+    "id": 0,
+    "client": "192.168.1.50",
+    "client_port": 52000,
+    "server": "93.184.216.34",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 0.02,
+    "end": 0.189099,
+    "duration_s": 0.169099,
+    "first_frame": 3,
+    "frames": 44,
+    "handshake": {
+     "server_side_ms": 18.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 18.3,
+     "syn_count": 1,
+     "syn_frame": 3,
+     "synack_frame": 4
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "192.168.1.50",
+      "packets": 18,
+      "wire_bytes": 1790,
+      "data_bytes": 806,
+      "data_segments": 3,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 605,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 2,
+       "min": 18.0,
+       "median": 18.0,
+       "p95": 18.0,
+       "max": 18.0
+      },
+      "fin": true,
+      "flags": {}
+     },
+     "s2c": {
+      "sender": "93.184.216.34",
+      "packets": 26,
+      "wire_bytes": 34793,
+      "data_bytes": 33377,
+      "data_segments": 24,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 12,
+       "min": 0.1,
+       "median": 0.1,
+       "p95": 0.3,
+       "max": 0.3
+      },
+      "fin": true,
+      "flags": {}
+     }
+    },
+    "counts": {},
+    "examples": {},
+    "rst": null,
+    "responses": {
+     "turns": 2,
+     "median_ms": 18.0,
+     "max_ms": 18.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 1.617,
+    "filter": "ip.addr==192.168.1.50 && tcp.port==52000 && ip.addr==93.184.216.34 && tcp.port==443",
+    "tls": {
+     "sni": "www.example.com",
+     "version": "TLS 1.3",
+     "server_hello_ms": 18.0,
+     "setup_ms": 18.3,
+     "alert": null
+    }
+   },
+   {
+    "id": 1,
+    "client": "192.168.1.50",
+    "client_port": 52001,
+    "server": "198.51.100.20",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 0.309098,
+    "end": 0.514197,
+    "duration_s": 0.205099,
+    "first_frame": 49,
+    "frames": 44,
+    "handshake": {
+     "server_side_ms": 24.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 24.3,
+     "syn_count": 1,
+     "syn_frame": 49,
+     "synack_frame": 50
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "192.168.1.50",
+      "packets": 18,
+      "wire_bytes": 1791,
+      "data_bytes": 807,
+      "data_segments": 3,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 605,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 2,
+       "min": 24.0,
+       "median": 24.0,
+       "p95": 24.0,
+       "max": 24.0
+      },
+      "fin": true,
+      "flags": {}
+     },
+     "s2c": {
+      "sender": "198.51.100.20",
+      "packets": 26,
+      "wire_bytes": 34793,
+      "data_bytes": 33377,
+      "data_segments": 24,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 12,
+       "min": 0.1,
+       "median": 0.1,
+       "p95": 0.3,
+       "max": 0.3
+      },
+      "fin": true,
+      "flags": {}
+     }
+    },
+    "counts": {},
+    "examples": {},
+    "rst": null,
+    "responses": {
+     "turns": 2,
+     "median_ms": 24.0,
+     "max_ms": 24.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 1.333,
+    "filter": "ip.addr==192.168.1.50 && tcp.port==52001 && ip.addr==198.51.100.20 && tcp.port==443",
+    "tls": {
+     "sni": "news.example.org",
+     "version": "TLS 1.3",
+     "server_hello_ms": 24.0,
+     "setup_ms": 24.3,
+     "alert": null
+    }
+   },
+   {
+    "id": 2,
+    "client": "192.168.1.50",
+    "client_port": 52002,
+    "server": "203.0.113.80",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 0.634197,
+    "end": 0.767297,
+    "duration_s": 0.1331,
+    "first_frame": 95,
+    "frames": 44,
+    "handshake": {
+     "server_side_ms": 12.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 12.3,
+     "syn_count": 1,
+     "syn_frame": 95,
+     "synack_frame": 96
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "192.168.1.50",
+      "packets": 18,
+      "wire_bytes": 1790,
+      "data_bytes": 806,
+      "data_segments": 3,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 605,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 2,
+       "min": 12.0,
+       "median": 12.0,
+       "p95": 12.0,
+       "max": 12.0
+      },
+      "fin": true,
+      "flags": {}
+     },
+     "s2c": {
+      "sender": "203.0.113.80",
+      "packets": 26,
+      "wire_bytes": 34793,
+      "data_bytes": 33377,
+      "data_segments": 24,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 12,
+       "min": 0.1,
+       "median": 0.1,
+       "p95": 0.3,
+       "max": 0.3
+      },
+      "fin": true,
+      "flags": {}
+     }
+    },
+    "counts": {},
+    "examples": {},
+    "rst": null,
+    "responses": {
+     "turns": 2,
+     "median_ms": 12.0,
+     "max_ms": 12.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 2.055,
+    "filter": "ip.addr==192.168.1.50 && tcp.port==52002 && ip.addr==203.0.113.80 && tcp.port==443",
+    "tls": {
+     "sni": "cdn.example.net",
+     "version": "TLS 1.3",
+     "server_hello_ms": 12.0,
+     "setup_ms": 12.3,
+     "alert": null
+    }
+   },
+   {
+    "id": 3,
+    "client": "2001:db8:1::50",
+    "client_port": 52100,
+    "server": "2001:db8:2::10",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 0.867297,
+    "end": 0.980197,
+    "duration_s": 0.1129,
+    "first_frame": 139,
+    "frames": 14,
+    "handshake": {
+     "server_side_ms": 15.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 15.3,
+     "syn_count": 1,
+     "syn_frame": 139,
+     "synack_frame": 140
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "2001:db8:1::50",
+      "packets": 8,
+      "wire_bytes": 1409,
+      "data_bytes": 805,
+      "data_segments": 3,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 605,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 2,
+       "min": 15.0,
+       "median": 15.0,
+       "p95": 15.0,
+       "max": 15.0
+      },
+      "fin": true,
+      "flags": {}
+     },
+     "s2c": {
+      "sender": "2001:db8:2::10",
+      "packets": 6,
+      "wire_bytes": 4633,
+      "data_bytes": 4177,
+      "data_segments": 4,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 2,
+       "min": 0.3,
+       "median": 0.3,
+       "p95": 0.3,
+       "max": 0.3
+      },
+      "fin": true,
+      "flags": {}
+     }
+    },
+    "counts": {},
+    "examples": {},
+    "rst": null,
+    "responses": {
+     "turns": 2,
+     "median_ms": 15.0,
+     "max_ms": 15.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 0.353,
+    "filter": "ipv6.addr==2001:db8:1::50 && tcp.port==52100 && ipv6.addr==2001:db8:2::10 && tcp.port==443",
+    "tls": {
+     "sni": "v6.example.com",
+     "version": "TLS 1.3",
+     "server_hello_ms": 15.0,
+     "setup_ms": 15.3,
+     "alert": null
+    }
+   }
+  ],
+  "segments": 146,
+  "flag_totals": {
+   "retransmission": 0,
+   "fast_retransmission": 0,
+   "spurious_retransmission": 0,
+   "out_of_order": 0,
+   "lost_segment": 0,
+   "ack_lost_segment": 0,
+   "duplicate_ack": 0,
+   "zero_window": 0,
+   "zero_window_probe": 0,
+   "zero_window_probe_ack": 0,
+   "window_full": 0,
+   "window_update": 0,
+   "keep_alive": 0,
+   "keep_alive_ack": 0
+  },
+  "flag_frames": {
+   "retransmission": [],
+   "fast_retransmission": [],
+   "spurious_retransmission": [],
+   "out_of_order": [],
+   "lost_segment": [],
+   "ack_lost_segment": [],
+   "duplicate_ack": [],
+   "zero_window": [],
+   "zero_window_probe": [],
+   "zero_window_probe_ack": [],
+   "window_full": [],
+   "window_update": [],
+   "keep_alive": [],
+   "keep_alive_ack": []
+  },
+  "rst_frames": [],
+  "capture_point": {
+   "position": "client",
+   "samples": 4,
+   "client_side_median_ms": 0.3,
+   "server_side_median_ms": 16.5,
+   "text": "Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 16.5 ms."
+  }
+ },
+ "dns": {
+  "transactions": [
+   {
+    "name": "www.example.com",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 256,
+    "query_frame": 1,
+    "time": 0.0,
+    "response_frame": 2,
+    "latency_ms": 12.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   },
+   {
+    "name": "news.example.org",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 257,
+    "query_frame": 47,
+    "time": 0.289099,
+    "response_frame": 48,
+    "latency_ms": 12.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   },
+   {
+    "name": "cdn.example.net",
+    "qtype": "A",
+    "client": "192.168.1.50",
+    "server": "192.168.1.1",
+    "txid": 258,
+    "query_frame": 93,
+    "time": 0.614197,
+    "response_frame": 94,
+    "latency_ms": 12.0,
+    "rcode": "NOERROR",
+    "status": "ok",
+    "answers": 1,
+    "retries": 0
+   }
+  ],
+  "servers": [
+   {
+    "server": "192.168.1.1",
+    "queries": 3,
+    "answered": 3,
+    "failures": 0,
+    "nxdomain": 0,
+    "timeouts": 0,
+    "median_ms": 12.0,
+    "p95_ms": 12.0,
+    "max_ms": 12.0
+   }
+  ],
+  "malformed": 0,
+  "unmatched_responses": 0,
+  "tcp_dns_packets": 0,
+  "dot_packets": 0
+ },
+ "tls": {
+  "sessions": [
+   {
+    "conn": 0,
+    "client": "192.168.1.50",
+    "server": "93.184.216.34",
+    "port": 443,
+    "sni": "www.example.com",
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "offered": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "version": "TLS 1.3",
+    "cipher": "0x1301",
+    "client_hello_frame": 6,
+    "time": 0.0393,
+    "server_hello_frame": 7,
+    "server_hello_ms": 18.0,
+    "done_frame": 8,
+    "setup_ms": 18.3,
+    "alert": null,
+    "alert_frame": null,
+    "alert_by": ""
+   },
+   {
+    "conn": 1,
+    "client": "192.168.1.50",
+    "server": "198.51.100.20",
+    "port": 443,
+    "sni": "news.example.org",
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "offered": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "version": "TLS 1.3",
+    "cipher": "0x1301",
+    "client_hello_frame": 52,
+    "time": 0.334398,
+    "server_hello_frame": 53,
+    "server_hello_ms": 24.0,
+    "done_frame": 54,
+    "setup_ms": 24.3,
+    "alert": null,
+    "alert_frame": null,
+    "alert_by": ""
+   },
+   {
+    "conn": 2,
+    "client": "192.168.1.50",
+    "server": "203.0.113.80",
+    "port": 443,
+    "sni": "cdn.example.net",
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "offered": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "version": "TLS 1.3",
+    "cipher": "0x1301",
+    "client_hello_frame": 98,
+    "time": 0.647497,
+    "server_hello_frame": 99,
+    "server_hello_ms": 12.0,
+    "done_frame": 100,
+    "setup_ms": 12.3,
+    "alert": null,
+    "alert_frame": null,
+    "alert_by": ""
+   },
+   {
+    "conn": 3,
+    "client": "2001:db8:1::50",
+    "server": "2001:db8:2::10",
+    "port": 443,
+    "sni": "v6.example.com",
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "offered": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "version": "TLS 1.3",
+    "cipher": "0x1301",
+    "client_hello_frame": 142,
+    "time": 0.883597,
+    "server_hello_frame": 143,
+    "server_hello_ms": 15.0,
+    "done_frame": 144,
+    "setup_ms": 15.3,
+    "alert": null,
+    "alert_frame": null,
+    "alert_by": ""
+   }
+  ]
+ },
+ "findings": [],
+ "diagnosis": {
+  "health": "healthy",
+  "headline": "No network problems found in this capture. If users still report trouble, the cause is probably outside what this capture saw (another path, the endpoint, or a different time).",
+  "problems": [],
+  "checked_clean": [
+   "TCP loss: 0 retransmissions in 88 data segments (0.00%)",
+   "Receiver windows: no zero-window stalls",
+   "Connection setup: 4 handshakes completed, none refused or unanswered",
+   "Server response time: no slow request/response turns",
+   "DNS: 3 lookups, no errors or timeouts, median 12 ms",
+   "TLS: 4 handshakes, none aborted"
+  ],
+  "artefacts": [],
+  "limitations": [
+   "One capture point: problems elsewhere on the path are inferred, not seen directly.",
+   "Short capture (1.0s): intermittent problems may be missed.",
+   "Encrypted payloads are not decrypted: only TLS handshakes and TCP behaviour are analysed."
+  ],
+  "capture_point": "Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 16.5 ms."
+ }
+}

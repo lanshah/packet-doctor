@@ -1,0 +1,86 @@
+{
+  "events": {
+    "lost_segment": [
+      27,
+      73,
+      149,
+      218,
+      243,
+      304,
+      448,
+      499
+    ],
+    "duplicate_ack": [
+      30,
+      32,
+      34,
+      74,
+      76,
+      78,
+      80,
+      82,
+      150,
+      184,
+      219,
+      221,
+      223,
+      225,
+      227,
+      229,
+      231,
+      244,
+      246,
+      248,
+      307,
+      309,
+      311,
+      313,
+      315,
+      317,
+      449,
+      451,
+      453,
+      455,
+      457,
+      459,
+      461,
+      463,
+      465,
+      502,
+      504,
+      506,
+      508,
+      510,
+      512,
+      514
+    ],
+    "retransmission": [
+      35,
+      83,
+      151,
+      183,
+      232,
+      249,
+      318,
+      319,
+      466,
+      515
+    ],
+    "spurious_retransmission": [
+      183
+    ]
+  },
+  "expect_findings": [
+    "tcp_loss"
+  ],
+  "forbid_findings": [
+    "tcp_zero_window",
+    "tcp_connect_fail",
+    "capture_drops"
+  ],
+  "expect_cause": "local link",
+  "notes": [],
+  "scenario": "loss_local_link",
+  "description": "Four bulk downloads from four unrelated servers all lose packets, plus one spurious retransmission. Expected: loss finding, cause = the client's local link (e.g. Wi-Fi).",
+  "frames": 534
+}

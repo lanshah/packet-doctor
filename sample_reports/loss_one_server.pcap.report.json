@@ -1,0 +1,1582 @@
+{
+ "tool": {
+  "name": "Packet Doctor",
+  "version": "1.0.0"
+ },
+ "generated_utc": "2026-11-13 18:10:35 UTC",
+ "capture": {
+  "file": "loss_one_server.pcap",
+  "format": "pcap",
+  "linktype": 1,
+  "file_size": 504624,
+  "packets": 518,
+  "bytes": 496312,
+  "start_utc": "2025-11-14 06:00:00.000 UTC",
+  "end_utc": "2025-11-14 06:00:01.759 UTC",
+  "duration_s": 1.76,
+  "avg_mbps": 2.256,
+  "non_ip_frames": 0,
+  "warnings": [],
+  "time_went_backwards": 0,
+  "truncated_frames": 0,
+  "ip_fragments": 0,
+  "tso_zero_length": 0,
+  "max_frame": 1514,
+  "stopped_early": false,
+  "reported_drops": 0,
+  "extra_linktypes": [],
+  "analysis_seconds": 0.02,
+  "packets_per_second": 32707
+ },
+ "thresholds": {
+  "retrans_warn_pct": 1.0,
+  "retrans_crit_pct": 5.0,
+  "min_retrans": 3,
+  "comparable_segments": 20,
+  "high_rtt_ms": 300.0,
+  "slow_response_ms": 500.0,
+  "long_poll_s": 10.0,
+  "dns_slow_ms": 200.0,
+  "dns_resolver_median_ms": 100.0,
+  "dns_timeout_s": 2.0,
+  "tls_slow_ms": 1000.0,
+  "zero_window_crit_s": 1.0
+ },
+ "traffic": {
+  "timeline": {
+   "bucket_s": 0.01,
+   "points": [
+    [
+     0.0,
+     52800.0
+    ],
+    [
+     0.01,
+     0.0
+    ],
+    [
+     0.02,
+     52800.0
+    ],
+    [
+     0.03,
+     295200.0
+    ],
+    [
+     0.04,
+     0.0
+    ],
+    [
+     0.05,
+     0.0
+    ],
+    [
+     0.06,
+     12328000.0
+    ],
+    [
+     0.07,
+     0.0
+    ],
+    [
+     0.08,
+     0.0
+    ],
+    [
+     0.09,
+     9992000.0
+    ],
+    [
+     0.1,
+     0.0
+    ],
+    [
+     0.11,
+     0.0
+    ],
+    [
+     0.12,
+     0.0
+    ],
+    [
+     0.13,
+     2465600.0
+    ],
+    [
+     0.14,
+     0.0
+    ],
+    [
+     0.15,
+     0.0
+    ],
+    [
+     0.16,
+     12328000.0
+    ],
+    [
+     0.17,
+     0.0
+    ],
+    [
+     0.18,
+     0.0
+    ],
+    [
+     0.19,
+     11116800.0
+    ],
+    [
+     0.2,
+     0.0
+    ],
+    [
+     0.21,
+     0.0
+    ],
+    [
+     0.22,
+     0.0
+    ],
+    [
+     0.23,
+     1254400.0
+    ],
+    [
+     0.24,
+     0.0
+    ],
+    [
+     0.25,
+     0.0
+    ],
+    [
+     0.26,
+     12328000.0
+    ],
+    [
+     0.27,
+     0.0
+    ],
+    [
+     0.28,
+     0.0
+    ],
+    [
+     0.29,
+     11160000.0
+    ],
+    [
+     0.3,
+     0.0
+    ],
+    [
+     0.31,
+     0.0
+    ],
+    [
+     0.32,
+     1254400.0
+    ],
+    [
+     0.33,
+     0.0
+    ],
+    [
+     0.34,
+     0.0
+    ],
+    [
+     0.35,
+     2422400.0
+    ],
+    [
+     0.36,
+     9905600.0
+    ],
+    [
+     0.37,
+     0.0
+    ],
+    [
+     0.38,
+     0.0
+    ],
+    [
+     0.39,
+     11246400.0
+    ],
+    [
+     0.4,
+     0.0
+    ],
+    [
+     0.41,
+     0.0
+    ],
+    [
+     0.42,
+     1254400.0
+    ],
+    [
+     0.43,
+     0.0
+    ],
+    [
+     0.44,
+     0.0
+    ],
+    [
+     0.45,
+     0.0
+    ],
+    [
+     0.46,
+     43200.0
+    ],
+    [
+     0.47,
+     0.0
+    ],
+    [
+     0.48,
+     0.0
+    ],
+    [
+     0.49,
+     86400.0
+    ],
+    [
+     0.5,
+     0.0
+    ],
+    [
+     0.51,
+     0.0
+    ],
+    [
+     0.52,
+     0.0
+    ],
+    [
+     0.53,
+     0.0
+    ],
+    [
+     0.54,
+     52800.0
+    ],
+    [
+     0.55,
+     0.0
+    ],
+    [
+     0.56,
+     0.0
+    ],
+    [
+     0.57,
+     96000.0
+    ],
+    [
+     0.58,
+     252000.0
+    ],
+    [
+     0.59,
+     0.0
+    ],
+    [
+     0.6,
+     0.0
+    ],
+    [
+     0.61,
+     12328000.0
+    ],
+    [
+     0.62,
+     0.0
+    ],
+    [
+     0.63,
+     0.0
+    ],
+    [
+     0.64,
+     12328000.0
+    ],
+    [
+     0.65,
+     0.0
+    ],
+    [
+     0.66,
+     0.0
+    ],
+    [
+     0.67,
+     8608000.0
+    ],
+    [
+     0.68,
+     3720000.0
+    ],
+    [
+     0.69,
+     0.0
+    ],
+    [
+     0.7,
+     0.0
+    ],
+    [
+     0.71,
+     12328000.0
+    ],
+    [
+     0.72,
+     0.0
+    ],
+    [
+     0.73,
+     0.0
+    ],
+    [
+     0.74,
+     12328000.0
+    ],
+    [
+     0.75,
+     0.0
+    ],
+    [
+     0.76,
+     0.0
+    ],
+    [
+     0.77,
+     6142400.0
+    ],
+    [
+     0.78,
+     6185600.0
+    ],
+    [
+     0.79,
+     0.0
+    ],
+    [
+     0.8,
+     0.0
+    ],
+    [
+     0.81,
+     12328000.0
+    ],
+    [
+     0.82,
+     0.0
+    ],
+    [
+     0.83,
+     0.0
+    ],
+    [
+     0.84,
+     12328000.0
+    ],
+    [
+     0.85,
+     0.0
+    ],
+    [
+     0.86,
+     0.0
+    ],
+    [
+     0.87,
+     0.0
+    ],
+    [
+     0.88,
+     43200.0
+    ],
+    [
+     0.89,
+     0.0
+    ],
+    [
+     0.9,
+     0.0
+    ],
+    [
+     0.91,
+     86400.0
+    ],
+    [
+     0.92,
+     0.0
+    ],
+    [
+     0.93,
+     0.0
+    ],
+    [
+     0.94,
+     0.0
+    ],
+    [
+     0.95,
+     0.0
+    ],
+    [
+     0.96,
+     52800.0
+    ],
+    [
+     0.97,
+     0.0
+    ],
+    [
+     0.98,
+     0.0
+    ],
+    [
+     0.99,
+     96000.0
+    ],
+    [
+     1.0,
+     252000.0
+    ],
+    [
+     1.01,
+     0.0
+    ],
+    [
+     1.02,
+     0.0
+    ],
+    [
+     1.03,
+     12328000.0
+    ],
+    [
+     1.04,
+     0.0
+    ],
+    [
+     1.05,
+     0.0
+    ],
+    [
+     1.06,
+     12328000.0
+    ],
+    [
+     1.07,
+     0.0
+    ],
+    [
+     1.08,
+     0.0
+    ],
+    [
+     1.09,
+     7396800.0
+    ],
+    [
+     1.1,
+     4931200.0
+    ],
+    [
+     1.11,
+     0.0
+    ],
+    [
+     1.12,
+     0.0
+    ],
+    [
+     1.13,
+     12328000.0
+    ],
+    [
+     1.14,
+     0.0
+    ],
+    [
+     1.15,
+     0.0
+    ],
+    [
+     1.16,
+     12328000.0
+    ],
+    [
+     1.17,
+     0.0
+    ],
+    [
+     1.18,
+     0.0
+    ],
+    [
+     1.19,
+     4931200.0
+    ],
+    [
+     1.2,
+     7396800.0
+    ],
+    [
+     1.21,
+     0.0
+    ],
+    [
+     1.22,
+     0.0
+    ],
+    [
+     1.23,
+     12328000.0
+    ],
+    [
+     1.24,
+     0.0
+    ],
+    [
+     1.25,
+     0.0
+    ],
+    [
+     1.26,
+     12328000.0
+    ],
+    [
+     1.27,
+     0.0
+    ],
+    [
+     1.28,
+     0.0
+    ],
+    [
+     1.29,
+     0.0
+    ],
+    [
+     1.3,
+     43200.0
+    ],
+    [
+     1.31,
+     0.0
+    ],
+    [
+     1.32,
+     0.0
+    ],
+    [
+     1.33,
+     86400.0
+    ],
+    [
+     1.34,
+     0.0
+    ],
+    [
+     1.35,
+     0.0
+    ],
+    [
+     1.36,
+     0.0
+    ],
+    [
+     1.37,
+     0.0
+    ],
+    [
+     1.38,
+     52800.0
+    ],
+    [
+     1.39,
+     0.0
+    ],
+    [
+     1.4,
+     0.0
+    ],
+    [
+     1.41,
+     96000.0
+    ],
+    [
+     1.42,
+     252000.0
+    ],
+    [
+     1.43,
+     0.0
+    ],
+    [
+     1.44,
+     0.0
+    ],
+    [
+     1.45,
+     12328000.0
+    ],
+    [
+     1.46,
+     0.0
+    ],
+    [
+     1.47,
+     0.0
+    ],
+    [
+     1.48,
+     12328000.0
+    ],
+    [
+     1.49,
+     0.0
+    ],
+    [
+     1.5,
+     0.0
+    ],
+    [
+     1.51,
+     6142400.0
+    ],
+    [
+     1.52,
+     6185600.0
+    ],
+    [
+     1.53,
+     0.0
+    ],
+    [
+     1.54,
+     0.0
+    ],
+    [
+     1.55,
+     12328000.0
+    ],
+    [
+     1.56,
+     0.0
+    ],
+    [
+     1.57,
+     0.0
+    ],
+    [
+     1.58,
+     12328000.0
+    ],
+    [
+     1.59,
+     0.0
+    ],
+    [
+     1.6,
+     0.0
+    ],
+    [
+     1.61,
+     3676800.0
+    ],
+    [
+     1.62,
+     8651200.0
+    ],
+    [
+     1.63,
+     0.0
+    ],
+    [
+     1.64,
+     0.0
+    ],
+    [
+     1.65,
+     12328000.0
+    ],
+    [
+     1.66,
+     0.0
+    ],
+    [
+     1.67,
+     0.0
+    ],
+    [
+     1.68,
+     12328000.0
+    ],
+    [
+     1.69,
+     0.0
+    ],
+    [
+     1.7,
+     0.0
+    ],
+    [
+     1.71,
+     0.0
+    ],
+    [
+     1.72,
+     43200.0
+    ],
+    [
+     1.73,
+     0.0
+    ],
+    [
+     1.74,
+     0.0
+    ],
+    [
+     1.75,
+     86400.0
+    ]
+   ]
+  },
+  "protocols": [
+   {
+    "proto": "TCP",
+    "packets": 518,
+    "bytes": 496312
+   }
+  ],
+  "services": [
+   {
+    "service": "HTTPS",
+    "bytes": 496312
+   }
+  ],
+  "top_talkers": [
+   {
+    "host": "192.168.1.50",
+    "tx_bytes": 11352,
+    "rx_bytes": 484960,
+    "total_bytes": 496312,
+    "share": 0.5
+   },
+   {
+    "host": "203.0.113.10",
+    "tx_bytes": 121240,
+    "rx_bytes": 3243,
+    "total_bytes": 124483,
+    "share": 0.12540800947790906
+   },
+   {
+    "host": "203.0.113.99",
+    "tx_bytes": 121240,
+    "rx_bytes": 2703,
+    "total_bytes": 123943,
+    "share": 0.12486399684069698
+   },
+   {
+    "host": "192.0.2.77",
+    "tx_bytes": 121240,
+    "rx_bytes": 2703,
+    "total_bytes": 123943,
+    "share": 0.12486399684069698
+   },
+   {
+    "host": "198.51.100.25",
+    "tx_bytes": 121240,
+    "rx_bytes": 2703,
+    "total_bytes": 123943,
+    "share": 0.12486399684069698
+   }
+  ],
+  "top_conversations": [
+   {
+    "proto": "TCP",
+    "a": "192.168.1.50:53000",
+    "b": "203.0.113.10:443",
+    "service": "HTTPS",
+    "packets": 137,
+    "bytes": 124483,
+    "first_ts": 1763100000.0,
+    "last_ts": 1763100000.499099,
+    "duration_s": 0.499,
+    "avg_mbps": 1.995
+   },
+   {
+    "proto": "TCP",
+    "a": "192.168.1.50:53001",
+    "b": "198.51.100.25:443",
+    "service": "HTTPS",
+    "packets": 127,
+    "bytes": 123943,
+    "first_ts": 1763100000.549098,
+    "last_ts": 1763100000.919397,
+    "duration_s": 0.37,
+    "avg_mbps": 2.678
+   },
+   {
+    "proto": "TCP",
+    "a": "192.0.2.77:443",
+    "b": "192.168.1.50:53002",
+    "service": "HTTPS",
+    "packets": 127,
+    "bytes": 123943,
+    "first_ts": 1763100000.969397,
+    "last_ts": 1763100001.339696,
+    "duration_s": 0.37,
+    "avg_mbps": 2.678
+   },
+   {
+    "proto": "TCP",
+    "a": "192.168.1.50:53003",
+    "b": "203.0.113.99:443",
+    "service": "HTTPS",
+    "packets": 127,
+    "bytes": 123943,
+    "first_ts": 1763100001.389696,
+    "last_ts": 1763100001.759994,
+    "duration_s": 0.37,
+    "avg_mbps": 2.678
+   }
+  ],
+  "icmp": []
+ },
+ "tcp": {
+  "connections": [
+   {
+    "id": 0,
+    "client": "192.168.1.50",
+    "client_port": 53000,
+    "server": "203.0.113.10",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 0.0,
+    "end": 0.499099,
+    "duration_s": 0.499099,
+    "first_frame": 1,
+    "frames": 137,
+    "handshake": {
+     "server_side_ms": 30.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 30.3,
+     "syn_count": 1,
+     "syn_frame": 1,
+     "synack_frame": 2
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "192.168.1.50",
+      "packets": 55,
+      "wire_bytes": 3243,
+      "data_bytes": 261,
+      "data_segments": 1,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 261,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 1,
+       "min": 30.0,
+       "median": 30.0,
+       "p95": 30.0,
+       "max": 30.0
+      },
+      "fin": true,
+      "flags": {
+       "duplicate_ack": 17
+      }
+     },
+     "s2c": {
+      "sender": "203.0.113.10",
+      "packets": 82,
+      "wire_bytes": 121240,
+      "data_bytes": 109500,
+      "data_segments": 80,
+      "retrans_segments": 5,
+      "retrans_real": 5,
+      "retrans_pct": 6.25,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 29,
+       "min": 0.1,
+       "median": 0.1,
+       "p95": 0.9,
+       "max": 0.9
+      },
+      "fin": true,
+      "flags": {
+       "lost_segment": 4,
+       "retransmission": 5
+      }
+     }
+    },
+    "counts": {
+     "lost_segment": 4,
+     "duplicate_ack": 17,
+     "retransmission": 5
+    },
+    "examples": {
+     "lost_segment": [
+      {
+       "frame": 23,
+       "time": 0.0965,
+       "detail": "4294965836 bytes before this segment were not seen"
+      },
+      {
+       "frame": 63,
+       "time": 0.197799,
+       "detail": "4294965836 bytes before this segment were not seen"
+      },
+      {
+       "frame": 91,
+       "time": 0.296299,
+       "detail": "4294965836 bytes before this segment were not seen"
+      },
+      {
+       "frame": 117,
+       "time": 0.393999,
+       "detail": "4294965836 bytes before this segment were not seen"
+      }
+     ],
+     "duplicate_ack": [
+      {
+       "frame": 24,
+       "time": 0.0966,
+       "detail": "ack 717521 (dup #1)"
+      },
+      {
+       "frame": 26,
+       "time": 0.097,
+       "detail": "ack 717521 (dup #2)"
+      },
+      {
+       "frame": 28,
+       "time": 0.097399,
+       "detail": "ack 717521 (dup #3)"
+      },
+      {
+       "frame": 30,
+       "time": 0.0978,
+       "detail": "ack 717521 (dup #4)"
+      },
+      {
+       "frame": 32,
+       "time": 0.0982,
+       "detail": "ack 717521 (dup #5)"
+      },
+      {
+       "frame": 34,
+       "time": 0.098599,
+       "detail": "ack 717521 (dup #6)"
+      },
+      {
+       "frame": 66,
+       "time": 0.198299,
+       "detail": "ack 754021 (dup #1)"
+      },
+      {
+       "frame": 94,
+       "time": 0.296799,
+       "detail": "ack 780301 (dup #1)"
+      },
+      {
+       "frame": 96,
+       "time": 0.297199,
+       "detail": "ack 780301 (dup #2)"
+      },
+      {
+       "frame": 98,
+       "time": 0.297599,
+       "detail": "ack 780301 (dup #3)"
+      },
+      {
+       "frame": 120,
+       "time": 0.394499,
+       "detail": "ack 803661 (dup #1)"
+      },
+      {
+       "frame": 122,
+       "time": 0.394899,
+       "detail": "ack 803661 (dup #2)"
+      }
+     ],
+     "retransmission": [
+      {
+       "frame": 35,
+       "time": 0.1305,
+       "detail": "seq 717521 len 1460"
+      },
+      {
+       "frame": 36,
+       "time": 0.1309,
+       "detail": "seq 718981 len 1460"
+      },
+      {
+       "frame": 67,
+       "time": 0.230199,
+       "detail": "seq 754021 len 1460"
+      },
+      {
+       "frame": 99,
+       "time": 0.329499,
+       "detail": "seq 780301 len 1460"
+      },
+      {
+       "frame": 133,
+       "time": 0.428799,
+       "detail": "seq 803661 len 1460"
+      }
+     ]
+    },
+    "rst": null,
+    "responses": {
+     "turns": 1,
+     "median_ms": 30.0,
+     "max_ms": 30.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 1.759,
+    "filter": "ip.addr==192.168.1.50 && tcp.port==53000 && ip.addr==203.0.113.10 && tcp.port==443"
+   },
+   {
+    "id": 1,
+    "client": "192.168.1.50",
+    "client_port": 53001,
+    "server": "198.51.100.25",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 0.549098,
+    "end": 0.919397,
+    "duration_s": 0.370299,
+    "first_frame": 138,
+    "frames": 127,
+    "handshake": {
+     "server_side_ms": 30.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 30.3,
+     "syn_count": 1,
+     "syn_frame": 138,
+     "synack_frame": 139
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "192.168.1.50",
+      "packets": 45,
+      "wire_bytes": 2703,
+      "data_bytes": 261,
+      "data_segments": 1,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 261,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 1,
+       "min": 30.0,
+       "median": 30.0,
+       "p95": 30.0,
+       "max": 30.0
+      },
+      "fin": true,
+      "flags": {}
+     },
+     "s2c": {
+      "sender": "198.51.100.25",
+      "packets": 82,
+      "wire_bytes": 121240,
+      "data_bytes": 116800,
+      "data_segments": 80,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 40,
+       "min": 0.1,
+       "median": 0.1,
+       "p95": 0.1,
+       "max": 0.1
+      },
+      "fin": true,
+      "flags": {}
+     }
+    },
+    "counts": {},
+    "examples": {},
+    "rst": null,
+    "responses": {
+     "turns": 1,
+     "median_ms": 30.0,
+     "max_ms": 30.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 2.529,
+    "filter": "ip.addr==192.168.1.50 && tcp.port==53001 && ip.addr==198.51.100.25 && tcp.port==443"
+   },
+   {
+    "id": 2,
+    "client": "192.168.1.50",
+    "client_port": 53002,
+    "server": "192.0.2.77",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 0.969397,
+    "end": 1.339696,
+    "duration_s": 0.370299,
+    "first_frame": 265,
+    "frames": 127,
+    "handshake": {
+     "server_side_ms": 30.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 30.3,
+     "syn_count": 1,
+     "syn_frame": 265,
+     "synack_frame": 266
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "192.168.1.50",
+      "packets": 45,
+      "wire_bytes": 2703,
+      "data_bytes": 261,
+      "data_segments": 1,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 261,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 1,
+       "min": 30.0,
+       "median": 30.0,
+       "p95": 30.0,
+       "max": 30.0
+      },
+      "fin": true,
+      "flags": {}
+     },
+     "s2c": {
+      "sender": "192.0.2.77",
+      "packets": 82,
+      "wire_bytes": 121240,
+      "data_bytes": 116800,
+      "data_segments": 80,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 40,
+       "min": 0.1,
+       "median": 0.1,
+       "p95": 0.1,
+       "max": 0.1
+      },
+      "fin": true,
+      "flags": {}
+     }
+    },
+    "counts": {},
+    "examples": {},
+    "rst": null,
+    "responses": {
+     "turns": 1,
+     "median_ms": 30.0,
+     "max_ms": 30.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 2.529,
+    "filter": "ip.addr==192.168.1.50 && tcp.port==53002 && ip.addr==192.0.2.77 && tcp.port==443"
+   },
+   {
+    "id": 3,
+    "client": "192.168.1.50",
+    "client_port": 53003,
+    "server": "203.0.113.99",
+    "server_port": 443,
+    "service": "HTTPS",
+    "outcome": "closed",
+    "start": 1.389696,
+    "end": 1.759994,
+    "duration_s": 0.370298,
+    "first_frame": 392,
+    "frames": 127,
+    "handshake": {
+     "server_side_ms": 30.0,
+     "client_side_ms": 0.3,
+     "irtt_ms": 30.3,
+     "syn_count": 1,
+     "syn_frame": 392,
+     "synack_frame": 393
+    },
+    "dirs": {
+     "c2s": {
+      "sender": "192.168.1.50",
+      "packets": 45,
+      "wire_bytes": 2703,
+      "data_bytes": 261,
+      "data_segments": 1,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 261,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 1,
+       "min": 30.0,
+       "median": 30.0,
+       "p95": 30.0,
+       "max": 30.0
+      },
+      "fin": true,
+      "flags": {}
+     },
+     "s2c": {
+      "sender": "203.0.113.99",
+      "packets": 82,
+      "wire_bytes": 121240,
+      "data_bytes": 116800,
+      "data_segments": 80,
+      "retrans_segments": 0,
+      "retrans_real": 0,
+      "retrans_pct": 0.0,
+      "mss": 1460,
+      "win_scale": 6,
+      "max_segment": 1460,
+      "zero_window_total_s": 0.0,
+      "zero_window_max_s": 0.0,
+      "ack_rtt_ms": {
+       "samples": 40,
+       "min": 0.1,
+       "median": 0.1,
+       "p95": 0.1,
+       "max": 0.1
+      },
+      "fin": true,
+      "flags": {}
+     }
+    },
+    "counts": {},
+    "examples": {},
+    "rst": null,
+    "responses": {
+     "turns": 1,
+     "median_ms": 30.0,
+     "max_ms": 30.0,
+     "slow": [],
+     "slow_count": 0,
+     "long_gaps": 0,
+     "periodic_push": false
+    },
+    "tso_frames": 0,
+    "duplicate_frames": 0,
+    "throughput_mbps": 2.529,
+    "filter": "ip.addr==192.168.1.50 && tcp.port==53003 && ip.addr==203.0.113.99 && tcp.port==443"
+   }
+  ],
+  "segments": 518,
+  "flag_totals": {
+   "retransmission": 5,
+   "fast_retransmission": 0,
+   "spurious_retransmission": 0,
+   "out_of_order": 0,
+   "lost_segment": 4,
+   "ack_lost_segment": 0,
+   "duplicate_ack": 17,
+   "zero_window": 0,
+   "zero_window_probe": 0,
+   "zero_window_probe_ack": 0,
+   "window_full": 0,
+   "window_update": 0,
+   "keep_alive": 0,
+   "keep_alive_ack": 0
+  },
+  "flag_frames": {
+   "retransmission": [
+    35,
+    36,
+    67,
+    99,
+    133
+   ],
+   "fast_retransmission": [],
+   "spurious_retransmission": [],
+   "out_of_order": [],
+   "lost_segment": [
+    23,
+    63,
+    91,
+    117
+   ],
+   "ack_lost_segment": [],
+   "duplicate_ack": [
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    66,
+    94,
+    96,
+    98,
+    120,
+    122,
+    124,
+    126,
+    128,
+    130,
+    132
+   ],
+   "zero_window": [],
+   "zero_window_probe": [],
+   "zero_window_probe_ack": [],
+   "window_full": [],
+   "window_update": [],
+   "keep_alive": [],
+   "keep_alive_ack": []
+  },
+  "rst_frames": [],
+  "capture_point": {
+   "position": "client",
+   "samples": 4,
+   "client_side_median_ms": 0.3,
+   "server_side_median_ms": 30.0,
+   "text": "Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 30.0 ms."
+  }
+ },
+ "dns": {
+  "transactions": [],
+  "servers": [],
+  "malformed": 0,
+  "unmatched_responses": 0,
+  "tcp_dns_packets": 0,
+  "dot_packets": 0
+ },
+ "tls": {
+  "sessions": []
+ },
+ "findings": [
+  {
+   "key": "tcp_loss",
+   "category": "tcp",
+   "severity": "warning",
+   "confidence": "medium",
+   "artefact": false,
+   "title": "Packet loss: TCP retransmissions",
+   "summary": "5 TCP segments were sent again on 1 connection(s); the worst sender retransmitted 6.25% of its data. Retransmission means a segment (or its ACK) was lost or badly delayed, which costs throughput and adds delay. 17 duplicate ACKs and 0 fast retransmissions confirm the receiver noticed gaps. Most retransmissions were sent *towards* the capture side, so packets were lost before they reached the capture point.",
+   "evidence": [
+    {
+     "frame": 35,
+     "time": 0.1305,
+     "text": "203.0.113.10 \u2192 192.168.1.50 (HTTPS): 5 of 80 data segments retransmitted (6.25%)"
+    }
+   ],
+   "check_next": [
+    "`pathping 203.0.113.10` (Windows) or `mtr 203.0.113.10` to see at which hop loss starts.",
+    "`ping -n 100 <default-gateway>` from 192.168.1.50: no loss there rules out the local link.",
+    "Test 203.0.113.10 from a different network (mobile hotspot). Loss that follows the server is remote."
+   ],
+   "metrics": {
+    "retransmissions": 5,
+    "connections": 1,
+    "worst_pct": 6.25,
+    "dup_acks": 17,
+    "fast_retransmissions": 0,
+    "spurious": 0,
+    "gaps": 4
+   },
+   "wireshark_filter": "tcp.analysis.retransmission || tcp.analysis.fast_retransmission || tcp.analysis.duplicate_ack",
+   "kt": {
+    "problem": "TCP segments are being retransmitted (packet loss)",
+    "spec": {
+     "what": [
+      "5 retransmissions (6.25% worst case), 17 duplicate ACKs",
+      "not a receiver-window stall or a refused connection (checked separately)"
+     ],
+     "where": [
+      "client(s) 192.168.1.50 talking to 203.0.113.10",
+      "3 busy connections to 3 other server(s) are clean"
+     ],
+     "when": [
+      "concentrated between t=0.13s and t=0.43s",
+      "the rest of the capture (0-0.1s and 0.4-1.8s) is clean"
+     ],
+     "extent": [
+      "1 of 4 data-carrying connections",
+      "3 comparable connections unaffected"
+     ]
+    },
+    "distinctions": [
+     "All affected connections go to 203.0.113.10",
+     "All affected connections come from 192.168.1.50",
+     "Most retransmissions were sent *towards* the capture side, so packets were lost before they reached the capture point."
+    ],
+    "causes": [
+     {
+      "cause": "Congestion or loss on the path to 203.0.113.10, or at that server (ISP peering, overloaded server/link at the remote end)",
+      "explains_is": true,
+      "contradicts": "",
+      "assumptions": 1,
+      "verdict": "most probable"
+     },
+     {
+      "cause": "The bulk transfer itself filling the bottleneck link (TCP congestion control; possibly deepened by bufferbloat or ISP rate limiting)",
+      "explains_is": false,
+      "contradicts": "no single transfer dominates the capture",
+      "assumptions": 1,
+      "verdict": "eliminated"
+     },
+     {
+      "cause": "Loss on a link shared by all affected connections: most often the local link of 192.168.1.50 (Wi-Fi signal/interference, bad cable, duplex mismatch, overloaded home router), or its access/VPN link",
+      "explains_is": false,
+      "contradicts": "3 other busy connections from the same client to other servers show no loss",
+      "assumptions": 2,
+      "verdict": "eliminated"
+     }
+    ],
+    "verify": [
+     "`pathping 203.0.113.10` (Windows) or `mtr 203.0.113.10` to see at which hop loss starts.",
+     "`ping -n 100 <default-gateway>` from 192.168.1.50: no loss there rules out the local link.",
+     "Test 203.0.113.10 from a different network (mobile hotspot). Loss that follows the server is remote."
+    ],
+    "incident_fix": "If the service matters, try an alternative path to 203.0.113.10 (VPN off/on, another ISP) to confirm it is path-specific.",
+    "permanent_fix": "Raise a ticket with the remote side or ISP with this report attached (frames, times, rates)."
+   },
+   "id": "F1"
+  }
+ ],
+ "diagnosis": {
+  "health": "attention",
+  "headline": "TCP segments are being retransmitted (packet loss). Most probable cause (medium confidence): Congestion or loss on the path to 203.0.113.10, or at that server (ISP peering, overloaded server/link at the remote end).",
+  "problems": [
+   {
+    "problem": "TCP segments are being retransmitted (packet loss)",
+    "spec": {
+     "what": [
+      "5 retransmissions (6.25% worst case), 17 duplicate ACKs",
+      "not a receiver-window stall or a refused connection (checked separately)"
+     ],
+     "where": [
+      "client(s) 192.168.1.50 talking to 203.0.113.10",
+      "3 busy connections to 3 other server(s) are clean"
+     ],
+     "when": [
+      "concentrated between t=0.13s and t=0.43s",
+      "the rest of the capture (0-0.1s and 0.4-1.8s) is clean"
+     ],
+     "extent": [
+      "1 of 4 data-carrying connections",
+      "3 comparable connections unaffected"
+     ]
+    },
+    "distinctions": [
+     "All affected connections go to 203.0.113.10",
+     "All affected connections come from 192.168.1.50",
+     "Most retransmissions were sent *towards* the capture side, so packets were lost before they reached the capture point."
+    ],
+    "causes": [
+     {
+      "cause": "Congestion or loss on the path to 203.0.113.10, or at that server (ISP peering, overloaded server/link at the remote end)",
+      "explains_is": true,
+      "contradicts": "",
+      "assumptions": 1,
+      "verdict": "most probable"
+     },
+     {
+      "cause": "The bulk transfer itself filling the bottleneck link (TCP congestion control; possibly deepened by bufferbloat or ISP rate limiting)",
+      "explains_is": false,
+      "contradicts": "no single transfer dominates the capture",
+      "assumptions": 1,
+      "verdict": "eliminated"
+     },
+     {
+      "cause": "Loss on a link shared by all affected connections: most often the local link of 192.168.1.50 (Wi-Fi signal/interference, bad cable, duplex mismatch, overloaded home router), or its access/VPN link",
+      "explains_is": false,
+      "contradicts": "3 other busy connections from the same client to other servers show no loss",
+      "assumptions": 2,
+      "verdict": "eliminated"
+     }
+    ],
+    "verify": [
+     "`pathping 203.0.113.10` (Windows) or `mtr 203.0.113.10` to see at which hop loss starts.",
+     "`ping -n 100 <default-gateway>` from 192.168.1.50: no loss there rules out the local link.",
+     "Test 203.0.113.10 from a different network (mobile hotspot). Loss that follows the server is remote."
+    ],
+    "incident_fix": "If the service matters, try an alternative path to 203.0.113.10 (VPN off/on, another ISP) to confirm it is path-specific.",
+    "permanent_fix": "Raise a ticket with the remote side or ISP with this report attached (frames, times, rates).",
+    "finding": "F1",
+    "severity": "warning",
+    "confidence": "medium",
+    "most_probable": "Congestion or loss on the path to 203.0.113.10, or at that server (ISP peering, overloaded server/link at the remote end)"
+   }
+  ],
+  "checked_clean": [
+   "Receiver windows: no zero-window stalls",
+   "Connection setup: 4 handshakes completed, none refused or unanswered",
+   "Server response time: no slow request/response turns"
+  ],
+  "artefacts": [],
+  "limitations": [
+   "One capture point: problems elsewhere on the path are inferred, not seen directly.",
+   "Short capture (1.8s): intermittent problems may be missed."
+  ],
+  "capture_point": "Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 30.0 ms."
+ }
+}

@@ -1,0 +1,2 @@
+id,severity,confidence,capture_artefact,category,key,title,summary,evidence_frames,wireshark_filter
+F1,info,medium,no,tcp,tcp_high_rtt,High network latency (handshake RTT),1 of 2 TCP handshakes took 300 ms or more (median 350 ms). Every request on these connections pays this delay at least once. It is normal for distant servers; it is a problem if the server is local.,1,frame.number in {1}

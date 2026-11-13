@@ -1,0 +1,2 @@
+id,severity,confidence,capture_artefact,category,key,title,summary,evidence_frames,wireshark_filter
+F1,info,high,no,tcp,tcp_loss_minor,Occasional TCP retransmissions (normal level),"1 retransmitted segments across 1 connection(s), all below 1.0% of the data sent or fewer than 3 per connection. TCP recovers from this routinely.",,

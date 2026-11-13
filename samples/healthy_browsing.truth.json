@@ -1,0 +1,26 @@
+{
+  "events": {},
+  "expect_findings": [],
+  "forbid_findings": [
+    "tcp_loss",
+    "tcp_zero_window",
+    "tcp_connect_fail",
+    "tcp_slow_response",
+    "dns_failures",
+    "dns_slow",
+    "tls_alerts",
+    "tcp_high_rtt"
+  ],
+  "expect_cause": null,
+  "notes": [],
+  "expect_health": "healthy",
+  "tls_sni": [
+    "www.example.com",
+    "news.example.org",
+    "cdn.example.net",
+    "v6.example.com"
+  ],
+  "scenario": "healthy_browsing",
+  "description": "Normal browsing: fast DNS, three TLS 1.3 sessions (one over IPv6), small downloads, clean closes. Nothing should be flagged.",
+  "frames": 152
+}

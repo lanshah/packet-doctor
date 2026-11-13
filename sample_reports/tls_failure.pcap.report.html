@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packet Doctor report: tls_failure.pcap</title>
+<style>
+:root{
+  --bg:#f9f9f7;--surface:#fcfcfb;--surface-2:#f0efec;--border:#e2e1dc;
+  --text:#0b0b0b;--text-2:#52514e;--muted:#77766f;
+  --series:#2a78d6;--series-fill:rgba(42,120,214,.14);
+  --good:#0ca30c;--warning:#fab219;--serious:#ec835a;--critical:#d03b3b;
+  --good-ink:#006300;--warning-ink:#8a5a00;--critical-ink:#a32020;
+  --code:#f0efec;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d0d0d;--surface:#1a1a19;--surface-2:#252523;--border:#383835;
+  --text:#f0efec;--text-2:#c3c2b7;--muted:#97968d;
+  --series:#3987e5;--series-fill:rgba(57,135,229,.20);
+  --good-ink:#5fd35f;--warning-ink:#fab219;--critical-ink:#f08080;--code:#252523;}}
+:root[data-theme="dark"]{
+  --bg:#0d0d0d;--surface:#1a1a19;--surface-2:#252523;--border:#383835;
+  --text:#f0efec;--text-2:#c3c2b7;--muted:#97968d;
+  --series:#3987e5;--series-fill:rgba(57,135,229,.20);
+  --good-ink:#5fd35f;--warning-ink:#fab219;--critical-ink:#f08080;--code:#252523;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:19px;margin:36px 0 12px;padding-top:8px;border-top:1px solid var(--border)}
+h3{font-size:16px;margin:0 0 8px}
+p{margin:6px 0}
+a{color:var(--series)}
+.muted{color:var(--muted)}
+.sub{color:var(--text-2);margin:0}
+code,.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:13px}
+code{background:var(--code);padding:1px 5px;border-radius:4px;word-break:break-word}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:12px 0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+.tile .v{font-size:22px;font-weight:650;font-variant-numeric:tabular-nums}
+.tile .k{color:var(--text-2);font-size:13px}
+.verdict{display:flex;gap:14px;align-items:flex-start;border-left:6px solid var(--good)}
+.verdict.problems{border-left-color:var(--critical)}.verdict.attention{border-left-color:var(--warning)}
+.verdict .icon{font-size:26px;line-height:1}
+.verdict .label{font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
+.verdict.healthy .label{color:var(--good-ink)}.verdict.attention .label{color:var(--warning-ink)}.verdict.problems .label{color:var(--critical-ink)}
+.headline{font-size:17px;font-weight:600;margin:2px 0 0}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:650;border-radius:999px;padding:1px 9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);white-space:nowrap}
+.badge.critical{color:var(--critical-ink);border-color:var(--critical)}
+.badge.warning{color:var(--warning-ink);border-color:var(--warning)}
+.badge.info{color:var(--text-2)}
+.badge.artefact{border-style:dashed}
+.finding-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.finding-head h3{margin:0;flex:1 1 300px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--text-2);font-weight:600;font-size:12.5px;background:var(--surface-2)}
+td.n,th.n{text-align:right}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.kt th{width:110px}
+.kt td.is{width:45%}
+.cause-most td:first-child{font-weight:650}
+.cause-eliminated{color:var(--muted)}
+.cause-eliminated td:first-child{text-decoration:line-through}
+.filter{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.filter code{flex:1 1 300px}
+button{font:inherit;font-size:13px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:6px;padding:4px 10px;cursor:pointer}
+button:hover{border-color:var(--series)}
+ul.tight{margin:6px 0;padding-left:20px}
+ul.tight li{margin:3px 0}
+details{margin:8px 0}
+summary{cursor:pointer;color:var(--text-2);font-weight:600}
+svg.chart{width:100%;height:auto;display:block}
+svg .grid{stroke:var(--border);stroke-width:1}
+svg .axis,svg .label,svg .value{fill:var(--text-2);font-size:12px;font-family:system-ui,sans-serif}
+svg .value{fill:var(--text)}
+svg .line{fill:none;stroke:var(--series);stroke-width:2;stroke-linejoin:round}
+svg .area{fill:var(--series-fill)}
+svg .bar{fill:var(--series)}
+svg .bar:hover{opacity:.8}
+svg .hit{fill:transparent}
+svg .hit:hover{fill:var(--series-fill)}
+svg .threshold{stroke:var(--critical);stroke-width:1.5;stroke-dasharray:4 3}
+svg .ev-critical{fill:var(--critical)}svg .ev-warning{fill:var(--warning)}svg .ev-info{fill:var(--muted)}
+#tip{position:fixed;pointer-events:none;background:var(--text);color:var(--bg);font-size:12.5px;padding:5px 9px;border-radius:6px;max-width:360px;display:none;z-index:9}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--text-2);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;margin:10px 0}
+.exports{display:flex;gap:8px;flex-wrap:wrap}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+@media (max-width:640px){.kt th{width:auto}.tile .v{font-size:19px}h1{font-size:22px}}
+@media print{button,.exports,nav.toc{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <p class="sub">Packet Doctor 1.0.0 · capture diagnosis</p>
+  <h1>tls_failure.pcap</h1>
+  <p class="sub">2025-11-14 06:00:00.000 UTC → 2025-11-14 06:00:00.283 UTC · pcap · analysed 24 frames in 0.0 s</p>
+</header>
+
+<section class="card verdict problems" aria-label="Verdict">
+  <div class="icon" aria-hidden="true">✖</div>
+  <div>
+    <div class="label">Problems found</div>
+    <p class="headline">TLS handshakes are rejected. Most probable cause (high confidence): Certificate problem: chain not trusted by the client (missing intermediate, self-signed, expired, or replaced by a TLS-inspecting firewall).</p>
+    <p class="muted">Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 20.0 ms.</p>
+  </div>
+</section>
+
+<div class="tiles">
+  <div class="tile"><div class="v">0.3 s</div><div class="k">capture length</div></div>
+  <div class="tile"><div class="v">24</div><div class="k">frames</div></div>
+  <div class="tile"><div class="v">6.5 KB</div><div class="k">data on the wire</div></div>
+  <div class="tile"><div class="v">0.19</div><div class="k">average Mbit/s</div></div>
+  <div class="tile"><div class="v">2</div><div class="k">TCP connections</div></div>
+  <div class="tile"><div class="v">0</div><div class="k">DNS lookups</div></div>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#diagnosis">Diagnosis</a><a href="#findings">Findings</a><a href="#charts">Charts</a>
+  <a href="#tcp">TCP</a><a href="#dns">DNS</a><a href="#tls">TLS</a><a href="#traffic">Top talkers</a>
+  <a href="#limits">Limits</a><a href="#export">Export</a>
+</nav>
+
+<h2 id="diagnosis">Diagnosis</h2>
+  <article class="card">
+    <div class="finding-head">
+      <h3>Problem 1: TLS handshakes are rejected</h3>
+      <span class="badge critical">✖ critical</span>
+      <span class="badge">confidence: high</span>
+    </div>
+    <p><strong>Most probable cause:</strong> Certificate problem: chain not trusted by the client (missing intermediate, self-signed, expired, or replaced by a TLS-inspecting firewall)</p>
+    <div class="scroll"><table class="kt">
+      <thead><tr><th></th><th>IS (what we see)</th><th>IS NOT (nearest thing that could be affected but isn't)</th></tr></thead>
+      <tbody>
+        <tr><th>WHAT</th><td class="is">unknown_ca (1x)</td><td>not a TCP failure: the TCP connections were established</td></tr>
+        <tr><th>WHERE</th><td class="is">intranet.example.my (1x)</td><td>1 other TLS sessions complete normally</td></tr>
+        <tr><th>WHEN</th><td class="is">spread from t=0.02s to t=0.02s</td><td>no clean period long enough to be meaningful</td></tr>
+        <tr><th>EXTENT</th><td class="is">1 handshake(s)</td><td>1 successful</td></tr>
+      </tbody></table></div>
+<p><strong>What sets the affected side apart:</strong></p>
+    <ul class="tight"><li>Alerts sent by the client</li></ul>    <p><strong>Candidate causes, tested against the specification:</strong></p>
+    <div class="scroll"><table>
+      <thead><tr><th>Cause</th><th>Explains IS?</th><th>Contradicted by</th><th class="n">Assumptions</th><th>Verdict</th></tr></thead>
+      <tbody>      <tr class="cause-most">
+        <td>Certificate problem: chain not trusted by the client (missing intermediate, self-signed, expired, or replaced by a TLS-inspecting firewall)</td><td>yes</td><td>–</td>
+        <td class="n">1</td><td>most probable</td></tr>
+      <tr class="cause-eliminated">
+        <td>Protocol/cipher mismatch between client and server</td><td>no</td><td>a certificate alert means the handshake got as far as the certificate, so version and cipher were agreed</td>
+        <td class="n">1</td><td>eliminated</td></tr>
+      <tr class="cause-eliminated">
+        <td>Network fault</td><td>no</td><td>an alert is a deliberate message from one endpoint; the network delivered it</td>
+        <td class="n">2</td><td>eliminated</td></tr>
+</tbody></table></div>
+    <p><strong>Verify before changing anything:</strong></p>
+    <ul class="tight"><li><code>openssl s_client -connect &lt;host&gt;:443 -servername &lt;host&gt; -showcerts</code> to see the chain.</li><li>Open the site in a browser and inspect the certificate (issuer, dates, name).</li></ul>
+    <p><strong>Fast, reversible fix:</strong> Install the missing intermediate certificate / renew the certificate on the server. <span class="muted">(needs the owner's approval)</span><br>
+       <strong>Permanent fix:</strong> Monitor certificate expiry and chain completeness.</p>
+    <p class="muted">Evidence: finding F1 below.</p>
+  </article>
+<div class="card"><h3>Checked and found clean</h3>
+<ul class="tight"><li>✔ TCP loss: 0 retransmissions in 11 data segments (0.00%)</li><li>✔ Receiver windows: no zero-window stalls</li><li>✔ Connection setup: 2 handshakes completed, none refused or unanswered</li><li>✔ Server response time: no slow request/response turns</li></ul></div>
+
+<h2 id="findings">Findings and evidence</h2>
+<article class="card" id="F1">
+  <div class="finding-head">
+    <h3>F1 · TLS handshakes failing</h3>
+    <span class="badge critical">✖ critical</span>
+    <span class="badge">confidence: high</span>
+  </div>
+  <p>1 TLS handshake(s) were aborted with an alert before encryption started. The TCP connection worked; the secure session did not, so the application fails.</p>
+  <details open><summary>Evidence (1)</summary>
+  <div class="scroll"><table>
+    <thead><tr><th class="n">Frame</th><th class="n">Time</th><th>What was seen</th></tr></thead>
+    <tbody><tr><td class="n">6</td><td class="n">0.021s</td><td>client sent &#39;unknown_ca&#39; for intranet.example.my: the client does not trust the certificate chain (missing intermediate certificate, self-signed cert, or TLS inspection by a firewall)</td></tr></tbody>
+  </table></div></details>
+<p><strong>Check next:</strong></p><ul class="tight"><li><code>openssl s_client -connect &lt;host&gt;:443 -servername &lt;host&gt;</code> shows the certificate chain and the negotiated version.</li><li>Check the certificate dates and chain on the server, and the client&#39;s clock.</li></ul>  <div class="filter"><span class="muted">Wireshark filter:</span><code>frame.number in {6}</code><button type="button" data-copy="frame.number in {6}">Copy</button></div>
+</article><article class="card" id="F2">
+  <div class="finding-head">
+    <h3>F2 · Outdated TLS versions in use</h3>
+    <span class="badge warning">▲ warning</span>
+    <span class="badge">confidence: high</span>
+  </div>
+  <p>1 session(s) negotiated a deprecated protocol (TLS 1.1 or older). Not a performance problem, but a security finding that most audits flag.</p>
+  <details open><summary>Evidence (1)</summary>
+  <div class="scroll"><table>
+    <thead><tr><th class="n">Frame</th><th class="n">Time</th><th>What was seen</th></tr></thead>
+    <tbody><tr><td class="n">14</td><td class="n">0.152s</td><td>legacy.example.com: negotiated TLS 1.0</td></tr></tbody>
+  </table></div></details>
+<p><strong>Check next:</strong></p><ul class="tight"><li>Enable TLS 1.2/1.3 on the server and disable older versions.</li></ul>  <div class="filter"><span class="muted">Wireshark filter:</span><code>frame.number in {14}</code><button type="button" data-copy="frame.number in {14}">Copy</button></div>
+</article>
+<h2 id="charts">Charts</h2>
+<div class="card"><h3>Throughput over time</h3>
+  <p class="muted">All traffic in the capture, 0.01 s buckets. Ticks underneath mark problem events; hover for details.</p>
+  <svg class="chart" viewBox="0 0 900 260" role="img" aria-label="Throughput over time, peak 3.38 Mbit/s"><line x1="84" x2="888" y1="198.0" y2="198.0" class="grid"/><text x="78" y="202.0" class="axis" text-anchor="end">0 bit/s</text><line x1="84" x2="888" y1="151.5" y2="151.5" class="grid"/><text x="78" y="155.5" class="axis" text-anchor="end">1.25 Mbit/s</text><line x1="84" x2="888" y1="105.0" y2="105.0" class="grid"/><text x="78" y="109.0" class="axis" text-anchor="end">2.50 Mbit/s</text><line x1="84" x2="888" y1="58.5" y2="58.5" class="grid"/><text x="78" y="62.5" class="axis" text-anchor="end">3.75 Mbit/s</text><line x1="84" x2="888" y1="12.0" y2="12.0" class="grid"/><text x="78" y="16.0" class="axis" text-anchor="end">5.00 Mbit/s</text><text x="84.0" y="214.0" class="axis" text-anchor="start">0.00s</text><text x="244.8" y="214.0" class="axis" text-anchor="middle">0.20s</text><text x="405.6" y="214.0" class="axis" text-anchor="middle">0.40s</text><text x="566.4" y="214.0" class="axis" text-anchor="middle">0.60s</text><text x="727.2" y="214.0" class="axis" text-anchor="middle">0.80s</text><text x="888.0" y="214.0" class="axis" text-anchor="end">1.00s</text><polygon points="88.0,198.0 88.0,196.0 96.1,196.0 104.1,190.6 112.1,198.0 120.2,192.4 128.2,196.2 136.3,196.4 144.3,198.0 152.3,194.8 160.4,198.0 168.4,198.0 176.5,198.0 184.5,198.0 192.5,196.0 200.6,198.0 208.6,188.7 216.7,198.0 224.7,189.6 232.7,198.0 240.8,175.3 248.8,198.0 256.9,72.1 264.9,198.0 272.9,198.0 281.0,198.0 289.0,198.0 297.1,196.4 305.1,198.0 313.1,194.8 313.1,198.0" class="area"/><polyline points="88.0,196.0 96.1,196.0 104.1,190.6 112.1,198.0 120.2,192.4 128.2,196.2 136.3,196.4 144.3,198.0 152.3,194.8 160.4,198.0 168.4,198.0 176.5,198.0 184.5,198.0 192.5,196.0 200.6,198.0 208.6,188.7 216.7,198.0 224.7,189.6 232.7,198.0 240.8,175.3 248.8,198.0 256.9,72.1 264.9,198.0 272.9,198.0 281.0,198.0 289.0,198.0 297.1,196.4 305.1,198.0 313.1,194.8" class="line"/><rect x="84.0" y="12" width="27.7" height="186" class="hit" data-tip="0.00s to 0.01s: 52.8 kbit/s" tabindex="-1"/><rect x="92.0" y="12" width="27.7" height="186" class="hit" data-tip="0.01s to 0.02s: 52.8 kbit/s" tabindex="-1"/><rect x="100.1" y="12" width="27.7" height="186" class="hit" data-tip="0.02s to 0.03s: 199.2 kbit/s" tabindex="-1"/><rect x="108.1" y="12" width="27.7" height="186" class="hit" data-tip="0.03s to 0.04s: 0 bit/s" tabindex="-1"/><rect x="116.2" y="12" width="27.7" height="186" class="hit" data-tip="0.04s to 0.05s: 150.4 kbit/s" tabindex="-1"/><rect x="124.2" y="12" width="27.7" height="186" class="hit" data-tip="0.05s to 0.06s: 48.8 kbit/s" tabindex="-1"/><rect x="132.2" y="12" width="27.7" height="186" class="hit" data-tip="0.06s to 0.07s: 43.2 kbit/s" tabindex="-1"/><rect x="140.3" y="12" width="27.7" height="186" class="hit" data-tip="0.07s to 0.08s: 0 bit/s" tabindex="-1"/><rect x="148.3" y="12" width="27.7" height="186" class="hit" data-tip="0.08s to 0.09s: 86.4 kbit/s" tabindex="-1"/><rect x="156.4" y="12" width="27.7" height="186" class="hit" data-tip="0.09s to 0.10s: 0 bit/s" tabindex="-1"/><rect x="164.4" y="12" width="27.7" height="186" class="hit" data-tip="0.10s to 0.11s: 0 bit/s" tabindex="-1"/><rect x="172.4" y="12" width="27.7" height="186" class="hit" data-tip="0.11s to 0.12s: 0 bit/s" tabindex="-1"/><rect x="180.5" y="12" width="27.7" height="186" class="hit" data-tip="0.12s to 0.13s: 0 bit/s" tabindex="-1"/><rect x="188.5" y="12" width="27.7" height="186" class="hit" data-tip="0.13s to 0.14s: 52.8 kbit/s" tabindex="-1"/><rect x="196.6" y="12" width="27.7" height="186" class="hit" data-tip="0.14s to 0.15s: 0 bit/s" tabindex="-1"/><rect x="204.6" y="12" width="27.7" height="186" class="hit" data-tip="0.15s to 0.16s: 251.2 kbit/s" tabindex="-1"/><rect x="212.6" y="12" width="27.7" height="186" class="hit" data-tip="0.16s to 0.17s: 0 bit/s" tabindex="-1"/><rect x="220.7" y="12" width="27.7" height="186" class="hit" data-tip="0.17s to 0.18s: 225.6 kbit/s" tabindex="-1"/><rect x="228.7" y="12" width="27.7" height="186" class="hit" data-tip="0.18s to 0.19s: 0 bit/s" tabindex="-1"/><rect x="236.8" y="12" width="27.7" height="186" class="hit" data-tip="0.19s to 0.20s: 611.2 kbit/s" tabindex="-1"/><rect x="244.8" y="12" width="27.7" height="186" class="hit" data-tip="0.20s to 0.21s: 0 bit/s" tabindex="-1"/><rect x="252.8" y="12" width="27.7" height="186" class="hit" data-tip="0.21s to 0.22s: 3.38 Mbit/s" tabindex="-1"/><rect x="260.9" y="12" width="27.7" height="186" class="hit" data-tip="0.22s to 0.23s: 0 bit/s" tabindex="-1"/><rect x="268.9" y="12" width="27.7" height="186" class="hit" data-tip="0.23s to 0.24s: 0 bit/s" tabindex="-1"/><rect x="277.0" y="12" width="27.7" height="186" class="hit" data-tip="0.24s to 0.25s: 0 bit/s" tabindex="-1"/><rect x="285.0" y="12" width="27.7" height="186" class="hit" data-tip="0.25s to 0.26s: 0 bit/s" tabindex="-1"/><rect x="293.0" y="12" width="27.7" height="186" class="hit" data-tip="0.26s to 0.27s: 43.2 kbit/s" tabindex="-1"/><rect x="301.1" y="12" width="27.7" height="186" class="hit" data-tip="0.27s to 0.28s: 0 bit/s" tabindex="-1"/><rect x="309.1" y="12" width="27.7" height="186" class="hit" data-tip="0.28s to 0.29s: 86.4 kbit/s" tabindex="-1"/><text x="78" y="233" class="axis" text-anchor="end">events</text><line x1="84" x2="888" y1="229" y2="229" class="grid"/><rect x="99.6" y="221" width="3" height="16" rx="1.5" class="ev ev-critical" data-tip="t=0.021s: TLS handshakes failing: client sent &#x27;unknown_ca&#x27; for intranet.example.my: the client does not trust the certificate chain (missing intermediate certificate, self-signed cert, or TLS inspection by a firewall)"/><rect x="204.5" y="221" width="3" height="16" rx="1.5" class="ev ev-warning" data-tip="t=0.152s: Outdated TLS versions in use: legacy.example.com: negotiated TLS 1.0"/></svg>
+  <div class="legend"><span><i style="background:var(--critical)"></i>critical event</span><span><i style="background:var(--warning)"></i>warning event</span></div>
+</div>
+<div class="card"><h3>Handshake round-trip time by server</h3>
+  <p class="muted">SYN → SYN/ACK → ACK, median per server. Dashed line: high-latency threshold.</p><svg class="chart" viewBox="0 0 900 76" role="img"><line x1="596.0" x2="596.0" y1="0" y2="56" class="threshold"/><text x="600.0" y="70" class="axis">threshold 300.0 ms</text><text x="252" y="14" class="label" text-anchor="end">intranet.example.my</text><path d="M260,0 h18.7 q4,0 4,4 v10 q0,4 -4,4 h-18.7 z" class="bar" data-tip="intranet.example.my: median handshake RTT 20.3 ms over 1 connection(s)"/><text x="288.7" y="14" class="value">20.3 ms</text><text x="252" y="40" class="label" text-anchor="end">legacy.example.com</text><path d="M260,26 h18.7 q4,0 4,4 v10 q0,4 -4,4 h-18.7 z" class="bar" data-tip="legacy.example.com: median handshake RTT 20.3 ms over 1 connection(s)"/><text x="288.7" y="40" class="value">20.3 ms</text></svg></div>
+<h2 id="tcp">TCP connections</h2>
+<p class="muted">2 connections. Capture point: Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 20.0 ms.</p>
+<div class="scroll"><table>
+<thead><tr><th class="n">#</th><th>Client → Server</th><th>Service</th><th>Outcome</th><th class="n">Data</th><th class="n">Handshake</th><th class="n">Retrans</th><th class="n">Dup ACK</th><th class="n">Zero win</th><th class="n">Median response</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td>
+<td class="mono">192.168.1.50:61001 → 198.51.100.121:443<br><span class="muted">legacy.example.com</span></td>
+<td>HTTPS</td><td>closed</td>
+<td class="n">4.9 KB</td>
+<td class="n">20.3 ms</td>
+<td class="n">0</td>
+<td class="n">0</td><td class="n">0</td>
+<td class="n">20.0 ms</td></tr>
+<tr><td class="n">0</td>
+<td class="mono">192.168.1.50:61000 → 203.0.113.120:443<br><span class="muted">intranet.example.my</span></td>
+<td>HTTPS</td><td>closed</td>
+<td class="n">282 B</td>
+<td class="n">20.3 ms</td>
+<td class="n">0</td>
+<td class="n">0</td><td class="n">0</td>
+<td class="n">20.0 ms</td></tr>
+</tbody></table></div>
+
+<h2 id="dns">DNS</h2>
+<p class="muted">No DNS over UDP port 53 in this capture.</p>
+<h2 id="tls">TLS handshakes</h2>
+<div class="scroll"><table>
+<thead><tr><th class="n">Frame</th><th>Server name (SNI)</th><th>Server</th><th>Version</th><th class="n">ServerHello after</th><th class="n">Setup time</th><th>Alert</th></tr></thead>
+<tbody><tr><td class="n">4</td><td class="mono">intranet.example.my</td><td class="mono">203.0.113.120:443</td><td>TLS 1.2</td><td class="n">20.0 ms</td><td class="n">–</td><td>unknown_ca</td></tr><tr><td class="n">13</td><td class="mono">legacy.example.com</td><td class="mono">198.51.100.121:443</td><td>TLS 1.0</td><td class="n">20.0 ms</td><td class="n">40.3 ms</td><td></td></tr></tbody></table></div>
+
+<h2 id="traffic">Top talkers and conversations</h2>
+<div class="card"><h3>Top hosts by bytes (sent + received)</h3><svg class="chart" viewBox="0 0 900 102" role="img"><text x="252" y="14" class="label" text-anchor="end">192.168.1.50</text><path d="M260,0 h366.2 q4,0 4,4 v10 q0,4 -4,4 h-366.2 z" class="bar" data-tip="192.168.1.50: sent 1.7 KB, received 4.7 KB"/><text x="636.2" y="14" class="value">6.5 KB</text><text x="252" y="40" class="label" text-anchor="end">198.51.100.121</text><path d="M260,26 h321.9 q4,0 4,4 v10 q0,4 -4,4 h-321.9 z" class="bar" data-tip="198.51.100.121: sent 4.4 KB, received 1.3 KB"/><text x="591.9" y="40" class="value">5.7 KB</text><text x="252" y="66" class="label" text-anchor="end">203.0.113.120</text><path d="M260,52 h40.4 q4,0 4,4 v10 q0,4 -4,4 h-40.4 z" class="bar" data-tip="203.0.113.120: sent 308 B, received 484 B"/><text x="310.4" y="66" class="value">792 B</text></svg></div><div class="scroll"><table>
+<thead><tr><th>Conversation</th><th>Service</th><th class="n">Packets</th><th class="n">Bytes</th><th class="n">Duration</th><th class="n">Avg Mbit/s</th></tr></thead>
+<tbody><tr><td class="mono">TCP 192.168.1.50:61001 ↔ 198.51.100.121:443</td><td>HTTPS</td><td class="n">15</td><td class="n">5.7 KB</td><td class="n">0.153 s</td><td class="n">0.304</td></tr><tr><td class="mono">TCP 192.168.1.50:61000 ↔ 203.0.113.120:443</td><td>HTTPS</td><td class="n">9</td><td class="n">792 B</td><td class="n">0.08 s</td><td class="n">0.079</td></tr></tbody></table></div>
+<p class="muted">Protocols: TCP 6.5 KB</p>
+
+
+<h2 id="limits">What this capture cannot tell you</h2>
+<ul class="tight"><li>One capture point: problems elsewhere on the path are inferred, not seen directly.</li><li>Short capture (0.3s): intermittent problems may be missed.</li><li>Encrypted payloads are not decrypted: only TLS handshakes and TCP behaviour are analysed.</li></ul>
+<details><summary>How Packet Doctor reaches its conclusions</summary>
+<p>TCP flags (retransmission, duplicate ACK, zero window, out-of-order …) follow the same rules as Wireshark's TCP analysis, so frame numbers here match Wireshark's Expert Info. Each problem is written up with the Kepner-Tregoe method: describe what IS and IS NOT affected, list candidate causes, drop any cause that contradicts the IS-NOT side, and prefer the one needing the fewest assumptions. Confidence is lowered when evidence is thin or capture artefacts are present. Thresholds used: retransmissions ≥ 1.0% of a sender's segments (and at least 3 in total), handshake RTT ≥ 300 ms, server time ≥ 500 ms, DNS ≥ 200 ms, DNS timeout 2.0 s.</p>
+</details>
+
+<h2 id="export">Export</h2>
+<p class="muted">Data from this report, for Excel, Power BI or a ticket.</p>
+<div class="exports">
+  <button data-export="json" data-name="tls_failure.pcap.report.json" data-type="application/json">Full results (JSON)</button>
+  <button data-export="findings" data-name="tls_failure.pcap.findings.csv" data-type="text/csv">Findings (CSV)</button>
+  <button data-export="connections" data-name="tls_failure.pcap.connections.csv" data-type="text/csv">TCP connections (CSV)</button>
+  <button data-export="dns" data-name="tls_failure.pcap.dns.csv" data-type="text/csv">DNS lookups (CSV)</button>
+</div>
+
+<footer>Generated 2026-11-13 18:10:35 UTC by Packet Doctor 1.0.0. Times are seconds from the first frame, like Wireshark's “Time since beginning of capture”.</footer>
+</main>
+<div id="tip" role="tooltip"></div>
+<script>
+const EXPORTS = {"connections": "id,client,client_port,server,server_port,service,sni,outcome,start_s,duration_s,frames,bytes_client_to_server,bytes_server_to_client,handshake_rtt_ms,server_side_rtt_ms,client_side_rtt_ms,retrans_c2s,retrans_pct_c2s,retrans_s2c,retrans_pct_s2c,dup_acks,zero_windows,out_of_order,median_response_ms,slow_responses,tls_setup_ms,throughput_mbps,wireshark_filter\n0,192.168.1.50,61000,203.0.113.120,443,HTTPS,intranet.example.my,closed,0.0,0.0805,9,148,134,20.3,20.0,0.3,0,0.0,0,0.0,0,0,0,20.0,0,,0.028,ip.addr==192.168.1.50 \u0026\u0026 tcp.port==61000 \u0026\u0026 ip.addr==203.0.113.120 \u0026\u0026 tcp.port==443\n1,192.168.1.50,61001,198.51.100.121,443,HTTPS,legacy.example.com,closed,0.1305,0.152899,15,838,4147,20.3,20.0,0.3,0,0.0,0,0.0,0,0,0,20.0,0,40.3,0.261,ip.addr==192.168.1.50 \u0026\u0026 tcp.port==61001 \u0026\u0026 ip.addr==198.51.100.121 \u0026\u0026 tcp.port==443\n", "dns": "time_s,query_frame,response_frame,client,server,name,type,status,rcode,latency_ms,retries\n", "findings": "id,severity,confidence,capture_artefact,category,key,title,summary,evidence_frames,wireshark_filter\nF1,critical,high,no,tls,tls_alerts,TLS handshakes failing,\"1 TLS handshake(s) were aborted with an alert before encryption started. The TCP connection worked; the secure session did not, so the application fails.\",6,frame.number in {6}\nF2,warning,high,no,tls,tls_old_version,Outdated TLS versions in use,\"1 session(s) negotiated a deprecated protocol (TLS 1.1 or older). Not a performance problem, but a security finding that most audits flag.\",14,frame.number in {14}\n", "json": "{\n \"tool\": {\n  \"name\": \"Packet Doctor\",\n  \"version\": \"1.0.0\"\n },\n \"generated_utc\": \"2026-11-13 18:10:35 UTC\",\n \"capture\": {\n  \"file\": \"tls_failure.pcap\",\n  \"format\": \"pcap\",\n  \"linktype\": 1,\n  \"file_size\": 7019,\n  \"packets\": 24,\n  \"bytes\": 6611,\n  \"start_utc\": \"2025-11-14 06:00:00.000 UTC\",\n  \"end_utc\": \"2025-11-14 06:00:00.283 UTC\",\n  \"duration_s\": 0.283,\n  \"avg_mbps\": 0.187,\n  \"non_ip_frames\": 0,\n  \"warnings\": [],\n  \"time_went_backwards\": 0,\n  \"truncated_frames\": 0,\n  \"ip_fragments\": 0,\n  \"tso_zero_length\": 0,\n  \"max_frame\": 1514,\n  \"stopped_early\": false,\n  \"reported_drops\": 0,\n  \"extra_linktypes\": [],\n  \"analysis_seconds\": 0.0,\n  \"packets_per_second\": 15970\n },\n \"thresholds\": {\n  \"retrans_warn_pct\": 1.0,\n  \"retrans_crit_pct\": 5.0,\n  \"min_retrans\": 3,\n  \"comparable_segments\": 20,\n  \"high_rtt_ms\": 300.0,\n  \"slow_response_ms\": 500.0,\n  \"long_poll_s\": 10.0,\n  \"dns_slow_ms\": 200.0,\n  \"dns_resolver_median_ms\": 100.0,\n  \"dns_timeout_s\": 2.0,\n  \"tls_slow_ms\": 1000.0,\n  \"zero_window_crit_s\": 1.0\n },\n \"traffic\": {\n  \"timeline\": {\n   \"bucket_s\": 0.01,\n   \"points\": [\n    [\n     0.0,\n     52800.0\n    ],\n    [\n     0.01,\n     52800.0\n    ],\n    [\n     0.02,\n     199200.0\n    ],\n    [\n     0.03,\n     0.0\n    ],\n    [\n     0.04,\n     150400.0\n    ],\n    [\n     0.05,\n     48800.0\n    ],\n    [\n     0.06,\n     43200.0\n    ],\n    [\n     0.07,\n     0.0\n    ],\n    [\n     0.08,\n     86400.0\n    ],\n    [\n     0.09,\n     0.0\n    ],\n    [\n     0.1,\n     0.0\n    ],\n    [\n     0.11,\n     0.0\n    ],\n    [\n     0.12,\n     0.0\n    ],\n    [\n     0.13,\n     52800.0\n    ],\n    [\n     0.14,\n     0.0\n    ],\n    [\n     0.15,\n     251200.0\n    ],\n    [\n     0.16,\n     0.0\n    ],\n    [\n     0.17,\n     225600.0\n    ],\n    [\n     0.18,\n     0.0\n    ],\n    [\n     0.19,\n     611200.0\n    ],\n    [\n     0.2,\n     0.0\n    ],\n    [\n     0.21,\n     3384800.0\n    ],\n    [\n     0.22,\n     0.0\n    ],\n    [\n     0.23,\n     0.0\n    ],\n    [\n     0.24,\n     0.0\n    ],\n    [\n     0.25,\n     0.0\n    ],\n    [\n     0.26,\n     43200.0\n    ],\n    [\n     0.27,\n     0.0\n    ],\n    [\n     0.28,\n     86400.0\n    ]\n   ]\n  },\n  \"protocols\": [\n   {\n    \"proto\": \"TCP\",\n    \"packets\": 24,\n    \"bytes\": 6611\n   }\n  ],\n  \"services\": [\n   {\n    \"service\": \"HTTPS\",\n    \"bytes\": 6611\n   }\n  ],\n  \"top_talkers\": [\n   {\n    \"host\": \"192.168.1.50\",\n    \"tx_bytes\": 1766,\n    \"rx_bytes\": 4845,\n    \"total_bytes\": 6611,\n    \"share\": 0.5\n   },\n   {\n    \"host\": \"198.51.100.121\",\n    \"tx_bytes\": 4537,\n    \"rx_bytes\": 1282,\n    \"total_bytes\": 5819,\n    \"share\": 0.4400998336106489\n   },\n   {\n    \"host\": \"203.0.113.120\",\n    \"tx_bytes\": 308,\n    \"rx_bytes\": 484,\n    \"total_bytes\": 792,\n    \"share\": 0.059900166389351084\n   }\n  ],\n  \"top_conversations\": [\n   {\n    \"proto\": \"TCP\",\n    \"a\": \"192.168.1.50:61001\",\n    \"b\": \"198.51.100.121:443\",\n    \"service\": \"HTTPS\",\n    \"packets\": 15,\n    \"bytes\": 5819,\n    \"first_ts\": 1763100000.1305,\n    \"last_ts\": 1763100000.283399,\n    \"duration_s\": 0.153,\n    \"avg_mbps\": 0.304\n   },\n   {\n    \"proto\": \"TCP\",\n    \"a\": \"192.168.1.50:61000\",\n    \"b\": \"203.0.113.120:443\",\n    \"service\": \"HTTPS\",\n    \"packets\": 9,\n    \"bytes\": 792,\n    \"first_ts\": 1763100000.0,\n    \"last_ts\": 1763100000.0805,\n    \"duration_s\": 0.08,\n    \"avg_mbps\": 0.079\n   }\n  ],\n  \"icmp\": []\n },\n \"tcp\": {\n  \"connections\": [\n   {\n    \"id\": 0,\n    \"client\": \"192.168.1.50\",\n    \"client_port\": 61000,\n    \"server\": \"203.0.113.120\",\n    \"server_port\": 443,\n    \"service\": \"HTTPS\",\n    \"outcome\": \"closed\",\n    \"start\": 0.0,\n    \"end\": 0.0805,\n    \"duration_s\": 0.0805,\n    \"first_frame\": 1,\n    \"frames\": 9,\n    \"handshake\": {\n     \"server_side_ms\": 20.0,\n     \"client_side_ms\": 0.3,\n     \"irtt_ms\": 20.3,\n     \"syn_count\": 1,\n     \"syn_frame\": 1,\n     \"synack_frame\": 2\n    },\n    \"dirs\": {\n     \"c2s\": {\n      \"sender\": \"192.168.1.50\",\n      \"packets\": 6,\n      \"wire_bytes\": 484,\n      \"data_bytes\": 148,\n      \"data_segments\": 2,\n      \"retrans_segments\": 0,\n      \"retrans_real\": 0,\n      \"retrans_pct\": 0.0,\n      \"mss\": 1460,\n      \"win_scale\": 6,\n      \"max_segment\": 141,\n      \"zero_window_total_s\": 0.0,\n      \"zero_window_max_s\": 0.0,\n      \"ack_rtt_ms\": {\n       \"samples\": 1,\n       \"min\": 20.0,\n       \"median\": 20.0,\n       \"p95\": 20.0,\n       \"max\": 20.0\n      },\n      \"fin\": true,\n      \"flags\": {}\n     },\n     \"s2c\": {\n      \"sender\": \"203.0.113.120\",\n      \"packets\": 3,\n      \"wire_bytes\": 308,\n      \"data_bytes\": 134,\n      \"data_segments\": 1,\n      \"retrans_segments\": 0,\n      \"retrans_real\": 0,\n      \"retrans_pct\": 0.0,\n      \"mss\": 1460,\n      \"win_scale\": 6,\n      \"max_segment\": 134,\n      \"zero_window_total_s\": 0.0,\n      \"zero_window_max_s\": 0.0,\n      \"ack_rtt_ms\": {\n       \"samples\": 1,\n       \"min\": 9.0,\n       \"median\": 9.0,\n       \"p95\": 9.0,\n       \"max\": 9.0\n      },\n      \"fin\": true,\n      \"flags\": {}\n     }\n    },\n    \"counts\": {},\n    \"examples\": {},\n    \"rst\": null,\n    \"responses\": {\n     \"turns\": 1,\n     \"median_ms\": 20.0,\n     \"max_ms\": 20.0,\n     \"slow\": [],\n     \"slow_count\": 0,\n     \"long_gaps\": 0,\n     \"periodic_push\": false\n    },\n    \"tso_frames\": 0,\n    \"duplicate_frames\": 0,\n    \"throughput_mbps\": 0.028,\n    \"filter\": \"ip.addr==192.168.1.50 \u0026\u0026 tcp.port==61000 \u0026\u0026 ip.addr==203.0.113.120 \u0026\u0026 tcp.port==443\",\n    \"tls\": {\n     \"sni\": \"intranet.example.my\",\n     \"version\": \"TLS 1.2\",\n     \"server_hello_ms\": 20.0,\n     \"setup_ms\": null,\n     \"alert\": \"unknown_ca\"\n    }\n   },\n   {\n    \"id\": 1,\n    \"client\": \"192.168.1.50\",\n    \"client_port\": 61001,\n    \"server\": \"198.51.100.121\",\n    \"server_port\": 443,\n    \"service\": \"HTTPS\",\n    \"outcome\": \"closed\",\n    \"start\": 0.1305,\n    \"end\": 0.283399,\n    \"duration_s\": 0.152899,\n    \"first_frame\": 10,\n    \"frames\": 15,\n    \"handshake\": {\n     \"server_side_ms\": 20.0,\n     \"client_side_ms\": 0.3,\n     \"irtt_ms\": 20.3,\n     \"syn_count\": 1,\n     \"syn_frame\": 10,\n     \"synack_frame\": 11\n    },\n    \"dirs\": {\n     \"c2s\": {\n      \"sender\": \"192.168.1.50\",\n      \"packets\": 8,\n      \"wire_bytes\": 1282,\n      \"data_bytes\": 838,\n      \"data_segments\": 3,\n      \"retrans_segments\": 0,\n      \"retrans_real\": 0,\n      \"retrans_pct\": 0.0,\n      \"mss\": 1460,\n      \"win_scale\": 6,\n      \"max_segment\": 605,\n      \"zero_window_total_s\": 0.0,\n      \"zero_window_max_s\": 0.0,\n      \"ack_rtt_ms\": {\n       \"samples\": 3,\n       \"min\": 20.0,\n       \"median\": 20.0,\n       \"p95\": 20.0,\n       \"max\": 20.0\n      },\n      \"fin\": true,\n      \"flags\": {}\n     },\n     \"s2c\": {\n      \"sender\": \"198.51.100.121\",\n      \"packets\": 7,\n      \"wire_bytes\": 4537,\n      \"data_bytes\": 4147,\n      \"data_segments\": 5,\n      \"retrans_segments\": 0,\n      \"retrans_real\": 0,\n      \"retrans_pct\": 0.0,\n      \"mss\": 1460,\n      \"win_scale\": 6,\n      \"max_segment\": 1460,\n      \"zero_window_total_s\": 0.0,\n      \"zero_window_max_s\": 0.0,\n      \"ack_rtt_ms\": {\n       \"samples\": 3,\n       \"min\": 0.2,\n       \"median\": 0.3,\n       \"p95\": 0.3,\n       \"max\": 0.3\n      },\n      \"fin\": true,\n      \"flags\": {}\n     }\n    },\n    \"counts\": {},\n    \"examples\": {},\n    \"rst\": null,\n    \"responses\": {\n     \"turns\": 3,\n     \"median_ms\": 20.0,\n     \"max_ms\": 20.0,\n     \"slow\": [],\n     \"slow_count\": 0,\n     \"long_gaps\": 0,\n     \"periodic_push\": false\n    },\n    \"tso_frames\": 0,\n    \"duplicate_frames\": 0,\n    \"throughput_mbps\": 0.261,\n    \"filter\": \"ip.addr==192.168.1.50 \u0026\u0026 tcp.port==61001 \u0026\u0026 ip.addr==198.51.100.121 \u0026\u0026 tcp.port==443\",\n    \"tls\": {\n     \"sni\": \"legacy.example.com\",\n     \"version\": \"TLS 1.0\",\n     \"server_hello_ms\": 20.0,\n     \"setup_ms\": 40.3,\n     \"alert\": null\n    }\n   }\n  ],\n  \"segments\": 24,\n  \"flag_totals\": {\n   \"retransmission\": 0,\n   \"fast_retransmission\": 0,\n   \"spurious_retransmission\": 0,\n   \"out_of_order\": 0,\n   \"lost_segment\": 0,\n   \"ack_lost_segment\": 0,\n   \"duplicate_ack\": 0,\n   \"zero_window\": 0,\n   \"zero_window_probe\": 0,\n   \"zero_window_probe_ack\": 0,\n   \"window_full\": 0,\n   \"window_update\": 0,\n   \"keep_alive\": 0,\n   \"keep_alive_ack\": 0\n  },\n  \"flag_frames\": {\n   \"retransmission\": [],\n   \"fast_retransmission\": [],\n   \"spurious_retransmission\": [],\n   \"out_of_order\": [],\n   \"lost_segment\": [],\n   \"ack_lost_segment\": [],\n   \"duplicate_ack\": [],\n   \"zero_window\": [],\n   \"zero_window_probe\": [],\n   \"zero_window_probe_ack\": [],\n   \"window_full\": [],\n   \"window_update\": [],\n   \"keep_alive\": [],\n   \"keep_alive_ack\": []\n  },\n  \"rst_frames\": [],\n  \"capture_point\": {\n   \"position\": \"client\",\n   \"samples\": 2,\n   \"client_side_median_ms\": 0.3,\n   \"server_side_median_ms\": 20.0,\n   \"text\": \"Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 20.0 ms.\"\n  }\n },\n \"dns\": {\n  \"transactions\": [],\n  \"servers\": [],\n  \"malformed\": 0,\n  \"unmatched_responses\": 0,\n  \"tcp_dns_packets\": 0,\n  \"dot_packets\": 0\n },\n \"tls\": {\n  \"sessions\": [\n   {\n    \"conn\": 0,\n    \"client\": \"192.168.1.50\",\n    \"server\": \"203.0.113.120\",\n    \"port\": 443,\n    \"sni\": \"intranet.example.my\",\n    \"alpn\": [\n     \"h2\",\n     \"http/1.1\"\n    ],\n    \"offered\": [\n     \"TLS 1.3\",\n     \"TLS 1.2\"\n    ],\n    \"version\": \"TLS 1.2\",\n    \"cipher\": \"0xc02f\",\n    \"client_hello_frame\": 4,\n    \"time\": 0.0213,\n    \"server_hello_frame\": 5,\n    \"server_hello_ms\": 20.0,\n    \"done_frame\": null,\n    \"setup_ms\": null,\n    \"alert\": \"unknown_ca\",\n    \"alert_frame\": 6,\n    \"alert_by\": \"client\"\n   },\n   {\n    \"conn\": 1,\n    \"client\": \"192.168.1.50\",\n    \"server\": \"198.51.100.121\",\n    \"port\": 443,\n    \"sni\": \"legacy.example.com\",\n    \"alpn\": [\n     \"h2\",\n     \"http/1.1\"\n    ],\n    \"offered\": [\n     \"TLS 1.3\",\n     \"TLS 1.2\"\n    ],\n    \"version\": \"TLS 1.0\",\n    \"cipher\": \"0x1301\",\n    \"client_hello_frame\": 13,\n    \"time\": 0.1518,\n    \"server_hello_frame\": 14,\n    \"server_hello_ms\": 20.0,\n    \"done_frame\": 16,\n    \"setup_ms\": 40.3,\n    \"alert\": null,\n    \"alert_frame\": null,\n    \"alert_by\": \"\"\n   }\n  ]\n },\n \"findings\": [\n  {\n   \"key\": \"tls_alerts\",\n   \"category\": \"tls\",\n   \"severity\": \"critical\",\n   \"confidence\": \"high\",\n   \"artefact\": false,\n   \"title\": \"TLS handshakes failing\",\n   \"summary\": \"1 TLS handshake(s) were aborted with an alert before encryption started. The TCP connection worked; the secure session did not, so the application fails.\",\n   \"evidence\": [\n    {\n     \"frame\": 6,\n     \"time\": 0.0213,\n     \"text\": \"client sent \u0027unknown_ca\u0027 for intranet.example.my: the client does not trust the certificate chain (missing intermediate certificate, self-signed cert, or TLS inspection by a firewall)\"\n    }\n   ],\n   \"check_next\": [\n    \"`openssl s_client -connect \u003chost\u003e:443 -servername \u003chost\u003e` shows the certificate chain and the negotiated version.\",\n    \"Check the certificate dates and chain on the server, and the client\u0027s clock.\"\n   ],\n   \"metrics\": {\n    \"alerts\": 1\n   },\n   \"wireshark_filter\": \"frame.number in {6}\",\n   \"kt\": {\n    \"problem\": \"TLS handshakes are rejected\",\n    \"spec\": {\n     \"what\": [\n      \"unknown_ca (1x)\",\n      \"not a TCP failure: the TCP connections were established\"\n     ],\n     \"where\": [\n      \"intranet.example.my (1x)\",\n      \"1 other TLS sessions complete normally\"\n     ],\n     \"when\": [\n      \"spread from t=0.02s to t=0.02s\",\n      \"no clean period long enough to be meaningful\"\n     ],\n     \"extent\": [\n      \"1 handshake(s)\",\n      \"1 successful\"\n     ]\n    },\n    \"distinctions\": [\n     \"Alerts sent by the client\"\n    ],\n    \"causes\": [\n     {\n      \"cause\": \"Certificate problem: chain not trusted by the client (missing intermediate, self-signed, expired, or replaced by a TLS-inspecting firewall)\",\n      \"explains_is\": true,\n      \"contradicts\": \"\",\n      \"assumptions\": 1,\n      \"verdict\": \"most probable\"\n     },\n     {\n      \"cause\": \"Protocol/cipher mismatch between client and server\",\n      \"explains_is\": false,\n      \"contradicts\": \"a certificate alert means the handshake got as far as the certificate, so version and cipher were agreed\",\n      \"assumptions\": 1,\n      \"verdict\": \"eliminated\"\n     },\n     {\n      \"cause\": \"Network fault\",\n      \"explains_is\": false,\n      \"contradicts\": \"an alert is a deliberate message from one endpoint; the network delivered it\",\n      \"assumptions\": 2,\n      \"verdict\": \"eliminated\"\n     }\n    ],\n    \"verify\": [\n     \"`openssl s_client -connect \u003chost\u003e:443 -servername \u003chost\u003e -showcerts` to see the chain.\",\n     \"Open the site in a browser and inspect the certificate (issuer, dates, name).\"\n    ],\n    \"incident_fix\": \"Install the missing intermediate certificate / renew the certificate on the server.\",\n    \"permanent_fix\": \"Monitor certificate expiry and chain completeness.\"\n   },\n   \"id\": \"F1\"\n  },\n  {\n   \"key\": \"tls_old_version\",\n   \"category\": \"tls\",\n   \"severity\": \"warning\",\n   \"confidence\": \"high\",\n   \"artefact\": false,\n   \"title\": \"Outdated TLS versions in use\",\n   \"summary\": \"1 session(s) negotiated a deprecated protocol (TLS 1.1 or older). Not a performance problem, but a security finding that most audits flag.\",\n   \"evidence\": [\n    {\n     \"frame\": 14,\n     \"time\": 0.1518,\n     \"text\": \"legacy.example.com: negotiated TLS 1.0\"\n    }\n   ],\n   \"check_next\": [\n    \"Enable TLS 1.2/1.3 on the server and disable older versions.\"\n   ],\n   \"metrics\": {},\n   \"wireshark_filter\": \"frame.number in {14}\",\n   \"kt\": null,\n   \"id\": \"F2\"\n  }\n ],\n \"diagnosis\": {\n  \"health\": \"problems\",\n  \"headline\": \"TLS handshakes are rejected. Most probable cause (high confidence): Certificate problem: chain not trusted by the client (missing intermediate, self-signed, expired, or replaced by a TLS-inspecting firewall).\",\n  \"problems\": [\n   {\n    \"problem\": \"TLS handshakes are rejected\",\n    \"spec\": {\n     \"what\": [\n      \"unknown_ca (1x)\",\n      \"not a TCP failure: the TCP connections were established\"\n     ],\n     \"where\": [\n      \"intranet.example.my (1x)\",\n      \"1 other TLS sessions complete normally\"\n     ],\n     \"when\": [\n      \"spread from t=0.02s to t=0.02s\",\n      \"no clean period long enough to be meaningful\"\n     ],\n     \"extent\": [\n      \"1 handshake(s)\",\n      \"1 successful\"\n     ]\n    },\n    \"distinctions\": [\n     \"Alerts sent by the client\"\n    ],\n    \"causes\": [\n     {\n      \"cause\": \"Certificate problem: chain not trusted by the client (missing intermediate, self-signed, expired, or replaced by a TLS-inspecting firewall)\",\n      \"explains_is\": true,\n      \"contradicts\": \"\",\n      \"assumptions\": 1,\n      \"verdict\": \"most probable\"\n     },\n     {\n      \"cause\": \"Protocol/cipher mismatch between client and server\",\n      \"explains_is\": false,\n      \"contradicts\": \"a certificate alert means the handshake got as far as the certificate, so version and cipher were agreed\",\n      \"assumptions\": 1,\n      \"verdict\": \"eliminated\"\n     },\n     {\n      \"cause\": \"Network fault\",\n      \"explains_is\": false,\n      \"contradicts\": \"an alert is a deliberate message from one endpoint; the network delivered it\",\n      \"assumptions\": 2,\n      \"verdict\": \"eliminated\"\n     }\n    ],\n    \"verify\": [\n     \"`openssl s_client -connect \u003chost\u003e:443 -servername \u003chost\u003e -showcerts` to see the chain.\",\n     \"Open the site in a browser and inspect the certificate (issuer, dates, name).\"\n    ],\n    \"incident_fix\": \"Install the missing intermediate certificate / renew the certificate on the server.\",\n    \"permanent_fix\": \"Monitor certificate expiry and chain completeness.\",\n    \"finding\": \"F1\",\n    \"severity\": \"critical\",\n    \"confidence\": \"high\",\n    \"most_probable\": \"Certificate problem: chain not trusted by the client (missing intermediate, self-signed, expired, or replaced by a TLS-inspecting firewall)\"\n   }\n  ],\n  \"checked_clean\": [\n   \"TCP loss: 0 retransmissions in 11 data segments (0.00%)\",\n   \"Receiver windows: no zero-window stalls\",\n   \"Connection setup: 2 handshakes completed, none refused or unanswered\",\n   \"Server response time: no slow request/response turns\"\n  ],\n  \"artefacts\": [],\n  \"limitations\": [\n   \"One capture point: problems elsewhere on the path are inferred, not seen directly.\",\n   \"Short capture (0.3s): intermittent problems may be missed.\",\n   \"Encrypted payloads are not decrypted: only TLS handshakes and TCP behaviour are analysed.\"\n  ],\n  \"capture_point\": \"Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 20.0 ms.\"\n }\n}"};
+document.querySelectorAll('button[data-export]').forEach(b => b.addEventListener('click', () => {
+  const blob = new Blob([EXPORTS[b.dataset.export]], {type: b.dataset.type});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = b.dataset.name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}));
+document.querySelectorAll('button[data-copy]').forEach(b => b.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; }
+  catch (e) { b.textContent = 'Select and copy'; }
+  setTimeout(() => b.textContent = 'Copy', 1500);
+}));
+const tip = document.getElementById('tip');
+document.addEventListener('mousemove', e => {
+  const t = e.target.closest && e.target.closest('[data-tip]');
+  if (!t) { tip.style.display = 'none'; return; }
+  tip.textContent = t.getAttribute('data-tip'); tip.style.display = 'block';
+  const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+});
+</script>
+</body>
+</html>

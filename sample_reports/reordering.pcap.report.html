@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packet Doctor report: reordering.pcap</title>
+<style>
+:root{
+  --bg:#f9f9f7;--surface:#fcfcfb;--surface-2:#f0efec;--border:#e2e1dc;
+  --text:#0b0b0b;--text-2:#52514e;--muted:#77766f;
+  --series:#2a78d6;--series-fill:rgba(42,120,214,.14);
+  --good:#0ca30c;--warning:#fab219;--serious:#ec835a;--critical:#d03b3b;
+  --good-ink:#006300;--warning-ink:#8a5a00;--critical-ink:#a32020;
+  --code:#f0efec;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d0d0d;--surface:#1a1a19;--surface-2:#252523;--border:#383835;
+  --text:#f0efec;--text-2:#c3c2b7;--muted:#97968d;
+  --series:#3987e5;--series-fill:rgba(57,135,229,.20);
+  --good-ink:#5fd35f;--warning-ink:#fab219;--critical-ink:#f08080;--code:#252523;}}
+:root[data-theme="dark"]{
+  --bg:#0d0d0d;--surface:#1a1a19;--surface-2:#252523;--border:#383835;
+  --text:#f0efec;--text-2:#c3c2b7;--muted:#97968d;
+  --series:#3987e5;--series-fill:rgba(57,135,229,.20);
+  --good-ink:#5fd35f;--warning-ink:#fab219;--critical-ink:#f08080;--code:#252523;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:19px;margin:36px 0 12px;padding-top:8px;border-top:1px solid var(--border)}
+h3{font-size:16px;margin:0 0 8px}
+p{margin:6px 0}
+a{color:var(--series)}
+.muted{color:var(--muted)}
+.sub{color:var(--text-2);margin:0}
+code,.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:13px}
+code{background:var(--code);padding:1px 5px;border-radius:4px;word-break:break-word}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:12px 0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+.tile .v{font-size:22px;font-weight:650;font-variant-numeric:tabular-nums}
+.tile .k{color:var(--text-2);font-size:13px}
+.verdict{display:flex;gap:14px;align-items:flex-start;border-left:6px solid var(--good)}
+.verdict.problems{border-left-color:var(--critical)}.verdict.attention{border-left-color:var(--warning)}
+.verdict .icon{font-size:26px;line-height:1}
+.verdict .label{font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
+.verdict.healthy .label{color:var(--good-ink)}.verdict.attention .label{color:var(--warning-ink)}.verdict.problems .label{color:var(--critical-ink)}
+.headline{font-size:17px;font-weight:600;margin:2px 0 0}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:650;border-radius:999px;padding:1px 9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);white-space:nowrap}
+.badge.critical{color:var(--critical-ink);border-color:var(--critical)}
+.badge.warning{color:var(--warning-ink);border-color:var(--warning)}
+.badge.info{color:var(--text-2)}
+.badge.artefact{border-style:dashed}
+.finding-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.finding-head h3{margin:0;flex:1 1 300px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--text-2);font-weight:600;font-size:12.5px;background:var(--surface-2)}
+td.n,th.n{text-align:right}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.kt th{width:110px}
+.kt td.is{width:45%}
+.cause-most td:first-child{font-weight:650}
+.cause-eliminated{color:var(--muted)}
+.cause-eliminated td:first-child{text-decoration:line-through}
+.filter{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.filter code{flex:1 1 300px}
+button{font:inherit;font-size:13px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:6px;padding:4px 10px;cursor:pointer}
+button:hover{border-color:var(--series)}
+ul.tight{margin:6px 0;padding-left:20px}
+ul.tight li{margin:3px 0}
+details{margin:8px 0}
+summary{cursor:pointer;color:var(--text-2);font-weight:600}
+svg.chart{width:100%;height:auto;display:block}
+svg .grid{stroke:var(--border);stroke-width:1}
+svg .axis,svg .label,svg .value{fill:var(--text-2);font-size:12px;font-family:system-ui,sans-serif}
+svg .value{fill:var(--text)}
+svg .line{fill:none;stroke:var(--series);stroke-width:2;stroke-linejoin:round}
+svg .area{fill:var(--series-fill)}
+svg .bar{fill:var(--series)}
+svg .bar:hover{opacity:.8}
+svg .hit{fill:transparent}
+svg .hit:hover{fill:var(--series-fill)}
+svg .threshold{stroke:var(--critical);stroke-width:1.5;stroke-dasharray:4 3}
+svg .ev-critical{fill:var(--critical)}svg .ev-warning{fill:var(--warning)}svg .ev-info{fill:var(--muted)}
+#tip{position:fixed;pointer-events:none;background:var(--text);color:var(--bg);font-size:12.5px;padding:5px 9px;border-radius:6px;max-width:360px;display:none;z-index:9}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--text-2);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;margin:10px 0}
+.exports{display:flex;gap:8px;flex-wrap:wrap}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+@media (max-width:640px){.kt th{width:auto}.tile .v{font-size:19px}h1{font-size:22px}}
+@media print{button,.exports,nav.toc{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <p class="sub">Packet Doctor 1.0.0 · capture diagnosis</p>
+  <h1>reordering.pcap</h1>
+  <p class="sub">2025-11-14 06:00:00.000 UTC → 2025-11-14 06:00:00.141 UTC · pcap · analysed 67 frames in 0.0 s</p>
+</header>
+
+<section class="card verdict healthy" aria-label="Verdict">
+  <div class="icon" aria-hidden="true">✔</div>
+  <div>
+    <div class="label">Healthy</div>
+    <p class="headline">No network problems found in this capture. If users still report trouble, the cause is probably outside what this capture saw (another path, the endpoint, or a different time).</p>
+    <p class="muted">Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 30.0 ms.</p>
+  </div>
+</section>
+
+<div class="tiles">
+  <div class="tile"><div class="v">0.1 s</div><div class="k">capture length</div></div>
+  <div class="tile"><div class="v">67</div><div class="k">frames</div></div>
+  <div class="tile"><div class="v">60.6 KB</div><div class="k">data on the wire</div></div>
+  <div class="tile"><div class="v">3.51</div><div class="k">average Mbit/s</div></div>
+  <div class="tile"><div class="v">1</div><div class="k">TCP connections</div></div>
+  <div class="tile"><div class="v">0</div><div class="k">DNS lookups</div></div>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#diagnosis">Diagnosis</a><a href="#findings">Findings</a><a href="#charts">Charts</a>
+  <a href="#tcp">TCP</a><a href="#dns">DNS</a><a href="#tls">TLS</a><a href="#traffic">Top talkers</a>
+  <a href="#limits">Limits</a><a href="#export">Export</a>
+</nav>
+
+<h2 id="diagnosis">Diagnosis</h2>
+  <div class="card"><p>No problem needed a full Kepner-Tregoe analysis.</p></div>
+<div class="card"><h3>Checked and found clean</h3>
+<ul class="tight"><li>✔ TCP loss: 0 retransmissions in 41 data segments (0.00%)</li><li>✔ Receiver windows: no zero-window stalls</li><li>✔ Connection setup: 1 handshakes completed, none refused or unanswered</li><li>✔ Server response time: no slow request/response turns</li></ul></div>
+
+<h2 id="findings">Findings and evidence</h2>
+<p class="muted">No findings.</p>
+<h2 id="charts">Charts</h2>
+<div class="card"><h3>Throughput over time</h3>
+  <p class="muted">All traffic in the capture, 0.01 s buckets. Ticks underneath mark problem events; hover for details.</p>
+  <svg class="chart" viewBox="0 0 900 260" role="img" aria-label="Throughput over time, peak 27.12 Mbit/s"><line x1="84" x2="888" y1="232.0" y2="232.0" class="grid"/><text x="78" y="236.0" class="axis" text-anchor="end">0 bit/s</text><line x1="84" x2="888" y1="177.0" y2="177.0" class="grid"/><text x="78" y="181.0" class="axis" text-anchor="end">12.50 Mbit/s</text><line x1="84" x2="888" y1="122.0" y2="122.0" class="grid"/><text x="78" y="126.0" class="axis" text-anchor="end">25.00 Mbit/s</text><line x1="84" x2="888" y1="67.0" y2="67.0" class="grid"/><text x="78" y="71.0" class="axis" text-anchor="end">37.50 Mbit/s</text><line x1="84" x2="888" y1="12.0" y2="12.0" class="grid"/><text x="78" y="16.0" class="axis" text-anchor="end">50.00 Mbit/s</text><text x="84.0" y="248.0" class="axis" text-anchor="start">0.00s</text><text x="244.8" y="248.0" class="axis" text-anchor="middle">0.20s</text><text x="405.6" y="248.0" class="axis" text-anchor="middle">0.40s</text><text x="566.4" y="248.0" class="axis" text-anchor="middle">0.60s</text><text x="727.2" y="248.0" class="axis" text-anchor="middle">0.80s</text><text x="888.0" y="248.0" class="axis" text-anchor="end">1.00s</text><polygon points="88.0,232.0 88.0,231.8 96.1,232.0 104.1,231.8 112.1,231.5 120.2,232.0 128.2,232.0 136.3,112.7 144.3,134.4 152.3,232.0 160.4,232.0 168.4,232.0 176.5,231.8 184.5,232.0 192.5,232.0 200.6,231.6 200.6,232.0" class="area"/><polyline points="88.0,231.8 96.1,232.0 104.1,231.8 112.1,231.5 120.2,232.0 128.2,232.0 136.3,112.7 144.3,134.4 152.3,232.0 160.4,232.0 168.4,232.0 176.5,231.8 184.5,232.0 192.5,232.0 200.6,231.6" class="line"/><rect x="84.0" y="12" width="53.6" height="220" class="hit" data-tip="0.00s to 0.01s: 52.8 kbit/s" tabindex="-1"/><rect x="92.0" y="12" width="53.6" height="220" class="hit" data-tip="0.01s to 0.02s: 0 bit/s" tabindex="-1"/><rect x="100.1" y="12" width="53.6" height="220" class="hit" data-tip="0.02s to 0.03s: 52.8 kbit/s" tabindex="-1"/><rect x="108.1" y="12" width="53.6" height="220" class="hit" data-tip="0.03s to 0.04s: 116.0 kbit/s" tabindex="-1"/><rect x="116.2" y="12" width="53.6" height="220" class="hit" data-tip="0.04s to 0.05s: 0 bit/s" tabindex="-1"/><rect x="124.2" y="12" width="53.6" height="220" class="hit" data-tip="0.05s to 0.06s: 0 bit/s" tabindex="-1"/><rect x="132.2" y="12" width="53.6" height="220" class="hit" data-tip="0.06s to 0.07s: 27.12 Mbit/s" tabindex="-1"/><rect x="140.3" y="12" width="53.6" height="220" class="hit" data-tip="0.07s to 0.08s: 22.19 Mbit/s" tabindex="-1"/><rect x="148.3" y="12" width="53.6" height="220" class="hit" data-tip="0.08s to 0.09s: 0 bit/s" tabindex="-1"/><rect x="156.4" y="12" width="53.6" height="220" class="hit" data-tip="0.09s to 0.10s: 0 bit/s" tabindex="-1"/><rect x="164.4" y="12" width="53.6" height="220" class="hit" data-tip="0.10s to 0.11s: 0 bit/s" tabindex="-1"/><rect x="172.4" y="12" width="53.6" height="220" class="hit" data-tip="0.11s to 0.12s: 43.2 kbit/s" tabindex="-1"/><rect x="180.5" y="12" width="53.6" height="220" class="hit" data-tip="0.12s to 0.13s: 0 bit/s" tabindex="-1"/><rect x="188.5" y="12" width="53.6" height="220" class="hit" data-tip="0.13s to 0.14s: 0 bit/s" tabindex="-1"/><rect x="196.6" y="12" width="53.6" height="220" class="hit" data-tip="0.14s to 0.15s: 86.4 kbit/s" tabindex="-1"/></svg>
+  <div class="legend"><span><i style="background:var(--critical)"></i>critical event</span><span><i style="background:var(--warning)"></i>warning event</span></div>
+</div>
+<div class="card"><h3>Handshake round-trip time by server</h3>
+  <p class="muted">SYN → SYN/ACK → ACK, median per server. Dashed line: high-latency threshold.</p><svg class="chart" viewBox="0 0 900 50" role="img"><line x1="596.0" x2="596.0" y1="0" y2="30" class="threshold"/><text x="600.0" y="44" class="axis">threshold 300.0 ms</text><text x="252" y="14" class="label" text-anchor="end">203.0.113.90</text><path d="M260,0 h29.9 q4,0 4,4 v10 q0,4 -4,4 h-29.9 z" class="bar" data-tip="203.0.113.90: median handshake RTT 30.3 ms over 1 connection(s)"/><text x="299.9" y="14" class="value">30.3 ms</text></svg></div>
+<h2 id="tcp">TCP connections</h2>
+<p class="muted">1 connections. Capture point: Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 30.0 ms.</p>
+<div class="scroll"><table>
+<thead><tr><th class="n">#</th><th>Client → Server</th><th>Service</th><th>Outcome</th><th class="n">Data</th><th class="n">Handshake</th><th class="n">Retrans</th><th class="n">Dup ACK</th><th class="n">Zero win</th><th class="n">Median response</th></tr></thead>
+<tbody>
+<tr><td class="n">0</td>
+<td class="mono">192.168.1.50:59000 → 203.0.113.90:443</td>
+<td>HTTPS</td><td>closed</td>
+<td class="n">52.8 KB</td>
+<td class="n">30.3 ms</td>
+<td class="n">0</td>
+<td class="n">0</td><td class="n">0</td>
+<td class="n">30.0 ms</td></tr>
+</tbody></table></div>
+
+<h2 id="dns">DNS</h2>
+<p class="muted">No DNS over UDP port 53 in this capture.</p>
+<h2 id="tls">TLS handshakes</h2>
+<p class="muted">No TLS handshakes over TCP were captured.</p>
+<h2 id="traffic">Top talkers and conversations</h2>
+<div class="card"><h3>Top hosts by bytes (sent + received)</h3><svg class="chart" viewBox="0 0 900 76" role="img"><text x="252" y="14" class="label" text-anchor="end">203.0.113.90</text><path d="M260,0 h343.6 q4,0 4,4 v10 q0,4 -4,4 h-343.6 z" class="bar" data-tip="203.0.113.90: sent 59.3 KB, received 1.4 KB"/><text x="613.6" y="14" class="value">60.6 KB</text><text x="252" y="40" class="label" text-anchor="end">192.168.1.50</text><path d="M260,26 h343.6 q4,0 4,4 v10 q0,4 -4,4 h-343.6 z" class="bar" data-tip="192.168.1.50: sent 1.4 KB, received 59.3 KB"/><text x="613.6" y="40" class="value">60.6 KB</text></svg></div><div class="scroll"><table>
+<thead><tr><th>Conversation</th><th>Service</th><th class="n">Packets</th><th class="n">Bytes</th><th class="n">Duration</th><th class="n">Avg Mbit/s</th></tr></thead>
+<tbody><tr><td class="mono">TCP 192.168.1.50:59000 ↔ 203.0.113.90:443</td><td>HTTPS</td><td class="n">67</td><td class="n">60.6 KB</td><td class="n">0.141 s</td><td class="n">3.51</td></tr></tbody></table></div>
+<p class="muted">Protocols: TCP 60.6 KB</p>
+
+
+<h2 id="limits">What this capture cannot tell you</h2>
+<ul class="tight"><li>One capture point: problems elsewhere on the path are inferred, not seen directly.</li><li>Short capture (0.1s): intermittent problems may be missed.</li></ul>
+<details><summary>How Packet Doctor reaches its conclusions</summary>
+<p>TCP flags (retransmission, duplicate ACK, zero window, out-of-order …) follow the same rules as Wireshark's TCP analysis, so frame numbers here match Wireshark's Expert Info. Each problem is written up with the Kepner-Tregoe method: describe what IS and IS NOT affected, list candidate causes, drop any cause that contradicts the IS-NOT side, and prefer the one needing the fewest assumptions. Confidence is lowered when evidence is thin or capture artefacts are present. Thresholds used: retransmissions ≥ 1.0% of a sender's segments (and at least 3 in total), handshake RTT ≥ 300 ms, server time ≥ 500 ms, DNS ≥ 200 ms, DNS timeout 2.0 s.</p>
+</details>
+
+<h2 id="export">Export</h2>
+<p class="muted">Data from this report, for Excel, Power BI or a ticket.</p>
+<div class="exports">
+  <button data-export="json" data-name="reordering.pcap.report.json" data-type="application/json">Full results (JSON)</button>
+  <button data-export="findings" data-name="reordering.pcap.findings.csv" data-type="text/csv">Findings (CSV)</button>
+  <button data-export="connections" data-name="reordering.pcap.connections.csv" data-type="text/csv">TCP connections (CSV)</button>
+  <button data-export="dns" data-name="reordering.pcap.dns.csv" data-type="text/csv">DNS lookups (CSV)</button>
+</div>
+
+<footer>Generated 2026-11-13 18:10:35 UTC by Packet Doctor 1.0.0. Times are seconds from the first frame, like Wireshark's “Time since beginning of capture”.</footer>
+</main>
+<div id="tip" role="tooltip"></div>
+<script>
+const EXPORTS = {"connections": "id,client,client_port,server,server_port,service,sni,outcome,start_s,duration_s,frames,bytes_client_to_server,bytes_server_to_client,handshake_rtt_ms,server_side_rtt_ms,client_side_rtt_ms,retrans_c2s,retrans_pct_c2s,retrans_s2c,retrans_pct_s2c,dup_acks,zero_windows,out_of_order,median_response_ms,slow_responses,tls_setup_ms,throughput_mbps,wireshark_filter\n0,192.168.1.50,59000,203.0.113.90,443,HTTPS,,closed,0.0,0.1415,67,37,54020,30.3,30.0,0.3,0,0.0,0,0.0,0,0,3,30.0,0,,3.056,ip.addr==192.168.1.50 \u0026\u0026 tcp.port==59000 \u0026\u0026 ip.addr==203.0.113.90 \u0026\u0026 tcp.port==443\n", "dns": "time_s,query_frame,response_frame,client,server,name,type,status,rcode,latency_ms,retries\n", "findings": "id,severity,confidence,capture_artefact,category,key,title,summary,evidence_frames,wireshark_filter\n", "json": "{\n \"tool\": {\n  \"name\": \"Packet Doctor\",\n  \"version\": \"1.0.0\"\n },\n \"generated_utc\": \"2026-11-13 18:10:35 UTC\",\n \"capture\": {\n  \"file\": \"reordering.pcap\",\n  \"format\": \"pcap\",\n  \"linktype\": 1,\n  \"file_size\": 63175,\n  \"packets\": 67,\n  \"bytes\": 62079,\n  \"start_utc\": \"2025-11-14 06:00:00.000 UTC\",\n  \"end_utc\": \"2025-11-14 06:00:00.141 UTC\",\n  \"duration_s\": 0.141,\n  \"avg_mbps\": 3.51,\n  \"non_ip_frames\": 0,\n  \"warnings\": [],\n  \"time_went_backwards\": 0,\n  \"truncated_frames\": 0,\n  \"ip_fragments\": 0,\n  \"tso_zero_length\": 0,\n  \"max_frame\": 1514,\n  \"stopped_early\": false,\n  \"reported_drops\": 0,\n  \"extra_linktypes\": [],\n  \"analysis_seconds\": 0.0,\n  \"packets_per_second\": 24678\n },\n \"thresholds\": {\n  \"retrans_warn_pct\": 1.0,\n  \"retrans_crit_pct\": 5.0,\n  \"min_retrans\": 3,\n  \"comparable_segments\": 20,\n  \"high_rtt_ms\": 300.0,\n  \"slow_response_ms\": 500.0,\n  \"long_poll_s\": 10.0,\n  \"dns_slow_ms\": 200.0,\n  \"dns_resolver_median_ms\": 100.0,\n  \"dns_timeout_s\": 2.0,\n  \"tls_slow_ms\": 1000.0,\n  \"zero_window_crit_s\": 1.0\n },\n \"traffic\": {\n  \"timeline\": {\n   \"bucket_s\": 0.01,\n   \"points\": [\n    [\n     0.0,\n     52800.0\n    ],\n    [\n     0.01,\n     0.0\n    ],\n    [\n     0.02,\n     52800.0\n    ],\n    [\n     0.03,\n     116000.0\n    ],\n    [\n     0.04,\n     0.0\n    ],\n    [\n     0.05,\n     0.0\n    ],\n    [\n     0.06,\n     27121600.0\n    ],\n    [\n     0.07,\n     22190400.0\n    ],\n    [\n     0.08,\n     0.0\n    ],\n    [\n     0.09,\n     0.0\n    ],\n    [\n     0.1,\n     0.0\n    ],\n    [\n     0.11,\n     43200.0\n    ],\n    [\n     0.12,\n     0.0\n    ],\n    [\n     0.13,\n     0.0\n    ],\n    [\n     0.14,\n     86400.0\n    ]\n   ]\n  },\n  \"protocols\": [\n   {\n    \"proto\": \"TCP\",\n    \"packets\": 67,\n    \"bytes\": 62079\n   }\n  ],\n  \"services\": [\n   {\n    \"service\": \"HTTPS\",\n    \"bytes\": 62079\n   }\n  ],\n  \"top_talkers\": [\n   {\n    \"host\": \"203.0.113.90\",\n    \"tx_bytes\": 60680,\n    \"rx_bytes\": 1399,\n    \"total_bytes\": 62079,\n    \"share\": 0.5\n   },\n   {\n    \"host\": \"192.168.1.50\",\n    \"tx_bytes\": 1399,\n    \"rx_bytes\": 60680,\n    \"total_bytes\": 62079,\n    \"share\": 0.5\n   }\n  ],\n  \"top_conversations\": [\n   {\n    \"proto\": \"TCP\",\n    \"a\": \"192.168.1.50:59000\",\n    \"b\": \"203.0.113.90:443\",\n    \"service\": \"HTTPS\",\n    \"packets\": 67,\n    \"bytes\": 62079,\n    \"first_ts\": 1763100000.0,\n    \"last_ts\": 1763100000.1415,\n    \"duration_s\": 0.141,\n    \"avg_mbps\": 3.51\n   }\n  ],\n  \"icmp\": []\n },\n \"tcp\": {\n  \"connections\": [\n   {\n    \"id\": 0,\n    \"client\": \"192.168.1.50\",\n    \"client_port\": 59000,\n    \"server\": \"203.0.113.90\",\n    \"server_port\": 443,\n    \"service\": \"HTTPS\",\n    \"outcome\": \"closed\",\n    \"start\": 0.0,\n    \"end\": 0.1415,\n    \"duration_s\": 0.1415,\n    \"first_frame\": 1,\n    \"frames\": 67,\n    \"handshake\": {\n     \"server_side_ms\": 30.0,\n     \"client_side_ms\": 0.3,\n     \"irtt_ms\": 30.3,\n     \"syn_count\": 1,\n     \"syn_frame\": 1,\n     \"synack_frame\": 2\n    },\n    \"dirs\": {\n     \"c2s\": {\n      \"sender\": \"192.168.1.50\",\n      \"packets\": 25,\n      \"wire_bytes\": 1399,\n      \"data_bytes\": 37,\n      \"data_segments\": 1,\n      \"retrans_segments\": 0,\n      \"retrans_real\": 0,\n      \"retrans_pct\": 0.0,\n      \"mss\": 1460,\n      \"win_scale\": 6,\n      \"max_segment\": 37,\n      \"zero_window_total_s\": 0.0,\n      \"zero_window_max_s\": 0.0,\n      \"ack_rtt_ms\": {\n       \"samples\": 1,\n       \"min\": 30.0,\n       \"median\": 30.0,\n       \"p95\": 30.0,\n       \"max\": 30.0\n      },\n      \"fin\": true,\n      \"flags\": {}\n     },\n     \"s2c\": {\n      \"sender\": \"203.0.113.90\",\n      \"packets\": 42,\n      \"wire_bytes\": 60680,\n      \"data_bytes\": 54020,\n      \"data_segments\": 40,\n      \"retrans_segments\": 0,\n      \"retrans_real\": 0,\n      \"retrans_pct\": 0.0,\n      \"mss\": 1460,\n      \"win_scale\": 6,\n      \"max_segment\": 1460,\n      \"zero_window_total_s\": 0.0,\n      \"zero_window_max_s\": 0.0,\n      \"ack_rtt_ms\": {\n       \"samples\": 20,\n       \"min\": 0.1,\n       \"median\": 0.1,\n       \"p95\": 0.5,\n       \"max\": 0.5\n      },\n      \"fin\": true,\n      \"flags\": {\n       \"lost_segment\": 3,\n       \"out_of_order\": 3\n      }\n     }\n    },\n    \"counts\": {\n     \"lost_segment\": 3,\n     \"out_of_order\": 3\n    },\n    \"examples\": {\n     \"lost_segment\": [\n      {\n       \"frame\": 14,\n       \"time\": 0.0637,\n       \"detail\": \"4294965836 bytes before this segment were not seen\"\n      },\n      {\n       \"frame\": 30,\n       \"time\": 0.0681,\n       \"detail\": \"4294965836 bytes before this segment were not seen\"\n      },\n      {\n       \"frame\": 48,\n       \"time\": 0.0729,\n       \"detail\": \"4294965836 bytes before this segment were not seen\"\n      }\n     ],\n     \"out_of_order\": [\n      {\n       \"frame\": 15,\n       \"time\": 0.0641,\n       \"detail\": \"seq 58761 len 1460\"\n      },\n      {\n       \"frame\": 32,\n       \"time\": 0.0685,\n       \"detail\": \"seq 74821 len 1460\"\n      },\n      {\n       \"frame\": 50,\n       \"time\": 0.0733,\n       \"detail\": \"seq 92341 len 1460\"\n      }\n     ]\n    },\n    \"rst\": null,\n    \"responses\": {\n     \"turns\": 1,\n     \"median_ms\": 30.0,\n     \"max_ms\": 30.0,\n     \"slow\": [],\n     \"slow_count\": 0,\n     \"long_gaps\": 0,\n     \"periodic_push\": false\n    },\n    \"tso_frames\": 0,\n    \"duplicate_frames\": 0,\n    \"throughput_mbps\": 3.056,\n    \"filter\": \"ip.addr==192.168.1.50 \u0026\u0026 tcp.port==59000 \u0026\u0026 ip.addr==203.0.113.90 \u0026\u0026 tcp.port==443\"\n   }\n  ],\n  \"segments\": 67,\n  \"flag_totals\": {\n   \"retransmission\": 0,\n   \"fast_retransmission\": 0,\n   \"spurious_retransmission\": 0,\n   \"out_of_order\": 3,\n   \"lost_segment\": 3,\n   \"ack_lost_segment\": 0,\n   \"duplicate_ack\": 0,\n   \"zero_window\": 0,\n   \"zero_window_probe\": 0,\n   \"zero_window_probe_ack\": 0,\n   \"window_full\": 0,\n   \"window_update\": 0,\n   \"keep_alive\": 0,\n   \"keep_alive_ack\": 0\n  },\n  \"flag_frames\": {\n   \"retransmission\": [],\n   \"fast_retransmission\": [],\n   \"spurious_retransmission\": [],\n   \"out_of_order\": [\n    15,\n    32,\n    50\n   ],\n   \"lost_segment\": [\n    14,\n    30,\n    48\n   ],\n   \"ack_lost_segment\": [],\n   \"duplicate_ack\": [],\n   \"zero_window\": [],\n   \"zero_window_probe\": [],\n   \"zero_window_probe_ack\": [],\n   \"window_full\": [],\n   \"window_update\": [],\n   \"keep_alive\": [],\n   \"keep_alive_ack\": []\n  },\n  \"rst_frames\": [],\n  \"capture_point\": {\n   \"position\": \"client\",\n   \"samples\": 1,\n   \"client_side_median_ms\": 0.3,\n   \"server_side_median_ms\": 30.0,\n   \"text\": \"Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 30.0 ms.\"\n  }\n },\n \"dns\": {\n  \"transactions\": [],\n  \"servers\": [],\n  \"malformed\": 0,\n  \"unmatched_responses\": 0,\n  \"tcp_dns_packets\": 0,\n  \"dot_packets\": 0\n },\n \"tls\": {\n  \"sessions\": []\n },\n \"findings\": [],\n \"diagnosis\": {\n  \"health\": \"healthy\",\n  \"headline\": \"No network problems found in this capture. If users still report trouble, the cause is probably outside what this capture saw (another path, the endpoint, or a different time).\",\n  \"problems\": [],\n  \"checked_clean\": [\n   \"TCP loss: 0 retransmissions in 41 data segments (0.00%)\",\n   \"Receiver windows: no zero-window stalls\",\n   \"Connection setup: 1 handshakes completed, none refused or unanswered\",\n   \"Server response time: no slow request/response turns\"\n  ],\n  \"artefacts\": [],\n  \"limitations\": [\n   \"One capture point: problems elsewhere on the path are inferred, not seen directly.\",\n   \"Short capture (0.1s): intermittent problems may be missed.\"\n  ],\n  \"capture_point\": \"Capture appears to be taken near the client: the client answers the SYN/ACK almost instantly (median 0.30 ms) while the server side takes 30.0 ms.\"\n }\n}"};
+document.querySelectorAll('button[data-export]').forEach(b => b.addEventListener('click', () => {
+  const blob = new Blob([EXPORTS[b.dataset.export]], {type: b.dataset.type});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = b.dataset.name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}));
+document.querySelectorAll('button[data-copy]').forEach(b => b.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; }
+  catch (e) { b.textContent = 'Select and copy'; }
+  setTimeout(() => b.textContent = 'Copy', 1500);
+}));
+const tip = document.getElementById('tip');
+document.addEventListener('mousemove', e => {
+  const t = e.target.closest && e.target.closest('[data-tip]');
+  if (!t) { tip.style.display = 'none'; return; }
+  tip.textContent = t.getAttribute('data-tip'); tip.style.display = 'block';
+  const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+});
+</script>
+</body>
+</html>
