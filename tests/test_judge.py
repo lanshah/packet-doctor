@@ -1,9 +1,27 @@
 """Outside judge: Packet Doctor's TCP flags must agree with Wireshark's on every sample."""
+import re
+
 import pytest
 
-from packet_doctor.judge import find_tshark, judge
+from packet_doctor.judge import find_tshark, judge, tshark_version
 
-pytestmark = pytest.mark.skipif(find_tshark() is None, reason="tshark (Wireshark) not installed")
+
+def _version_tuple():
+    t = find_tshark()
+    if t is None:
+        return None
+    m = re.search(r"(\d+)\.(\d+)\.(\d+)", tshark_version(t))
+    return tuple(int(x) for x in m.groups()) if m else None
+
+
+_VER = _version_tuple()
+# Packet Doctor mirrors Wireshark 4.6's TCP analysis rules (SACK handling and other
+# details changed in earlier releases), so only 4.6+ is a fair frame-by-frame judge.
+pytestmark = [
+    pytest.mark.skipif(_VER is None, reason="tshark (Wireshark) not installed"),
+    pytest.mark.skipif(_VER is not None and _VER < (4, 6, 0),
+                       reason=f"tshark {_VER} is older than 4.6; its TCP analysis rules differ"),
+]
 
 
 def test_flags_agree_with_wireshark(corpus):
