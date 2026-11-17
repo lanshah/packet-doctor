@@ -1,5 +1,7 @@
 # Packet Doctor
 
+![CI](https://github.com/lanshah/packet-doctor/actions/workflows/ci.yml/badge.svg)
+
 **Give it a Wireshark capture. Get the diagnosis a senior network engineer would write, with the frame numbers to prove it.**
 
 Packet Doctor reads `.pcap` / `.pcapng` files and explains, in plain English, what is wrong with the network and where: packet loss, receiver stalls, slow servers, failing DNS, rejected TLS handshakes. It also flags what is *not* a network fault (offload artefacts, capture drops, mirror-port duplicates). Each problem is written up with the **Kepner-Tregoe** method used in NOC troubleshooting: what IS affected, what IS NOT, which causes survive, how sure we are, and what to check next.
