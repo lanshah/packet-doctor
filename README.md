@@ -25,7 +25,7 @@ The first real-capture run agreed with Wireshark on only 51% of flags. [validati
 You need Python 3.10+ (3.14 recommended) and Git. Wireshark is optional: it is only needed for the `judge` cross-check.
 
 ```bash
-git clone https://github.com/<your-username>/packet-doctor.git
+git clone https://github.com/lanshah/packet-doctor.git
 ```
 
 ```bash
